@@ -1,16 +1,25 @@
-# countdown_app
+# Countdown App
 
-A new Flutter project.
+# Plan
 
-## Getting Started
+- Code the front-end
+- Learn about state- and data-management
+- Code the backend and logic of the app
 
-This project is a starting point for a Flutter application.
+# General
+- test.dart is just example-code
 
-A few resources to get you started if this is your first Flutter project:
+# MainPage
+- BottomAppBar moet achtergrond zwart worden en FAB moet paars zijn omdat in een dark mode moeten felle kleuren niet voor grote oppervlakken gebruikt worden.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Cards
+- CardTitle is de felste kleur
+- Description en de icons zullen minder fel zijn
+- De verschillende tijd-eenheden moeten allemaal in een eigen box waaronder gelijk zijn tijd komt te staan zodat die onder elkaar staan
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# CreatePage
+- TopBar ziet er echt clean uit nu en het geeft echt een totaal andere look als je niet volledig paars gebruikt voor de top app bar
+
+# Settings
+
+# Acknowledgements

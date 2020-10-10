@@ -41,8 +41,11 @@ class _CreatePageState extends State<CreatePage> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.purple,
-          title: Text('Create Page'),
+          backgroundColor: Color.fromRGBO(18, 18, 18, 1),
+          title: Text(
+            'Create Page',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
         body: Center(
           child: ListView(
@@ -93,6 +96,7 @@ class _CreatePageState extends State<CreatePage> {
                 ],
               ),
               Container(
+                alignment: AlignmentDirectional.centerEnd,
                 padding: EdgeInsets.only(left: 5, right: 5),
                 child: Row(
                   children: <Widget>[
