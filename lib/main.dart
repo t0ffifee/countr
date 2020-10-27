@@ -43,13 +43,7 @@ class MyAppState extends State<MyApp> {
         ),
         backgroundColor: backgroundBlack,
         floatingActionButton: fab(context),
-        bottomNavigationBar: BottomAppBar(
-          color: lighterBlackOne,
-          child: Container(height: 50.0),
-          notchMargin: 5, // Dit bepaalt de afstand tussen FAB en bottomNavBar
-          shape: CircularNotchedRectangle(),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
     );
   }
