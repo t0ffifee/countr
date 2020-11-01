@@ -2,6 +2,7 @@
 import 'package:countdown_app/countdown_page.dart';
 import 'package:countdown_app/create_page.dart';
 import 'package:flutter/material.dart';
+import 'package:countdown_app/fancy_fab.dart';
 
 // Dit moet even in een apart bestand gedaan worden volgens mij met CONSTANTS
 Color ligthPurple = Color.fromRGBO(190, 129, 248, 1);
@@ -42,14 +43,8 @@ class MyAppState extends State<MyApp> {
           ),
         ),
         backgroundColor: backgroundBlack,
-        floatingActionButton: fab(context),
-        bottomNavigationBar: BottomAppBar(
-          color: lighterBlackOne,
-          child: Container(height: 50.0),
-          notchMargin: 5, // Dit bepaalt de afstand tussen FAB en bottomNavBar
-          shape: CircularNotchedRectangle(),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        floatingActionButton: FancyFab(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
     );
   }
