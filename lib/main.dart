@@ -90,13 +90,9 @@ Card getCard(BuildContext context) {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const ListTile(
+          ListTile(
             leading: Icon(
               Icons.directions_car,
-              color: Color.fromRGBO(143, 143, 143, 1),
-            ),
-            trailing: Icon(
-              Icons.edit,
               color: Color.fromRGBO(143, 143, 143, 1),
             ),
             title: Text(
@@ -200,12 +196,24 @@ Card getCard(BuildContext context) {
           ButtonBar(
             children: <Widget>[
               FlatButton(
-                padding: EdgeInsets.only(left: 20),
+                splashColor: ligthPurple.withAlpha(150),
+                onPressed: () {
+                  print("Edit button");
+                },
+                child: Icon(
+                  Icons.edit,
+                  color: whiteTextColor,
+                ),
+              ),
+              FlatButton(
+                splashColor: ligthPurple.withAlpha(150),
                 child: Icon(
                   Icons.drag_handle,
-                  color: Color.fromRGBO(143, 143, 143, 1),
+                  color: whiteTextColor,
                 ),
-                onPressed: () {/* ... */},
+                onPressed: () {
+                  print("Move button");
+                },
               ),
             ],
           ),
