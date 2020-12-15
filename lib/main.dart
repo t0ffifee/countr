@@ -12,6 +12,7 @@ Color whiteTextColor = Color.fromRGBO(143, 143, 143, 1);
 
 // TODO check het heroTag probleem, heeft iets te maken met de meerdere FABs in de mega FAB
 // TODO maak aparte widget files voor belangrijke widgets die je vaak gebruikt of groot zijn
+// TODO misschien een library gebruiken voor het uitvoeren van de multi-FAB
 
 void main() {
   runApp(MaterialApp(
@@ -63,17 +64,17 @@ Container bottomContainer = Container(
   color: Color.fromRGBO(18, 18, 18, 1),
 );
 
-FloatingActionButton fab(BuildContext context) {
-  return FloatingActionButton(
-    heroTag: "notUsed",
-    backgroundColor: Color.fromRGBO(190, 129, 248, 1),
-    splashColor: Colors.purpleAccent,
-    child: Icon(Icons.add),
-    onPressed: () {
-      Navigator.of(context).push(_createRoute());
-    },
-  );
-}
+// FloatingActionButton fab(BuildContext context) {
+//   return FloatingActionButton(
+//     heroTag: 'notUsed',
+//     backgroundColor: Color.fromRGBO(190, 129, 248, 1),
+//     splashColor: Colors.purpleAccent,
+//     child: Icon(Icons.add),
+//     onPressed: () {
+//       Navigator.of(context).push(_createRoute());
+//     },
+//   );
+// }
 
 Card getCard(BuildContext context) {
   return Card(
@@ -222,20 +223,20 @@ Card getCard(BuildContext context) {
   );
 }
 
-Route _createRoute() {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => CreatePage(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      var begin = Offset(0.0, 1.0);
-      var end = Offset.zero;
-      var curve = Curves.easeOut;
+// Route _createRoute() {
+//   return PageRouteBuilder(
+//     pageBuilder: (context, animation, secondaryAnimation) => CreatePage(),
+//     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+//       var begin = Offset(0.0, 1.0);
+//       var end = Offset.zero;
+//       var curve = Curves.easeOut;
 
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+//       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
-      return SlideTransition(
-        position: animation.drive(tween),
-        child: child,
-      );
-    },
-  );
-}
+//       return SlideTransition(
+//         position: animation.drive(tween),
+//         child: child,
+//       );
+//     },
+//   );
+// }

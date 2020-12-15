@@ -118,7 +118,7 @@ class _FancyFabState extends State<FancyFab>
   Widget toggle() {
     return Container(
       child: FloatingActionButton(
-        heroTag: 'toggle',
+        heroTag: 'settings',
         backgroundColor: _buttonColor.value,
         onPressed: animate,
         tooltip: 'Toggle',
