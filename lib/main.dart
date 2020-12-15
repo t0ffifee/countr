@@ -10,6 +10,9 @@ Color backgroundBlack = Color.fromRGBO(18, 18, 18, 1);
 Color lighterBlackOne = Color.fromRGBO(41, 41, 41, 1);
 Color whiteTextColor = Color.fromRGBO(143, 143, 143, 1);
 
+// TODO check het heroTag probleem, heeft iets te maken met de meerdere FABs in de mega FAB
+// TODO maak aparte widget files voor belangrijke widgets die je vaak gebruikt of groot zijn
+
 void main() {
   runApp(MaterialApp(
     theme: ThemeData(
@@ -62,6 +65,7 @@ Container bottomContainer = Container(
 
 FloatingActionButton fab(BuildContext context) {
   return FloatingActionButton(
+    heroTag: "notUsed",
     backgroundColor: Color.fromRGBO(190, 129, 248, 1),
     splashColor: Colors.purpleAccent,
     child: Icon(Icons.add),

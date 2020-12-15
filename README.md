@@ -4,10 +4,7 @@
 
 - Code the front-end
 - Learn about state- and data-management
-- Code the backend and logic of the app
-
-# General
-- test.dart is just example-code
+- Code the backend and logic of the app 
 
 # MainPage
 - BottomAppBar moet achtergrond zwart worden en FAB moet paars zijn omdat in een dark mode moeten felle kleuren niet voor grote oppervlakken gebruikt worden.

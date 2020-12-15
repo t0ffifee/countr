@@ -76,6 +76,7 @@ class _FancyFabState extends State<FancyFab>
   Widget add() {
     return Container(
       child: FloatingActionButton(
+        heroTag: 'add',
         backgroundColor: ligthPurple.withAlpha(150),
         onPressed: () {
           print("Add event pressed");
@@ -89,6 +90,7 @@ class _FancyFabState extends State<FancyFab>
   Widget settings() {
     return Container(
       child: FloatingActionButton(
+        heroTag: 'settings',
         backgroundColor: ligthPurple.withAlpha(150),
         onPressed: () {
           print("Settings pressed");
@@ -102,6 +104,7 @@ class _FancyFabState extends State<FancyFab>
   Widget inbox() {
     return Container(
       child: FloatingActionButton(
+        heroTag: 'settings',
         backgroundColor: ligthPurple.withAlpha(150),
         onPressed: () {
           print("Inbox pressed");
@@ -115,6 +118,7 @@ class _FancyFabState extends State<FancyFab>
   Widget toggle() {
     return Container(
       child: FloatingActionButton(
+        heroTag: 'toggle',
         backgroundColor: _buttonColor.value,
         onPressed: animate,
         tooltip: 'Toggle',
