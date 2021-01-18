@@ -53,7 +53,7 @@ class _CreatePageState extends State<CreatePage> {
           appBar: AppBar(
             backgroundColor: Color.fromRGBO(31, 31, 31, 1),
             title: Text(
-              'Create Page',
+              'Create Event',
               style: TextStyle(color: Colors.white),
             ),
           ),

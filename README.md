@@ -25,7 +25,6 @@
 - Dit wordt denk ik de enige knop op de home pagina gezien de simpelheid en de twee knoppen zijn meer dan genoeg
 - wil wel dat de twee knoppen die eruit komen misschien wat kleiner zijn maar dat is vast wel aan te passen
 
-
 ### Cards
 - CardTitle is de felste kleur
 - Description en de icons zullen minder fel zijn

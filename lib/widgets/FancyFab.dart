@@ -1,7 +1,8 @@
+import 'package:countdown_app/screens/settings_page.dart';
 import 'package:flutter/material.dart';
 import '../screens/countdown_page.dart';
 import '../screens/create_page.dart';
-import '../screens/settings_page.dart';
+// import '../screens/settings_page.dart';
 
 Color ligthPurple = Color.fromRGBO(190, 129, 248, 1);
 
@@ -98,7 +99,12 @@ class _FancyFabState extends State<FancyFab>
         heroTag: 'settings',
         backgroundColor: ligthPurple.withAlpha(150),
         onPressed: () {
-          print("Settings pressed");
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SettingsPage(),
+            ),
+          );
         },
         tooltip: 'Settings',
         child: Icon(Icons.settings),
