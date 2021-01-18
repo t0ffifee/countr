@@ -1,5 +1,7 @@
-import 'package:countdown_app/countdown_page.dart';
 import 'package:flutter/material.dart';
+import '../screens/countdown_page.dart';
+import '../screens/create_page.dart';
+import '../screens/settings_page.dart';
 
 Color ligthPurple = Color.fromRGBO(190, 129, 248, 1);
 
@@ -73,13 +75,16 @@ class _FancyFabState extends State<FancyFab>
     isOpened = !isOpened;
   }
 
-  Widget add() {
+  Widget add(BuildContext context) {
     return Container(
       child: FloatingActionButton(
         heroTag: 'add',
         backgroundColor: ligthPurple.withAlpha(150),
         onPressed: () {
-          print("Add event pressed");
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CreatePage()),
+          );
         },
         tooltip: 'Add event',
         child: Icon(Icons.add),
@@ -87,7 +92,7 @@ class _FancyFabState extends State<FancyFab>
     );
   }
 
-  Widget settings() {
+  Widget settings(BuildContext context) {
     return Container(
       child: FloatingActionButton(
         heroTag: 'settings',
@@ -101,24 +106,10 @@ class _FancyFabState extends State<FancyFab>
     );
   }
 
-  Widget inbox() {
-    return Container(
-      child: FloatingActionButton(
-        heroTag: 'settings',
-        backgroundColor: ligthPurple.withAlpha(150),
-        onPressed: () {
-          print("Inbox pressed");
-        },
-        tooltip: 'Inbox',
-        child: Icon(Icons.inbox),
-      ),
-    );
-  }
-
   Widget toggle() {
     return Container(
       child: FloatingActionButton(
-        heroTag: 'settings',
+        heroTag: 'toggle',
         backgroundColor: _buttonColor.value,
         onPressed: animate,
         tooltip: 'Toggle',
@@ -138,18 +129,10 @@ class _FancyFabState extends State<FancyFab>
         Transform(
           transform: Matrix4.translationValues(
             0.0,
-            _translateButton.value * 3.0,
-            0.0,
-          ),
-          child: inbox(),
-        ),
-        Transform(
-          transform: Matrix4.translationValues(
-            0.0,
             _translateButton.value * 2.0,
             0.0,
           ),
-          child: settings(),
+          child: settings(context),
         ),
         Transform(
           transform: Matrix4.translationValues(
@@ -157,7 +140,7 @@ class _FancyFabState extends State<FancyFab>
             _translateButton.value,
             0.0,
           ),
-          child: add(),
+          child: add(context),
         ),
         toggle(),
       ],

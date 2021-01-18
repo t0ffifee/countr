@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
 
 Color lightPurple = Color.fromRGBO(190, 129, 248, 1);
 Color backgroundBlack = Color.fromRGBO(18, 18, 18, 1);

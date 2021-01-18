@@ -1,8 +1,7 @@
-// import 'package:countdown_app/countdown_page.dart';
-import 'package:countdown_app/countdown_page.dart';
-import 'package:countdown_app/create_page.dart';
 import 'package:flutter/material.dart';
-import 'package:countdown_app/fancy_fab.dart';
+
+import 'screens/countdown_page.dart';
+import 'widgets/FancyFab.dart';
 
 // Dit moet even in een apart bestand gedaan worden volgens mij met CONSTANTS
 Color ligthPurple = Color.fromRGBO(190, 129, 248, 1);
