@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-
-Color lightPurple = Color.fromRGBO(190, 129, 248, 1);
-Color backgroundBlack = Color.fromRGBO(18, 18, 18, 1);
-Color lighterBlackOne = Color.fromRGBO(41, 41, 41, 1);
-Color whiteTextColor = Color.fromRGBO(143, 143, 143, 1);
+import '../constants/constants.dart';
 
 class SecondRoute extends StatelessWidget {
   @override
@@ -50,7 +46,7 @@ class SecondRoute extends StatelessWidget {
             seconds,
             Container(height: 180),
             IconButton(
-              splashColor: lightPurple,
+              splashColor: ligthPurple,
               tooltip: "Return",
               icon: Icon(
                 Icons.arrow_back,

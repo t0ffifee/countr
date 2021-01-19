@@ -12,6 +12,13 @@
 
 # My Notes
 
+## Local Storage
+- We hebben denk ik genoeg aan 1 hive box die we een bepaalde naam moeten geven
+- Wat we erin opslaan:
+    - de events
+        - deze kunnen we opslaan als een lijst van events in de box en die steeds oppikken als je hem nodig hebt
+        - als je hem hebt kan je bij het hoofdscherm bijvoorbeeld een for loop maken dat ie voor ieder event een kaart maakt 
+
 ## MainPage
 - BottomAppBar moet  achtergrond zwart worden en FAB moet paars zijn omdat in een dark mode moeten felle kleuren niet voor grote oppervlakken gebruikt worden.
 - Ziet er nu clean uit maar is hard-coded dus wat we binnenkort moeten doen is uitzoeken hoe classes werken zoodat we alleen titel, icoon, description en datum hoeven te geven en hij zelf de kaart kan maken met behulp van die info
@@ -40,4 +47,8 @@
 
 ## Settings
 
-## Acknowledgements
+## About
+
+### Acknowledgements
+
+### Github link 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+// import 'package:hive/hive.dart';
 
 class CreatePage extends StatefulWidget {
   @override
@@ -8,11 +9,12 @@ class CreatePage extends StatefulWidget {
 
 class _CreatePageState extends State<CreatePage> {
   DateTime selectedDate = DateTime.now();
+  final titleController = TextEditingController();
+  final descriptionController = TextEditingController();
 
   bool _decideWhichDayToEnable(DateTime day) {
     const FiveYears = 365 * 5;
-    if ((day.isAfter(DateTime.now().subtract(Duration(days: 1))) &&
-        day.isBefore(DateTime.now().add(Duration(days: FiveYears))))) {
+    if ((day.isAfter(DateTime.now().subtract(Duration(days: 1))) && day.isBefore(DateTime.now().add(Duration(days: FiveYears))))) {
       return true;
     }
     return false;
@@ -30,7 +32,87 @@ class _CreatePageState extends State<CreatePage> {
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
+        print('Date selected: ${selectedDate.day}-${selectedDate.month}-${selectedDate.year}');
       });
+  }
+
+  Widget dateCreation(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.only(left: 15, right: 20),
+          child: RaisedButton(
+            onPressed: () => _selectDate(context),
+            child: Text(
+              'Select date',
+              style: TextStyle(
+                color: Color.fromRGBO(143, 143, 143, 1),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            color: Color.fromRGBO(50, 50, 50, 1),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(left: 20),
+          child: Text(
+            "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}",
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  void createEventCard(String title, String description, DateTime date) {}
+
+  Widget saveButton() {
+    return ButtonTheme(
+      minWidth: 170,
+      buttonColor: Color.fromRGBO(50, 50, 50, 1),
+      child: Container(
+        margin: EdgeInsets.only(left: 10, right: 10),
+        child: RaisedButton(
+          onPressed: () {
+            createEventCard(titleController.text, descriptionController.text, selectedDate);
+            // print("Title: ${titleController.text}");
+            // print("Description: ${descriptionController.text}");
+            // print("Datum: ${selectedDate.day}-${selectedDate.month}-${selectedDate.year}");
+          },
+          child: Text(
+            'Save this',
+            style: TextStyle(
+              color: Color.fromRGBO(143, 143, 143, 1),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget cancelButton() {
+    return ButtonTheme(
+      minWidth: 170,
+      buttonColor: Color.fromRGBO(50, 50, 50, 1),
+      child: Container(
+        margin: EdgeInsets.only(left: 10, right: 10),
+        child: RaisedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text(
+            'Cancel',
+            style: TextStyle(
+              color: Color.fromRGBO(143, 143, 143, 1),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -60,121 +142,14 @@ class _CreatePageState extends State<CreatePage> {
           body: Center(
             child: ListView(
               children: <Widget>[
-                Container(
-                  padding:
-                      EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
-                  child: Theme(
-                    data: ThemeData(
-                      primaryColor: Color.fromRGBO(190, 129, 248, 0.8),
-                    ),
-                    child: TextField(
-                      style: TextStyle(
-                        color: Color.fromRGBO(227, 227, 227, 1),
-                      ),
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        focusColor: Colors.green,
-                        labelText: 'Title',
-                        labelStyle: TextStyle(
-                          color: Color.fromRGBO(143, 143, 143, 1),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  padding:
-                      EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
-                  child: Theme(
-                    data: ThemeData(
-                      primaryColor: Color.fromRGBO(190, 129, 248, 0.8),
-                      primaryColorDark: Colors.blue,
-                    ),
-                    child: TextField(
-                      style: TextStyle(
-                        color: Color.fromRGBO(227, 227, 227, 1),
-                      ),
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Description',
-                        labelStyle: TextStyle(
-                          color: Color.fromRGBO(143, 143, 143, 1),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.only(left: 15, right: 20),
-                      child: RaisedButton(
-                        onPressed: () => _selectDate(context),
-                        child: Text(
-                          'Select date',
-                          style: TextStyle(
-                            color: Color.fromRGBO(143, 143, 143, 1),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        color: Color.fromRGBO(50, 50, 50, 1),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 20),
-                      child: Text(
-                        "${selectedDate.toLocal()}".split(' ')[0],
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                textInput(titleController, "Title"),
+                textInput(descriptionController, "Description"),
+                dateCreation(context),
                 Container(
                   alignment: AlignmentDirectional.centerEnd,
                   padding: EdgeInsets.only(left: 5, right: 5),
                   child: Row(
-                    children: <Widget>[
-                      ButtonTheme(
-                        minWidth: 170,
-                        buttonColor: Color.fromRGBO(50, 50, 50, 1),
-                        child: Container(
-                          margin: EdgeInsets.only(left: 10, right: 10),
-                          child: RaisedButton(
-                            onPressed: () {
-                              print("hai");
-                            },
-                            child: Text(
-                              'Save this',
-                              style: TextStyle(
-                                color: Color.fromRGBO(143, 143, 143, 1),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      ButtonTheme(
-                        minWidth: 170,
-                        buttonColor: Color.fromRGBO(50, 50, 50, 1),
-                        child: Container(
-                          margin: EdgeInsets.only(left: 10, right: 10),
-                          child: RaisedButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: Text(
-                              'Cancel',
-                              style: TextStyle(
-                                color: Color.fromRGBO(143, 143, 143, 1),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    children: <Widget>[saveButton(), cancelButton()],
                   ),
                 ),
               ],
@@ -184,4 +159,30 @@ class _CreatePageState extends State<CreatePage> {
       ),
     );
   }
+}
+
+// TODO dit misschien naar de widget file brengen maar niet zeker of dat voor alles gedaan zou moeten worden
+// Deze zou in principe in het widget bestand kunnen gaan omdat ie de class niet nodig heeft
+Widget textInput(TextEditingController controller, String name) {
+  return Container(
+    padding: EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
+    child: Theme(
+      data: ThemeData(
+        primaryColor: Color.fromRGBO(190, 129, 248, 0.8),
+      ),
+      child: TextField(
+        controller: controller,
+        style: TextStyle(
+          color: Color.fromRGBO(227, 227, 227, 1),
+        ),
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: name,
+          labelStyle: TextStyle(
+            color: Color.fromRGBO(143, 143, 143, 1),
+          ),
+        ),
+      ),
+    ),
+  );
 }

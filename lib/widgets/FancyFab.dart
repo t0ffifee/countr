@@ -1,10 +1,8 @@
 import 'package:countdown_app/screens/settings_page.dart';
 import 'package:flutter/material.dart';
-import '../screens/countdown_page.dart';
 import '../screens/create_page.dart';
+import '../constants/constants.dart';
 // import '../screens/settings_page.dart';
-
-Color ligthPurple = Color.fromRGBO(190, 129, 248, 1);
 
 class FancyFab extends StatefulWidget {
   final Function() onPressed;
@@ -17,8 +15,7 @@ class FancyFab extends StatefulWidget {
   _FancyFabState createState() => _FancyFabState();
 }
 
-class _FancyFabState extends State<FancyFab>
-    with SingleTickerProviderStateMixin {
+class _FancyFabState extends State<FancyFab> with SingleTickerProviderStateMixin {
   bool isOpened = false;
   AnimationController _animationController;
   Animation<Color> _buttonColor;
@@ -29,15 +26,13 @@ class _FancyFabState extends State<FancyFab>
 
   @override
   initState() {
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500))
-          ..addListener(() {
-            setState(() {});
-          });
-    _animateIcon =
-        Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
+    _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 500))
+      ..addListener(() {
+        setState(() {});
+      });
+    _animateIcon = Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
     _buttonColor = ColorTween(
-      begin: lightPurple,
+      begin: ligthPurple,
       end: Colors.red.withAlpha(100),
     ).animate(CurvedAnimation(
       parent: _animationController,
@@ -79,6 +74,7 @@ class _FancyFabState extends State<FancyFab>
   Widget add(BuildContext context) {
     return Container(
       child: FloatingActionButton(
+        elevation: 1.0,
         heroTag: 'add',
         backgroundColor: ligthPurple.withAlpha(150),
         onPressed: () {
@@ -96,6 +92,7 @@ class _FancyFabState extends State<FancyFab>
   Widget settings(BuildContext context) {
     return Container(
       child: FloatingActionButton(
+        elevation: 1.0,
         heroTag: 'settings',
         backgroundColor: ligthPurple.withAlpha(150),
         onPressed: () {
@@ -115,6 +112,7 @@ class _FancyFabState extends State<FancyFab>
   Widget toggle() {
     return Container(
       child: FloatingActionButton(
+        elevation: 3.0,
         heroTag: 'toggle',
         backgroundColor: _buttonColor.value,
         onPressed: animate,

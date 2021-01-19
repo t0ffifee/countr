@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'screens/countdown_page.dart';
+import 'constants/constants.dart';
 import 'widgets/FancyFab.dart';
-
-// Dit moet even in een apart bestand gedaan worden volgens mij met CONSTANTS
-Color ligthPurple = Color.fromRGBO(190, 129, 248, 1);
-Color backgroundBlack = Color.fromRGBO(18, 18, 18, 1);
-Color lighterBlackOne = Color.fromRGBO(41, 41, 41, 1);
-Color whiteTextColor = Color.fromRGBO(143, 143, 143, 1);
 
 // TODO maak aparte widget files voor belangrijke widgets die je vaak gebruikt of groot zijn
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
   runApp(MaterialApp(
     theme: ThemeData(
       brightness: Brightness.dark,
@@ -38,7 +36,11 @@ class MyAppState extends State<MyApp> {
             padding: const EdgeInsets.all(8),
             children: <Widget>[
               topContainer,
-              getCard(context),
+              cardInContainer(context, Colors.blue),
+              // cardInContainer(context, Colors.purple),
+              // cardInContainer(context, Colors.red),
+              // cardInContainer(context, Colors.yellow),
+              // cardInContainer(context, Colors.green),
               bottomContainer,
             ],
           ),
@@ -59,22 +61,31 @@ Container topContainer = Container(
 Container bottomContainer = Container(
   height: 70,
   color: Color.fromRGBO(18, 18, 18, 1),
+  margin: EdgeInsets.only(top: 10),
 );
 
-// FloatingActionButton fab(BuildContext context) {
-//   return FloatingActionButton(
-//     heroTag: 'notUsed',
-//     backgroundColor: Color.fromRGBO(190, 129, 248, 1),
-//     splashColor: Colors.purpleAccent,
-//     child: Icon(Icons.add),
-//     onPressed: () {
-//       Navigator.of(context).push(_createRoute());
-//     },
-//   );
-// }
+Container cardInContainer(BuildContext context, Color color) {
+  return Container(
+    margin: EdgeInsets.only(top: 5, bottom: 5),
+    decoration: BoxDecoration(borderRadius: BorderRadius.vertical(), boxShadow: [
+      BoxShadow(
+        color: color,
+        blurRadius: 3.0,
+        spreadRadius: 1.0,
+        offset: Offset(
+          0.0,
+          0.01,
+        ),
+      ),
+    ]),
+    child: getCard(context),
+  );
+}
 
+// TODO dit moet naar de EventCard.dart file gaan
 Card getCard(BuildContext context) {
   return Card(
+    // elevation: 3.0,
     color: Color.fromRGBO(40, 40, 40, 1),
     child: InkWell(
       splashColor: Color.fromRGBO(190, 129, 248, 1),
