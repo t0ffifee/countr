@@ -46,7 +46,7 @@ class SecondRoute extends StatelessWidget {
             seconds,
             Container(height: 180),
             IconButton(
-              splashColor: ligthPurple,
+              splashColor: lightPurple,
               tooltip: "Return",
               icon: Icon(
                 Icons.arrow_back,

@@ -32,7 +32,7 @@ class _FancyFabState extends State<FancyFab> with SingleTickerProviderStateMixin
       });
     _animateIcon = Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
     _buttonColor = ColorTween(
-      begin: ligthPurple,
+      begin: lightPurple,
       end: Colors.red.withAlpha(100),
     ).animate(CurvedAnimation(
       parent: _animationController,
@@ -76,7 +76,7 @@ class _FancyFabState extends State<FancyFab> with SingleTickerProviderStateMixin
       child: FloatingActionButton(
         elevation: 1.0,
         heroTag: 'add',
-        backgroundColor: ligthPurple.withAlpha(150),
+        backgroundColor: lightPurple.withAlpha(150),
         onPressed: () {
           Navigator.push(
             context,
@@ -94,7 +94,7 @@ class _FancyFabState extends State<FancyFab> with SingleTickerProviderStateMixin
       child: FloatingActionButton(
         elevation: 1.0,
         heroTag: 'settings',
-        backgroundColor: ligthPurple.withAlpha(150),
+        backgroundColor: lightPurple.withAlpha(150),
         onPressed: () {
           Navigator.push(
             context,

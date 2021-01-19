@@ -88,6 +88,6 @@ Container cardInContainer(BuildContext context, Color color) {
 Card cardMaker(BuildContext context, String title, String description, IconData icon) {
   EventCard eCard = new EventCard();
   DateTime now = DateTime.now();
-  Card card = eCard.makeEventCard(context, title, description, icon, now);
+  Card card = eCard.makeEventCard(context, title, description, icon, DateTime.utc(2021, 2, 4));
   return card;
 }

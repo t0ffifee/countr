@@ -7,12 +7,32 @@ class EventCard {
 
   // Een functie maken die een Card kan uitspugen die we kunnen opslaan en daarna kunnen laten zien op het hoofdscherm
 
-  Widget makeEventCard(BuildContext context, String title, String description, IconData icon, DateTime date) {
+  List<String> restingTime(DateTime eventDate) {
+    final now = DateTime.now();
+    var total = eventDate.difference(now).inSeconds;
+
+    final days = (total / 86400).floor();
+    total -= days * 86400;
+
+    final hours = (total / 3600).floor();
+    total -= hours * 3600;
+
+    final minutes = (total / 60).floor();
+    total -= minutes * 60;
+
+    final seconds = total % 60;
+
+    List<int> list = [days, hours, minutes, seconds];
+    return list.map((e) => e.toString()).toList();
+  }
+
+  Widget makeEventCard(BuildContext context, String title, String description, IconData icon, DateTime eventDate) {
+    List<String> times = restingTime(eventDate);
     return Card(
       // elevation: 3.0,
       color: Color.fromRGBO(40, 40, 40, 1),
       child: InkWell(
-        splashColor: Color.fromRGBO(190, 129, 248, 1),
+        splashColor: lightPurple.withOpacity(0.4),
         onTap: () {
           Navigator.push(
             context,
@@ -23,7 +43,7 @@ class EventCard {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             topBarCard(title, description, icon),
-            dateShower(), // hier geef je natuurlijk de resterende dagen, uren, minuten en seconden
+            dateShower(times), // hier geef je natuurlijk de resterende dagen, uren, minuten en seconden
             cardButtonBar(),
           ],
         ),
@@ -52,14 +72,14 @@ class EventCard {
     );
   }
 
-  Widget dateShower() {
+  Widget dateShower(List<String> times) {
     return Container(
       margin: EdgeInsets.only(left: 40, right: 40),
       child: Row(
         children: [
           RichText(
             text: TextSpan(
-              text: '3',
+              text: times[0],
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -78,7 +98,7 @@ class EventCard {
           ),
           RichText(
             text: TextSpan(
-              text: '4',
+              text: times[1],
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -97,7 +117,7 @@ class EventCard {
           ),
           RichText(
             text: TextSpan(
-              text: '20',
+              text: times[2],
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -116,7 +136,7 @@ class EventCard {
           ),
           RichText(
             text: TextSpan(
-              text: '27',
+              text: times[3],
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -144,7 +164,7 @@ class EventCard {
     return ButtonBar(
       children: <Widget>[
         FlatButton(
-          splashColor: ligthPurple.withAlpha(150),
+          splashColor: lightPurple.withAlpha(150),
           onPressed: () {
             print("Edit button");
           },
@@ -154,7 +174,7 @@ class EventCard {
           ),
         ),
         FlatButton(
-          splashColor: ligthPurple.withAlpha(150),
+          splashColor: lightPurple.withAlpha(150),
           child: Icon(
             Icons.drag_handle,
             color: whiteTextColor,

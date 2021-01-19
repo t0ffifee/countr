@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 // import 'package:hive/hive.dart';
 
+import '../widgets/EventCard.dart';
+
 class CreatePage extends StatefulWidget {
   @override
   _CreatePageState createState() => _CreatePageState();
@@ -68,7 +70,10 @@ class _CreatePageState extends State<CreatePage> {
     );
   }
 
-  void createEventCard(String title, String description, DateTime date) {}
+  void createEventCard(String title, String description, DateTime eventDate) {
+    EventCard eCard = new EventCard();
+    eCard.makeEventCard(context, title, description, Icons.ac_unit, eventDate);
+  }
 
   Widget saveButton() {
     return ButtonTheme(
