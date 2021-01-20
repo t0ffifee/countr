@@ -7,5 +7,7 @@ const Color lighterBlackOne = Color.fromRGBO(41, 41, 41, 1);
 const Color whiteTextColor = Color.fromRGBO(143, 143, 143, 1);
 
 // STRINGS
+const String eventBox = "eventBox";
+const String eventsKey = "eventsList";
 
 // OTHER

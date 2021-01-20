@@ -6,11 +6,20 @@ import 'screens/countdown_page.dart';
 import 'constants/constants.dart';
 import 'widgets/FancyFab.dart';
 import 'widgets/EventCard.dart';
+import 'widgets/Event.dart';
+import 'constants/globals.dart';
 
 // TODO maak aparte widget files voor belangrijke widgets die je vaak gebruikt of groot zijn
 
 void main() async {
   await Hive.initFlutter();
+  Hive.registerAdapter(EventAdapter());
+
+  var box = await Hive.openBox<Event>(eventBox);
+
+  // Event test = Event(DateTime.utc(2021, 3, 8), "Henks Jarig", "Verjaardag van Henk", Icons.cake.codePoint);
+  // box.add(test);
+
   runApp(MaterialApp(
     theme: ThemeData(
       brightness: Brightness.dark,
@@ -29,23 +38,14 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   @override
   Widget build(context) {
+    print("[BUILD] MyAppState is gebouwd");
     return MaterialApp(
       home: Scaffold(
         extendBody: true,
         body: Center(
           child: ListView(
             padding: const EdgeInsets.all(8),
-            children: <Widget>[
-              topContainer,
-              cardMaker(context, "Verjaardag Henk", "Mijn beste vriend Henk is jarig", Icons.cake),
-              cardMaker(context, "Kinderboerderij", "Mijn kinderboerderij openen", Icons.agriculture),
-              // cardInContainer(context, Colors.blue),
-              // cardInContainer(context, Colors.purple),
-              // cardInContainer(context, Colors.red),
-              // cardInContainer(context, Colors.yellow),
-              // cardInContainer(context, Colors.green),
-              bottomContainer,
-            ],
+            children: cardsCreator(context),
           ),
         ),
         backgroundColor: backgroundBlack,
@@ -54,6 +54,23 @@ class MyAppState extends State<MyApp> {
       ),
     );
   }
+}
+
+List<Widget> cardsCreator(BuildContext context) {
+  print("[FUNCTION] cardsCreator is opgeroepen");
+  List<Widget> eventCards = new List();
+  eventCards.add(topContainer);
+
+  var box = Hive.box<Event>(eventBox);
+
+  EventCard eCard = new EventCard();
+  for (Event event in box.values) {
+    Card card = eCard.makeEventCardFromEvent(context, event);
+    eventCards.add(card);
+  }
+
+  eventCards.add(bottomContainer);
+  return eventCards;
 }
 
 Container topContainer = Container(
@@ -66,28 +83,3 @@ Container bottomContainer = Container(
   color: Color.fromRGBO(18, 18, 18, 1),
   margin: EdgeInsets.only(top: 10),
 );
-
-Container cardInContainer(BuildContext context, Color color) {
-  return Container(
-    margin: EdgeInsets.only(top: 5, bottom: 5),
-    decoration: BoxDecoration(borderRadius: BorderRadius.vertical(), boxShadow: [
-      BoxShadow(
-        color: color,
-        blurRadius: 3.0,
-        spreadRadius: 1.0,
-        offset: Offset(
-          0.0,
-          0.01,
-        ),
-      ),
-    ]),
-    child: cardMaker(context, "Titel hai", "Beschrijving", Icons.accessibility),
-  );
-}
-
-Card cardMaker(BuildContext context, String title, String description, IconData icon) {
-  EventCard eCard = new EventCard();
-  DateTime now = DateTime.now();
-  Card card = eCard.makeEventCard(context, title, description, icon, DateTime.utc(2021, 2, 4));
-  return card;
-}

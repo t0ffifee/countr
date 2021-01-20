@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 // import 'package:hive/hive.dart';
 
 import '../widgets/EventCard.dart';
+import '../widgets/Event.dart';
 
 class CreatePage extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class _CreatePageState extends State<CreatePage> {
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
 
+  // TODO deze datum dingen zouden een eigen widget kunnen worden in principe
   bool _decideWhichDayToEnable(DateTime day) {
     const FiveYears = 365 * 5;
     if ((day.isAfter(DateTime.now().subtract(Duration(days: 1))) && day.isBefore(DateTime.now().add(Duration(days: FiveYears))))) {
@@ -70,9 +72,10 @@ class _CreatePageState extends State<CreatePage> {
     );
   }
 
-  void createEventCard(String title, String description, DateTime eventDate) {
-    EventCard eCard = new EventCard();
-    eCard.makeEventCard(context, title, description, Icons.ac_unit, eventDate);
+  void createEvent(String title, String description, DateTime eventDate) {
+    int iconDataPoint = Icons.person.codePoint;
+    Event event = new Event(eventDate, title, description, iconDataPoint);
+    event.saveEvent();
   }
 
   Widget saveButton() {
@@ -83,10 +86,13 @@ class _CreatePageState extends State<CreatePage> {
         margin: EdgeInsets.only(left: 10, right: 10),
         child: RaisedButton(
           onPressed: () {
-            createEventCard(titleController.text, descriptionController.text, selectedDate);
-            // print("Title: ${titleController.text}");
-            // print("Description: ${descriptionController.text}");
-            // print("Datum: ${selectedDate.day}-${selectedDate.month}-${selectedDate.year}");
+            createEvent(titleController.text, descriptionController.text, selectedDate);
+
+            SnackBar sb = SnackBar(content: Text("Event Is Saved"));
+            Scaffold.of(context).showSnackBar(sb);
+
+            // We moeten nu het scherm verlaten
+            // Navigator.pop(context);
           },
           child: Text(
             'Save this',

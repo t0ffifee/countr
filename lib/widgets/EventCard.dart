@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constants/constants.dart';
 import '../screens/countdown_page.dart';
+import 'Event.dart';
 
 class EventCard {
   // Getters en Setters nodig denk ik
@@ -24,6 +25,31 @@ class EventCard {
 
     List<int> list = [days, hours, minutes, seconds];
     return list.map((e) => e.toString()).toList();
+  }
+
+  Widget makeEventCardFromEvent(BuildContext context, Event event) {
+    List<String> times = restingTime(event.eDate);
+    return Card(
+      // elevation: 3.0,
+      color: Color.fromRGBO(40, 40, 40, 1),
+      child: InkWell(
+        splashColor: lightPurple.withOpacity(0.4),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SecondRoute()),
+          );
+        },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            topBarCard(event.eTitle, event.eDescription, IconData(event.eIconCodePoint, fontFamily: 'MaterialIcons')),
+            dateShower(times), // hier geef je natuurlijk de resterende dagen, uren, minuten en seconden
+            cardButtonBar(),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget makeEventCard(BuildContext context, String title, String description, IconData icon, DateTime eventDate) {
