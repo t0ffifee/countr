@@ -41,6 +41,11 @@ class Event {
     print(this);
   }
 
+  // void createNotification() {
+  //   throw UnimplementedError;
+  //   // pak de date time, doe daar wat berekeningen mee en sla een notification mee op
+  // }
+
   @override
   String toString() {
     return "\n[TITEL] $title \[BESCHRIJVING] $description";

@@ -28,8 +28,12 @@ dependencies:
   hive: ^1.4.4+1
   hive_flutter: ^0.3.1
   hive_generator: ^0.8.2
-  build_runner: ^1.10.13
-  path_provider: ^1.6.27
+
+  # for the notification example
+  flutter_local_notifications: ^3.0.3
+  device_info: ^1.0.0
+  rxdart: ^0.25.0
+  
 
 
   # The following adds the Cupertino Icons font to your application.
