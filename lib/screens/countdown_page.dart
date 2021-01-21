@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constants/constants.dart';
 
-class SecondRoute extends StatelessWidget {
+class CountDownPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -37,7 +37,7 @@ class EventCard {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => SecondRoute()),
+            MaterialPageRoute(builder: (context) => CountDownPage()),
           );
         },
         child: Column(
@@ -52,31 +52,7 @@ class EventCard {
     );
   }
 
-  Widget makeEventCard(BuildContext context, String title, String description, IconData icon, DateTime eventDate) {
-    List<String> times = restingTime(eventDate);
-    return Card(
-      // elevation: 3.0,
-      color: Color.fromRGBO(40, 40, 40, 1),
-      child: InkWell(
-        splashColor: lightPurple.withOpacity(0.4),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SecondRoute()),
-          );
-        },
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            topBarCard(title, description, icon),
-            dateShower(times), // hier geef je natuurlijk de resterende dagen, uren, minuten en seconden
-            cardButtonBar(),
-          ],
-        ),
-      ),
-    );
-  }
-
+  // TODO deze dingen hieronder horen duidelijk een eigen class te zijn
   Widget topBarCard(String title, String description, IconData icon) {
     return ListTile(
       leading: Icon(
