@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import '../constants/constants.dart';
 
@@ -37,10 +36,13 @@ class Event {
   Event(this.eventDate, this.title, this.description, this.iconCodePoint);
 
   void saveEvent() {
-    var box = Hive.box(eventBox);
-    List<Event> eventsList = box.get(eventsKey, defaultValue: List<Event>());
-    eventsList.add(this);
-    box.put(eventsKey, eventsList);
-    print("List is saved in Hive: $eventsList");
+    var box = Hive.box<Event>(eventBox);
+    box.add(this);
+    print(this);
+  }
+
+  @override
+  String toString() {
+    return "\n[TITEL] $title \[BESCHRIJVING] $description";
   }
 }
