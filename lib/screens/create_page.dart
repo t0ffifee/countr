@@ -82,7 +82,7 @@ class _CreatePageState extends State<CreatePage> {
     // Scaffold.of(context).showSnackBar(sb);
 
     // We moeten nu het scherm verlaten
-    // Navigator.pop(context);
+    Navigator.pop(context);
   }
 
   void cancelButtonFunction() {

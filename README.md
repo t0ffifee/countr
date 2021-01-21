@@ -12,6 +12,13 @@
 
 # My Notes
 
+## Rough Priority ToDoList:
+- CountDownPage moet kunnen aftellen
+- EventCard moet kunnen aftellen
+- CreatePage moet save kunnen en Iconen daaraan toevoegen (we moeten ook de mogelijkheid toevoegen om een tijd te kiezen)
+- Kaarten moet je kunnen editen en verwijderen
+- Meldingen (Dit moet denk ik wel bij V1.0)
+
 ## Local Storage
 - We hebben denk ik genoeg aan 1 hive box die we een bepaalde naam moeten geven
 - Wat we erin opslaan:
@@ -41,9 +48,6 @@
 - TopBar ziet er echt clean uit nu en het geeft echt een totaal andere look als je niet volledig paars gebruikt voor de top app bar
 - Buttons mogen er mooier uit zien en cleaner op de pagina.
 - Opzich is de tekst invoer mooi maar de outside color moet minder fel worden en het woord 'Title' mag wel wat duidelijker zijn
-
-### Event Class
-- Hier moet de logica zitten van de kaart, hier zit alle data maar ook de rekenfuncties die bereken hoeveel er dagen er nog over zijn etc.
 
 ## Settings
 

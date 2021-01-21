@@ -14,7 +14,7 @@ void main() async {
 
   // TODO die global shit moet weg, als je een box wilt openen, open em dan gewoon
   Globals.events = await Hive.openBox<Event>(eventBox);
-  // Globals.events.clear();
+  Globals.events.clear();
 
   // Event test = Event(DateTime.utc(2021, 3, 8), "Henk is Jarig", "Verjaardag van Henk", Icons.cake.codePoint);
   // box.add(test);
@@ -42,18 +42,27 @@ class MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Center(
-          child: ListView(
-            padding: const EdgeInsets.all(8),
-            children: cardsCreator(context),
-          ),
-        ),
+        body: mainBody(context),
         backgroundColor: backgroundBlack,
         floatingActionButton: FancyFab(),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
     );
   }
+}
+
+Widget mainBody(BuildContext context) {
+  return ValueListenableBuilder(
+    valueListenable: Hive.box<Event>(eventBox).listenable(),
+    builder: (context, box, widget) {
+      return Center(
+        child: ListView(
+          padding: const EdgeInsets.all(8),
+          children: cardsCreator(context),
+        ),
+      );
+    },
+  );
 }
 
 List<Widget> cardsCreator(BuildContext context) {
