@@ -25,15 +25,17 @@ dependencies:
     sdk: flutter
   
   google_fonts: ^1.1.1
+
+  # Hive:
   hive: ^1.4.4+1
   hive_flutter: ^0.3.1
   hive_generator: ^0.8.2
 
-  # for the notification example
+  # Notification:
   flutter_local_notifications: ^3.0.3
-  device_info: ^1.0.0
-  rxdart: ^0.25.0
-  
+
+  # CountDown Timer:
+  flutter_countdown_timer: ^3.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
