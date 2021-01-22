@@ -79,7 +79,7 @@ class _CountdownTimerPageState extends State<CountdownTimerPage> {
   void initState() {
     super.initState();
     controller = CountdownTimerController(endTime: endTime, onEnd: onEnd);
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(Duration(seconds: 1), () {
       setState(() {
         endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 259200;
         controller.endTime = endTime;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/CountDown.dart';
 import '../constants/constants.dart';
 
 class CountDownPage extends StatelessWidget {
@@ -17,34 +18,7 @@ class CountDownPage extends StatelessWidget {
                 fontStyle: FontStyle.italic,
               ),
             ),
-            Container(height: 20),
-            RichText(
-              text: TextSpan(
-                text: '5\t',
-                style: TextStyle(
-                  fontSize: 80,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(190, 129, 248, 0.7),
-                ),
-                children: <TextSpan>[
-                  TextSpan(
-                      text: 'D',
-                      style: TextStyle(
-                        fontWeight: FontWeight.normal,
-                        fontStyle: FontStyle.italic,
-                        fontSize: 40,
-                      )),
-                ],
-              ),
-              textAlign: TextAlign.center,
-            ),
-            Container(height: 20),
-            hours,
-            Container(height: 20),
-            minutes,
-            Container(height: 20),
-            seconds,
-            Container(height: 180),
+            CountDown(),
             IconButton(
               splashColor: lightPurple,
               tooltip: "Return",
