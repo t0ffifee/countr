@@ -7,6 +7,7 @@ import 'widgets/FancyFab.dart';
 import 'widgets/EventCard.dart';
 import 'widgets/Event.dart';
 import 'constants/globals.dart';
+import 'screens/countdown_page.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -65,6 +66,29 @@ Widget mainBody(BuildContext context) {
   );
 }
 
+void cardFunction(BuildContext context, Event event) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => CountDownPage(event)),
+  );
+}
+
+ListView lijst(BuildContext context) {
+  var events = Hive.box<Event>(eventBox);
+  return ListView.builder(
+    itemCount: events.length,
+    itemBuilder: (context, index) {
+      EventCard eCard = EventCard(
+        () {
+          cardFunction(context, events.getAt(index));
+        },
+        events.getAt(index),
+      );
+      return eCard.getCard(context);
+    },
+  );
+}
+
 List<Widget> cardsCreator(BuildContext context) {
   print("[FUNCTION] cardsCreator is opgeroepen");
   List<Widget> eventCards = new List();
@@ -72,7 +96,7 @@ List<Widget> cardsCreator(BuildContext context) {
 
   var box = Hive.box<Event>(eventBox);
 
-  EventCard eCard = new EventCard();
+  EventCard eCard = new EventCard(cardFunction, box.getAt(0));
   for (Event event in box.values) {
     print("[EVENT IN BOX] $event");
     Card card = eCard.makeEventCardFromEvent(context, event);

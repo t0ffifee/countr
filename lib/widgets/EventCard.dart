@@ -4,10 +4,15 @@ import '../screens/countdown_page.dart';
 import 'Event.dart';
 
 class EventCard {
+  final Function onTap;
+  final Event event;
+
+  EventCard(this.onTap, this.event);
   // Getters en Setters nodig denk ik
 
   // Een functie maken die een Card kan uitspugen die we kunnen opslaan en daarna kunnen laten zien op het hoofdscherm
 
+  // TODO dit is volgens mij niet meer nodig sinds we een countdown library gebruiken
   List<String> restingTime(DateTime eventDate) {
     final now = DateTime.now();
     var total = eventDate.difference(now).inSeconds;
@@ -27,6 +32,35 @@ class EventCard {
     return list.map((e) => e.toString()).toList();
   }
 
+  Widget getCard(BuildContext context) {
+    // TODO dit moet er natuurlijk anders uit gaan zien omdat je een CardCountDown gebruikt
+    List<String> times = restingTime(event.eDate);
+    return Card(
+      // elevation: 3.0,
+      color: Color.fromRGBO(40, 40, 40, 1),
+      child: InkWell(
+        splashColor: lightPurple.withOpacity(0.4),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CountDownPage(event)),
+          );
+        },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            topBarCard(event.eTitle, event.eDescription,
+                IconData(event.eIconCodePoint, fontFamily: 'MaterialIcons')),
+            dateShower(
+                times), // hier geef je natuurlijk de resterende dagen, uren, minuten en seconden
+            cardButtonBar(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // TODO dit is echt een gare functie en event zou hier uit moeten als parameter
   Widget makeEventCardFromEvent(BuildContext context, Event event) {
     List<String> times = restingTime(event.eDate);
     return Card(
@@ -37,14 +71,16 @@ class EventCard {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => CountDownPage()),
+            MaterialPageRoute(builder: (context) => CountDownPage(event)),
           );
         },
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            topBarCard(event.eTitle, event.eDescription, IconData(event.eIconCodePoint, fontFamily: 'MaterialIcons')),
-            dateShower(times), // hier geef je natuurlijk de resterende dagen, uren, minuten en seconden
+            topBarCard(event.eTitle, event.eDescription,
+                IconData(event.eIconCodePoint, fontFamily: 'MaterialIcons')),
+            dateShower(
+                times), // hier geef je natuurlijk de resterende dagen, uren, minuten en seconden
             cardButtonBar(),
           ],
         ),
@@ -74,6 +110,7 @@ class EventCard {
     );
   }
 
+  // TODO dit wordt uiteindelijk de CardCountDown widget
   Widget dateShower(List<String> times) {
     return Container(
       margin: EdgeInsets.only(left: 40, right: 40),
