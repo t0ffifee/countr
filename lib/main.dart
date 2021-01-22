@@ -78,11 +78,10 @@ ListView lijst(BuildContext context) {
   return ListView.builder(
     itemCount: events.length,
     itemBuilder: (context, index) {
+      Event event = events.getAt(index);
       EventCard eCard = EventCard(
-        () {
-          cardFunction(context, events.getAt(index));
-        },
-        events.getAt(index),
+        () => cardFunction(context, event),
+        event,
       );
       return eCard.getCard(context);
     },

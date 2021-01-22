@@ -23,7 +23,7 @@ class CountDownPage extends StatelessWidget {
                 fontStyle: FontStyle.italic,
               ),
             ),
-            CountDown(),
+            CountDown(event),
             IconButton(
               splashColor: lightPurple,
               tooltip: "Return",

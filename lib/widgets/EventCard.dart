@@ -60,7 +60,7 @@ class EventCard {
     );
   }
 
-  // TODO dit is echt een gare functie en event zou hier uit moeten als parameter
+  // TODO deze functie is uiteindelijk niet meer nodig
   Widget makeEventCardFromEvent(BuildContext context, Event event) {
     List<String> times = restingTime(event.eDate);
     return Card(
