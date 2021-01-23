@@ -1,7 +1,9 @@
 import 'package:countdown_app/widgets/general/DatePicker.dart';
+import 'package:countdown_app/widgets/general/TimePicker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import '../examples/date-time.dart';
 import '../widgets/Event.dart';
 import '../widgets/TextInput.dart';
 import '../widgets/buttons/SmallButton.dart';
@@ -50,6 +52,7 @@ class _CreatePageState extends State<CreatePage> {
                     selectedDate = newDateTime;
                   },
                 ),
+                TimePicker(),
                 Container(
                   alignment: AlignmentDirectional.centerEnd,
                   padding: EdgeInsets.only(left: 5, right: 5),
