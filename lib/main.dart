@@ -73,19 +73,26 @@ void cardFunction(BuildContext context, Event event) {
   );
 }
 
-ListView lijst(BuildContext context) {
+Widget lijst(BuildContext context) {
   var events = Hive.box<Event>(eventBox);
-  return ListView.builder(
-    itemCount: events.length,
-    itemBuilder: (context, index) {
-      Event event = events.getAt(index);
-      EventCard eCard = EventCard(
-        () => cardFunction(context, event),
-        event,
-      );
-      return eCard.getCard(context);
-    },
-  );
+
+  if (events.length > 0) {
+    return ListView.builder(
+      itemCount: events.length,
+      itemBuilder: (context, index) {
+        EventCard eCard = EventCard(
+          () => cardFunction(context, events.getAt(index)),
+          events.getAt(index),
+        );
+        return eCard.getCard(context);
+      },
+    );
+  } else {
+    return Container(
+      width: 10,
+      color: Colors.blue,
+    );
+  }
 }
 
 List<Widget> cardsCreator(BuildContext context) {
@@ -95,10 +102,10 @@ List<Widget> cardsCreator(BuildContext context) {
 
   var box = Hive.box<Event>(eventBox);
 
-  EventCard eCard = new EventCard(cardFunction, box.getAt(0));
   for (Event event in box.values) {
+    EventCard eCard = new EventCard(cardFunction, event);
     print("[EVENT IN BOX] $event");
-    Card card = eCard.makeEventCardFromEvent(context, event);
+    Card card = eCard.getCard(context);
     eventCards.add(card);
   }
 
