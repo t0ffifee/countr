@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constants/constants.dart';
 import '../screens/countdown_page.dart';
+import 'CardCountDown.dart';
 import 'Event.dart';
 
 class EventCard {
@@ -49,10 +50,8 @@ class EventCard {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            topBarCard(event.eTitle, event.eDescription,
-                IconData(event.eIconCodePoint, fontFamily: 'MaterialIcons')),
-            dateShower(
-                times), // hier geef je natuurlijk de resterende dagen, uren, minuten en seconden
+            topBarCard(event.eTitle, event.eDescription, IconData(event.eIconCodePoint, fontFamily: 'MaterialIcons')),
+            CardCountDown(event),
             cardButtonBar(),
           ],
         ),
@@ -77,10 +76,8 @@ class EventCard {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            topBarCard(event.eTitle, event.eDescription,
-                IconData(event.eIconCodePoint, fontFamily: 'MaterialIcons')),
-            dateShower(
-                times), // hier geef je natuurlijk de resterende dagen, uren, minuten en seconden
+            topBarCard(event.eTitle, event.eDescription, IconData(event.eIconCodePoint, fontFamily: 'MaterialIcons')),
+            dateShower(times), // hier geef je natuurlijk de resterende dagen, uren, minuten en seconden
             cardButtonBar(),
           ],
         ),

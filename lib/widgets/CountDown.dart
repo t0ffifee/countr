@@ -15,22 +15,21 @@ class CountDown extends StatefulWidget {
 class _CountDownState extends State<CountDown> {
   CountdownTimerController controller;
   // hier moeten we de DateTime doorgeven van het einde van de event
-  int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 259200;
+  int endTime;
 
-  // TODO idk of deze initstate nodig is, volgens mij namelijk niet
-  @override
-  void initState() {
-    super.initState();
-    controller = CountdownTimerController(
-        endTime: widget.event.eDate.millisecondsSinceEpoch, onEnd: onEnd);
-    Future.delayed(Duration(seconds: 5), () {
-      setState(() {
-        // hier moeten we de DateTime doorgeven van het einde van de event
-        endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 259200;
-        controller.endTime = endTime;
-      });
-    });
-  }
+  // TODO misschien is het beter om met initState() en onEnd() te werken voor als de event afgelopen is
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   controller = CountdownTimerController(endTime: widget.event.eDate.microsecondsSinceEpoch, onEnd: onEnd);
+  //   Future.delayed(Duration(seconds: 5), () {
+  //     setState(() {
+  //       // hier moeten we de DateTime doorgeven van het einde van de event
+  //       endTime = widget.event.eDate.microsecondsSinceEpoch;
+  //       controller.endTime = widget.event.eDate.microsecondsSinceEpoch;
+  //     });
+  //   });
+  // }
 
   void onEnd() {
     print('onEnd');
@@ -38,20 +37,18 @@ class _CountDownState extends State<CountDown> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: CountdownTimer(
-          // DIT IS ALLES WAT JE HOEFT TE DOEN LOL DITS WORDT GEWELDIG
-          endTime: widget.event.eDate.millisecondsSinceEpoch + 482394832,
-          widgetBuilder: (_, CurrentRemainingTime time) {
-            if (time == null) {
-              return Text('Game over');
-            }
-            return Text(
-                'days: [ ${time.days} ], hours: [ ${time.hours} ], min: [ ${time.min} ], sec: [ ${time.sec} ]');
-          },
-        ),
-      ),
+    return CountdownTimer(
+      // DIT IS ALLES WAT JE HOEFT TE DOEN LOL DITS WORDT GEWELDIG
+      endTime: widget.event.eDate.millisecondsSinceEpoch,
+      widgetBuilder: (controller, CurrentRemainingTime time) {
+        if (time == null) {
+          return Text('Game over');
+        }
+        return Text(
+          'days: [ ${time.days} ] \nhours: [ ${time.hours} ]\nmin: [ ${time.min} ]\nsec: [ ${time.sec} ]',
+          style: TextStyle(color: Colors.white, fontSize: 70),
+        );
+      },
     );
   }
 }

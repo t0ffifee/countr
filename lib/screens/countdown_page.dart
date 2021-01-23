@@ -16,7 +16,7 @@ class CountDownPage extends StatelessWidget {
           children: <Widget>[
             Container(height: 40),
             Text(
-              "Een hele mooie titel",
+              event.eTitle,
               style: TextStyle(
                 fontSize: 25,
                 color: whiteTextColor,
