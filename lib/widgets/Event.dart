@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import '../constants/constants.dart';
 
+// TODO dit bestand moet opnieuw gegenereerd worden voor deze class
+// heb iets met de hand aangepast en het kan zijn dat het nu al werkt
 part 'Event.g.dart';
 
 @HiveType(typeId: 1)
@@ -9,16 +12,23 @@ class Event {
   DateTime eventDate;
 
   @HiveField(1)
-  String title;
+  TimeOfDay eventTime;
 
   @HiveField(2)
-  String description;
+  String title;
 
   @HiveField(3)
+  String description;
+
+  @HiveField(4)
   int iconCodePoint;
 
   DateTime get eDate {
     return eventDate;
+  }
+
+  TimeOfDay get eTime {
+    return eventTime;
   }
 
   String get eTitle {
@@ -33,7 +43,8 @@ class Event {
     return iconCodePoint;
   }
 
-  Event(this.eventDate, this.title, this.description, this.iconCodePoint);
+  Event(this.eventDate, this.eventTime, this.title, this.description,
+      this.iconCodePoint);
 
   void saveEvent() {
     var box = Hive.box<Event>(eventBox);

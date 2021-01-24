@@ -3,7 +3,6 @@ import 'package:countdown_app/widgets/general/TimePicker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import '../examples/date-time.dart';
 import '../widgets/Event.dart';
 import '../widgets/TextInput.dart';
 import '../widgets/buttons/SmallButton.dart';
@@ -14,7 +13,8 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
-  DateTime selectedDate = DateTime.now();
+  DateTime selectedDate = DateTime.now().add(Duration(days: 1)); // Morgen
+  TimeOfDay selecetedTime = TimeOfDay(hour: 6, minute: 15); // Ochtend
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
 
@@ -52,7 +52,11 @@ class _CreatePageState extends State<CreatePage> {
                     selectedDate = newDateTime;
                   },
                 ),
-                TimePicker(),
+                TimePicker(
+                  onTimeChanged: (newTimeOfDay) {
+                    selecetedTime = newTimeOfDay;
+                  },
+                ),
                 Container(
                   alignment: AlignmentDirectional.centerEnd,
                   padding: EdgeInsets.only(left: 5, right: 5),
@@ -71,15 +75,18 @@ class _CreatePageState extends State<CreatePage> {
     );
   }
 
-  void createEvent(String title, String description, DateTime eventDate) {
+  void createEvent(String title, String description, DateTime eventDate,
+      TimeOfDay eventTime) {
     int iconDataPoint = Icons.person.codePoint;
-    Event event = new Event(eventDate, title, description, iconDataPoint);
+    Event event =
+        new Event(eventDate, eventTime, title, description, iconDataPoint);
     event.saveEvent();
   }
 
   void saveButtonFunction() {
     print("[ACTION] Save Button gedrukt");
-    createEvent(titleController.text, descriptionController.text, selectedDate);
+    createEvent(titleController.text, descriptionController.text, selectedDate,
+        selecetedTime);
 
     // SnackBar sb = SnackBar(content: Text("Event Is Saved"));
     // Scaffold.of(context).showSnackBar(sb);

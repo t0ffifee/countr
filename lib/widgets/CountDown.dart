@@ -37,9 +37,13 @@ class _CountDownState extends State<CountDown> {
 
   @override
   Widget build(BuildContext context) {
+    const int MillisecondsInMinute = 60 * 1000;
+    const int MillisecondsInHour = 60 * MillisecondsInMinute;
+    int days = widget.event.eDate.millisecondsSinceEpoch;
+    int hours = MillisecondsInHour * widget.event.eTime.hour;
+    int minutes = MillisecondsInMinute * widget.event.eTime.hour;
     return CountdownTimer(
-      // DIT IS ALLES WAT JE HOEFT TE DOEN LOL DITS WORDT GEWELDIG
-      endTime: widget.event.eDate.millisecondsSinceEpoch,
+      endTime: days + hours + minutes,
       widgetBuilder: (controller, CurrentRemainingTime time) {
         if (time == null) {
           return Text('Game over');
