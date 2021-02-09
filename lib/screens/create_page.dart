@@ -93,3 +93,14 @@ class _CreatePageState extends State<CreatePage> {
     Navigator.pop(context);
   }
 }
+
+class iconChooser extends StatelessWidget {
+  const iconChooser({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: throw UnimplementedError,
+    );
+  }
+}
