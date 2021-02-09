@@ -14,7 +14,7 @@ class CreatePage extends StatefulWidget {
 
 class _CreatePageState extends State<CreatePage> {
   DateTime selectedDate = DateTime.now().add(Duration(days: 1)); // Morgen
-  TimeOfDay selecetedTime = TimeOfDay(hour: 6, minute: 15); // Ochtend
+  TimeOfDay selectedTime = TimeOfDay(hour: 6, minute: 15); // Ochtend
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
 
@@ -54,7 +54,7 @@ class _CreatePageState extends State<CreatePage> {
                 ),
                 TimePicker(
                   onTimeChanged: (newTimeOfDay) {
-                    selecetedTime = newTimeOfDay;
+                    selectedTime = newTimeOfDay;
                   },
                 ),
                 Container(
@@ -75,18 +75,15 @@ class _CreatePageState extends State<CreatePage> {
     );
   }
 
-  void createEvent(String title, String description, DateTime eventDate,
-      TimeOfDay eventTime) {
+  void createEvent(String title, String description, DateTime eventDate, TimeOfDay eventTime) {
     int iconDataPoint = Icons.person.codePoint;
-    Event event =
-        new Event(eventDate, eventTime, title, description, iconDataPoint);
+    Event event = new Event(eventDate, title, description, iconDataPoint, Colors.blue);
     event.saveEvent();
   }
 
   void saveButtonFunction() {
     print("[ACTION] Save Button gedrukt");
-    createEvent(titleController.text, descriptionController.text, selectedDate,
-        selecetedTime);
+    createEvent(titleController.text, descriptionController.text, selectedDate, selectedTime);
 
     // SnackBar sb = SnackBar(content: Text("Event Is Saved"));
     // Scaffold.of(context).showSnackBar(sb);

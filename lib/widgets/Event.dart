@@ -12,23 +12,19 @@ class Event {
   DateTime eventDate;
 
   @HiveField(1)
-  TimeOfDay eventTime;
-
-  @HiveField(2)
   String title;
 
-  @HiveField(3)
+  @HiveField(2)
   String description;
 
-  @HiveField(4)
+  @HiveField(3)
   int iconCodePoint;
+
+  @HiveField(4)
+  Color eventColor;
 
   DateTime get eDate {
     return eventDate;
-  }
-
-  TimeOfDay get eTime {
-    return eventTime;
   }
 
   String get eTitle {
@@ -43,8 +39,11 @@ class Event {
     return iconCodePoint;
   }
 
-  Event(this.eventDate, this.eventTime, this.title, this.description,
-      this.iconCodePoint);
+  Color get eColor {
+    return eventColor;
+  }
+
+  Event(this.eventDate, this.title, this.description, this.iconCodePoint, this.eventColor);
 
   void saveEvent() {
     var box = Hive.box<Event>(eventBox);

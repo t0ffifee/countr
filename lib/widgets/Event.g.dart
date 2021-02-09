@@ -18,26 +18,23 @@ class EventAdapter extends TypeAdapter<Event> {
     };
     return Event(
       fields[0] as DateTime,
-      fields[1] as TimeOfDay,
+      fields[1] as String,
       fields[2] as String,
-      fields[3] as String,
-      fields[4] as int,
+      fields[3] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, Event obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.eventDate)
       ..writeByte(1)
-      ..write(obj.eventTime)
-      ..writeByte(2)
       ..write(obj.title)
-      ..writeByte(3)
+      ..writeByte(2)
       ..write(obj.description)
-      ..writeByte(4)
+      ..writeByte(3)
       ..write(obj.iconCodePoint);
   }
 
@@ -45,9 +42,5 @@ class EventAdapter extends TypeAdapter<Event> {
   int get hashCode => typeId.hashCode;
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is EventAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
+  bool operator ==(Object other) => identical(this, other) || other is EventAdapter && runtimeType == other.runtimeType && typeId == other.typeId;
 }
