@@ -56,3 +56,6 @@
 ### Acknowledgements
 
 ### Github link 
+
+### Updates
+- Als we ooit een update doen waarin de database veranderd zouden we wat code moeten schrijven die de elementen van de ene database naar de andere kan overbrengen gezien Events bijvoorbeeld niet hetzelfde zullen gedragen of je kan andere soort van hacky manieren vinden om shit te splitsen in Event info en Cardinfo

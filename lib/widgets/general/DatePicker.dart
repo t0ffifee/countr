@@ -14,17 +14,18 @@ class _DatePickerState extends State<DatePicker> {
 
   bool _decideWhichDayToEnable(DateTime day) {
     const FiveYears = 365 * 5;
-    if ((day.isAfter(DateTime.now().subtract(Duration(days: 1))) && day.isBefore(DateTime.now().add(Duration(days: FiveYears))))) {
+    if ((day.isAfter(DateTime.now().add(Duration(days: 1))) &&
+        day.isBefore(DateTime.now().add(Duration(days: FiveYears))))) {
       return true;
     }
     return false;
   }
 
-  Future<Null> _selectDate(BuildContext context) async {
+  void _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
-      firstDate: DateTime(2000),
+      firstDate: DateTime(DateTime.now().year), // Dit jaar
       lastDate: DateTime(2025),
       selectableDayPredicate: _decideWhichDayToEnable,
       helpText: "Choose the date of the event",
@@ -33,7 +34,8 @@ class _DatePickerState extends State<DatePicker> {
       setState(() {
         selectedDate = picked;
         widget.onDateTimeChanged(selectedDate);
-        print('Date selected: ${selectedDate.day}-${selectedDate.month}-${selectedDate.year}');
+        print(
+            'Date selected: ${selectedDate.day}-${selectedDate.month}-${selectedDate.year}');
       });
   }
 

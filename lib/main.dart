@@ -13,6 +13,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(EventAdapter());
 
+  // TODO we moeten nog denken aan local time shit denk ik, not sure hoe dat allemaal werkt tbh
   // TODO die global shit moet weg, als je een box wilt openen, open em dan gewoon
   Globals.events = await Hive.openBox<Event>(eventBox);
   Globals.events.clear();

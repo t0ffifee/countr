@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TimePicker extends StatefulWidget {
-  TimePicker({Key key}) : super(key: key);
+  final ValueChanged<TimeOfDay> onTimeChanged;
+  TimePicker({Key key, this.onTimeChanged}) : super(key: key);
 
   @override
   _TimePickerState createState() => _TimePickerState();
@@ -18,6 +19,7 @@ class _TimePickerState extends State<TimePicker> {
     if (newTime != null) {
       setState(() {
         time = newTime;
+        widget.onTimeChanged(newTime);
       });
     }
   }
