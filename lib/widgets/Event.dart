@@ -20,8 +20,8 @@ class Event {
   @HiveField(3)
   int iconCodePoint;
 
-  @HiveField(4)
-  Color eventColor;
+  // @HiveField(4)
+  // Color eventColor;
 
   DateTime get eDate {
     return eventDate;
@@ -39,11 +39,11 @@ class Event {
     return iconCodePoint;
   }
 
-  Color get eColor {
-    return eventColor;
-  }
+  // Color get eColor {
+  //   return eventColor;
+  // }
 
-  Event(this.eventDate, this.title, this.description, this.iconCodePoint, this.eventColor);
+  Event(this.eventDate, this.title, this.description, this.iconCodePoint); // this.eventColor);
 
   void saveEvent() {
     var box = Hive.box<Event>(eventBox);

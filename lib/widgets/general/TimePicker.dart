@@ -31,7 +31,7 @@ class _TimePickerState extends State<TimePicker> {
       children: <Widget>[
         Container(
           margin: EdgeInsets.only(left: 15, right: 20),
-          child: RaisedButton(
+          child: ElevatedButton(
             onPressed: () => _selectTime(),
             child: Text(
               'Select time',
@@ -40,7 +40,7 @@ class _TimePickerState extends State<TimePicker> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            color: Color.fromRGBO(50, 50, 50, 1),
+            // color: Color.fromRGBO(50, 50, 50, 1),
           ),
         ),
         Container(

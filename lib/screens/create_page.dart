@@ -13,8 +13,8 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
-  DateTime selectedDate = DateTime.now().add(Duration(days: 1)); // Morgen
-  TimeOfDay selectedTime = TimeOfDay(hour: 6, minute: 15); // Ochtend
+  DateTime selectedDate = DateTime.now();
+  TimeOfDay selectedTime = TimeOfDay(hour: 23, minute: 59); // dit is slecht maar voor nu kan ik geen oplossing vinden lol
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
 
@@ -77,19 +77,41 @@ class _CreatePageState extends State<CreatePage> {
 
   void createEvent(String title, String description, DateTime eventDate, TimeOfDay eventTime) {
     int iconDataPoint = Icons.person.codePoint;
-    Event event = new Event(eventDate, title, description, iconDataPoint, Colors.blue);
+    Event event = new Event(eventDate, title, description, iconDataPoint);
     event.saveEvent();
+  }
+
+  bool correctChosenTime(DateTime dt) {
+    DateTime now = DateTime.now();
+
+    print("[DATETIME CHOSEN] ${dt.month} ${dt.day} ${dt.hour} ${dt.minute}");
+    print("[DATETIME NOW] ${now.month} ${now.day} ${now.hour} ${now.minute}");
+
+    int minuteDif = dt.difference(now).inMinutes;
+    print("minuteDif $minuteDif");
+    if (minuteDif > 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   void saveButtonFunction() {
     print("[ACTION] Save Button gedrukt");
-    createEvent(titleController.text, descriptionController.text, selectedDate, selectedTime);
 
-    // SnackBar sb = SnackBar(content: Text("Event Is Saved"));
-    // Scaffold.of(context).showSnackBar(sb);
+    DateTime chosenDateAndTime = selectedDate.add(Duration(hours: selectedTime.hour, minutes: selectedTime.minute));
+
+    if (correctChosenTime(chosenDateAndTime)) {
+      print("Good Time");
+      // createEvent(titleController.text, descriptionController.text, selectedDate, selectedTime);
+    } else {
+      print("Bad Time");
+      SnackBar sb = SnackBar(content: Text("Choose a time that is beyond the current time"));
+      ScaffoldMessenger.of(context).showSnackBar(sb);
+    }
 
     // We moeten nu het scherm verlaten
-    Navigator.pop(context);
+    // Navigator.pop(context);
   }
 
   void cancelButtonFunction() {
@@ -98,8 +120,8 @@ class _CreatePageState extends State<CreatePage> {
   }
 }
 
-class iconChooser extends StatelessWidget {
-  const iconChooser({Key key}) : super(key: key);
+class IconChooser extends StatelessWidget {
+  const IconChooser({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class DatePicker extends StatefulWidget {
   final ValueChanged<DateTime> onDateTimeChanged;
-
   DatePicker({Key key, this.onDateTimeChanged}) : super(key: key);
 
   @override
@@ -14,14 +13,13 @@ class _DatePickerState extends State<DatePicker> {
 
   bool _decideWhichDayToEnable(DateTime day) {
     const FiveYears = 365 * 5;
-    if ((day.isAfter(DateTime.now().add(Duration(days: 1))) &&
-        day.isBefore(DateTime.now().add(Duration(days: FiveYears))))) {
+    if ((day.isAfter(DateTime.now().subtract(Duration(days: 1))) && day.isBefore(DateTime.now().add(Duration(days: FiveYears))))) {
       return true;
     }
     return false;
   }
 
-  void _selectDate(BuildContext context) async {
+  void _selectDate() async {
     final DateTime picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
@@ -34,8 +32,7 @@ class _DatePickerState extends State<DatePicker> {
       setState(() {
         selectedDate = picked;
         widget.onDateTimeChanged(selectedDate);
-        print(
-            'Date selected: ${selectedDate.day}-${selectedDate.month}-${selectedDate.year}');
+        print('Date selected: ${selectedDate.day}-${selectedDate.month}-${selectedDate.year}');
       });
   }
 
@@ -46,8 +43,8 @@ class _DatePickerState extends State<DatePicker> {
       children: <Widget>[
         Container(
           margin: EdgeInsets.only(left: 15, right: 20),
-          child: RaisedButton(
-            onPressed: () => _selectDate(context),
+          child: ElevatedButton(
+            onPressed: _selectDate,
             child: Text(
               'Select date',
               style: TextStyle(
@@ -55,7 +52,7 @@ class _DatePickerState extends State<DatePicker> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            color: Color.fromRGBO(50, 50, 50, 1),
+            // color: Color.fromRGBO(50, 50, 50, 1),
           ),
         ),
         Container(

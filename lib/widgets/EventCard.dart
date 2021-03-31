@@ -26,8 +26,7 @@ class EventCard {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            topBarCard(event.eTitle, event.eDescription,
-                IconData(event.eIconCodePoint, fontFamily: 'MaterialIcons')),
+            topBarCard(event.eTitle, event.eDescription, IconData(event.eIconCodePoint, fontFamily: 'MaterialIcons')),
             CardCountDown(event),
             cardButtonBar(),
           ],
@@ -37,8 +36,7 @@ class EventCard {
   }
 
   // TODO deze dingen hieronder horen duidelijk een eigen class te zijn
-  Widget topBarCard(String title, String description, IconData icon) =>
-      ListTile(
+  Widget topBarCard(String title, String description, IconData icon) => ListTile(
         leading: Icon(
           icon,
           color: Color.fromRGBO(143, 143, 143, 1),
@@ -149,8 +147,8 @@ class EventCard {
   Widget cardButtonBar() {
     return ButtonBar(
       children: <Widget>[
-        FlatButton(
-          splashColor: lightPurple.withAlpha(150),
+        ElevatedButton(
+          // splashColor: lightPurple.withAlpha(150),
           onPressed: () {
             print("Edit button");
           },
@@ -159,8 +157,8 @@ class EventCard {
             color: whiteTextColor,
           ),
         ),
-        FlatButton(
-          splashColor: lightPurple.withAlpha(150),
+        ElevatedButton(
+          // splashColor: lightPurple.withAlpha(150),
           child: Icon(
             Icons.drag_handle,
             color: whiteTextColor,

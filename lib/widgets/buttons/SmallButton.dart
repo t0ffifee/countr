@@ -14,7 +14,7 @@ class SmallButton extends StatelessWidget {
       buttonColor: Color.fromRGBO(50, 50, 50, 1),
       child: Container(
         margin: EdgeInsets.only(left: 10, right: 10),
-        child: RaisedButton(
+        child: ElevatedButton(
           onPressed: buttonFunction,
           child: Text(
             buttonText,

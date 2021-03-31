@@ -98,7 +98,7 @@ Widget lijst(BuildContext context) {
 
 List<Widget> cardsCreator(BuildContext context) {
   print("[FUNCTION] cardsCreator is opgeroepen");
-  List<Widget> eventCards = new List();
+  List<Widget> eventCards = [];
   eventCards.add(topContainer);
 
   var box = Hive.box<Event>(eventBox);

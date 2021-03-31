@@ -57,7 +57,7 @@ class MyHomePage extends StatelessWidget {
 
     return Scaffold(
       body: Center(
-        child: FlatButton(
+        child: TextButton(
           onPressed: () {
             showDialog<void>(context: context, builder: (context) => dialog);
           },
@@ -78,7 +78,7 @@ ThemeData _buildShrineTheme() {
     buttonColor: shrinePink100,
     scaffoldBackgroundColor: shrineBackgroundWhite,
     cardColor: shrineBackgroundWhite,
-    textSelectionColor: shrinePink100,
+    // textSelectionColor: shrinePink100,
     errorColor: shrineErrorRed,
     buttonTheme: const ButtonThemeData(
       colorScheme: _shrineColorScheme,
