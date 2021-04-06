@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../constants/constants.dart';
 
 class DatePicker extends StatefulWidget {
   final ValueChanged<DateTime> onDateTimeChanged;
@@ -45,12 +46,16 @@ class _DatePickerState extends State<DatePicker> {
           margin: EdgeInsets.only(left: 15, right: 20),
           child: ElevatedButton(
             onPressed: _selectDate,
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              textStyle: MaterialStateProperty.all<TextStyle>(
+                TextStyle(
+                  color: onSurfaceWhite,
+                ),
+              ),
+            ),
             child: Text(
               'Select date',
-              style: TextStyle(
-                color: Color.fromRGBO(143, 143, 143, 1),
-                fontWeight: FontWeight.bold,
-              ),
             ),
             // color: Color.fromRGBO(50, 50, 50, 1),
           ),

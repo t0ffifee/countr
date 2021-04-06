@@ -97,26 +97,47 @@ class _CreatePageState extends State<CreatePage> {
   }
 
   void saveButtonFunction() {
-    print("[ACTION] Save Button gedrukt");
-
     DateTime chosenDateAndTime = selectedDate.add(Duration(hours: selectedTime.hour, minutes: selectedTime.minute));
 
     if (correctChosenTime(chosenDateAndTime)) {
-      print("Good Time");
       // createEvent(titleController.text, descriptionController.text, selectedDate, selectedTime);
-    } else {
-      print("Bad Time");
-      SnackBar sb = SnackBar(content: Text("Choose a time that is beyond the current time"));
-      ScaffoldMessenger.of(context).showSnackBar(sb);
-    }
 
-    // We moeten nu het scherm verlaten
-    // Navigator.pop(context);
+      // Scherm verlaten
+      Navigator.pop(context);
+    } else {
+      showMyDialog();
+    }
   }
 
   void cancelButtonFunction() {
-    print("[ACTION] Cancel Button gedrukt");
     Navigator.pop(context);
+  }
+
+  Future<void> showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Chosen impossible time'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Choose a time that is beyond the current time'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Approve'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
 

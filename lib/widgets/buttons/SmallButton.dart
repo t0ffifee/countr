@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../constants/constants.dart';
 // import '../../constants/constants.dart';
 
 class SmallButton extends StatelessWidget {
@@ -15,17 +16,20 @@ class SmallButton extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(left: 10, right: 10),
         child: ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+            textStyle: MaterialStateProperty.all(
+              TextStyle(
+                color: onSurfaceWhite,
+              ),
+            ),
+          ),
           onPressed: buttonFunction,
           child: Text(
             buttonText,
-            style: TextStyle(
-              color: Color.fromRGBO(143, 143, 143, 1),
-            ),
           ),
         ),
       ),
     );
   }
 }
-
-saveButton() {}

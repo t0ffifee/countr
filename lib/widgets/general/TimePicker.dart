@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../constants/constants.dart';
 
 class TimePicker extends StatefulWidget {
   final ValueChanged<TimeOfDay> onTimeChanged;
@@ -33,12 +34,16 @@ class _TimePickerState extends State<TimePicker> {
           margin: EdgeInsets.only(left: 15, right: 20),
           child: ElevatedButton(
             onPressed: () => _selectTime(),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              textStyle: MaterialStateProperty.all<TextStyle>(
+                TextStyle(
+                  color: onSurfaceWhite,
+                ),
+              ),
+            ),
             child: Text(
               'Select time',
-              style: TextStyle(
-                color: Color.fromRGBO(143, 143, 143, 1),
-                fontWeight: FontWeight.bold,
-              ),
             ),
             // color: Color.fromRGBO(50, 50, 50, 1),
           ),
