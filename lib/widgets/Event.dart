@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import '../constants/constants.dart';
 
-// TODO dit bestand moet opnieuw gegenereerd worden voor deze class
-// heb iets met de hand aangepast en het kan zijn dat het nu al werkt
 part 'Event.g.dart';
+
+// Titel, Beschrijving, Datum/Tijd, Icoon, Kleur
 
 @HiveType(typeId: 1)
 class Event {
