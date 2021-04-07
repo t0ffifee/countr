@@ -10,3 +10,6 @@ const Color onSurfaceWhite = Colors.white;
 // STRINGS
 const String eventBox = "eventBox";
 const String eventsKey = "eventsList";
+
+// DOUBLES
+const double splashRadiusIconButtonCard = 25;
