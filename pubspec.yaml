@@ -37,6 +37,9 @@ dependencies:
   # CountDown Timer:
   flutter_countdown_timer: ^3.0.0
 
+  # Color Picker
+  flutter_material_color_picker: ^1.0.5
+
   date_format: ^1.0.9
 
   # The following adds the Cupertino Icons font to your application.
