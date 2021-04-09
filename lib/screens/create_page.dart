@@ -1,5 +1,7 @@
+import 'package:countdown_app/constants/constants.dart';
 import 'package:countdown_app/widgets/general/DatePicker.dart';
 import 'package:countdown_app/widgets/general/TimePicker.dart';
+import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -15,8 +17,30 @@ class CreatePage extends StatefulWidget {
 class _CreatePageState extends State<CreatePage> {
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay(hour: 23, minute: 59); // dit is slecht maar voor nu kan ik geen oplossing vinden lol
+  bool pushNotification = false;
+
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
+
+  // TODO breng dit naar constants
+  List<IconData> iconList = [
+    Icons.alarm,
+    Icons.house,
+    Icons.palette_outlined,
+    Icons.airplanemode_active,
+    Icons.beach_access,
+    Icons.cake,
+    Icons.sports_esports,
+    Icons.all_inclusive,
+    Icons.bedtime,
+    Icons.star_outlined,
+    Icons.computer,
+    Icons.directions_bike,
+    Icons.directions_car,
+    Icons.directions_boat,
+    Icons.directions_train,
+    Icons.emoji_events
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -57,10 +81,24 @@ class _CreatePageState extends State<CreatePage> {
                     selectedTime = newTimeOfDay;
                   },
                 ),
+                ListTile(
+                  title: Text("Push notification"),
+                  leading: Switch(
+                    value: pushNotification,
+                    activeColor: lightPurple,
+                    onChanged: (value) {
+                      setState(() {
+                        pushNotification = value;
+                      });
+                    },
+                  ),
+                ),
+                SmallButton(iconFunc, "Choose Icon"),
+                SmallButton(colorFunc, "Choose Color"),
                 Container(
-                  alignment: AlignmentDirectional.centerEnd,
-                  padding: EdgeInsets.only(left: 5, right: 5),
+                  padding: EdgeInsets.only(left: 5),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       SmallButton(saveButtonFunction, "Save this"),
                       SmallButton(cancelButtonFunction, "Cancel"),
@@ -72,6 +110,78 @@ class _CreatePageState extends State<CreatePage> {
           ),
         ),
       ),
+    );
+  }
+
+  void iconFunc() {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user does not have to tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Choose Icon\n'),
+          contentPadding: EdgeInsets.zero,
+          content: Container(
+            width: 8,
+            height: 300,
+            child: GridView.count(
+              crossAxisCount: 4,
+              children: [
+                for (int i = 0; i < 16; i++)
+                  IconButton(
+                    icon: Icon(iconList[i]),
+                    onPressed: () {
+                      print(i);
+                      Navigator.pop(context);
+                    },
+                  )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void colorFunc() {
+    // Deze variabelen horen hier niet en deze shit moet echt eens opgeschoond worden allemaal
+    ColorSwatch _tempMainColor;
+    ColorSwatch _mainColor = Colors.blue;
+
+    MaterialColorPicker mcp = MaterialColorPicker(
+      selectedColor: _mainColor,
+      allowShades: false,
+      onMainColorChange: (color) => setState(() => _tempMainColor = color),
+    );
+
+    showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user does not have to tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Choose Color\n'),
+          contentPadding: EdgeInsets.zero,
+          content: SizedBox(
+            height: 250,
+            child: mcp,
+          ),
+          actions: [
+            // ignore: deprecated_member_use
+            FlatButton(
+              child: Text('CANCEL'),
+              onPressed: Navigator.of(context).pop,
+            ),
+            // ignore: deprecated_member_use
+            FlatButton(
+              child: Text('SUBMIT'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                setState(() => _mainColor = _tempMainColor);
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 
