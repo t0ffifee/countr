@@ -36,6 +36,27 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
+  var _controller = ScrollController();
+  var _visible = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      if (_controller.position.atEdge) {
+        if (_controller.position.pixels > 0) if (_visible)
+          setState(() {
+            _visible = false;
+          });
+      } else {
+        if (!_visible)
+          setState(() {
+            _visible = true;
+          });
+      }
+    });
+  }
+
   @override
   Widget build(context) {
     print("[BUILD] MyAppState is gebouwd");
@@ -43,24 +64,26 @@ class MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         // body: mainBody(context),
-        body: mainBody2(context),
+        body: mainBody2(context, _controller),
         backgroundColor: backgroundBlack,
-        floatingActionButton: FancyFab(),
+        floatingActionButton: Visibility(visible: _visible, child: FancyFab()),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
     );
   }
 }
 
-Widget mainBody2(BuildContext context) {
+Widget mainBody2(BuildContext context, ScrollController controller) {
   return Center(
     child: ListView(
+      controller: controller,
       children: [
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android),
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android),
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android),
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android),
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android),
+        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.blue),
+        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.purple),
+        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.red),
+        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.green),
+        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.yellow),
+        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.grey),
       ],
     ),
   );
@@ -140,42 +163,38 @@ Container bottomContainer = Container(
 
 // FUNCTIES DIE ER NU STAAN OMDAT WE AAN DE FRONTEND WILLEN WERKEN:
 
-Widget getCard(
-  BuildContext context,
-  String title,
-  String description,
-  IconData icon,
-) {
-  // TODO dit moet er natuurlijk anders uit gaan zien omdat je een CardCountDown gebruikt
-  return Card(
-    // elevation: 3.0,
-    color: Color.fromRGBO(40, 40, 40, 1),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(12),
-    ),
-    child: InkWell(
-      splashColor: lightPurple.withOpacity(0.4),
-      onTap: () {
-        print("er is iets gedrukt");
-      },
-      child: Row(
-        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        // mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            color: Colors.blue,
-            height: 175,
-            width: 10,
-          ),
-          Column(
-            children: [
-              Text("data"),
-              Text("data"),
-              dateShower(['3', '4', '4', '4']),
-              cardButtonBar(context),
-            ],
-          )
-        ],
+Widget getCard(BuildContext context, String title, String description, IconData icon, Color color) {
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(6.0, 6.0, 6.0, 0),
+    child: Card(
+      elevation: 3,
+      color: lighterBlackOne,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        splashColor: lightPurple.withOpacity(0.4),
+        onTap: () {
+          print("Pressed on Card");
+        },
+        child: Column(
+          children: <Widget>[
+            Container(
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12)),
+              ),
+              height: 8,
+              // color: Colors.blue,
+            ),
+            topBarCard(title, description, icon),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
+              child: dateShower(['3', '4', '4', '4']),
+            ),
+            cardButtonBar(context),
+          ],
+        ),
       ),
     ),
   );
