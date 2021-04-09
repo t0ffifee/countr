@@ -4,7 +4,7 @@ import '../constants/constants.dart';
 
 part 'Event.g.dart';
 
-// Titel, Beschrijving, Datum/Tijd, Icoon, Kleur
+// Titel (String), Beschrijving (String), Datum/Tijd (DateTime), Icoon (int), Kleur (int), ShowNotification (bool)
 
 @HiveType(typeId: 1)
 class Event {
