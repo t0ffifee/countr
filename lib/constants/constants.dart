@@ -13,3 +13,26 @@ const String eventsKey = "eventsList";
 
 // DOUBLES
 const double splashRadiusIconButtonCard = 25;
+
+// LISTS
+
+// TODO misschien kan je hier de ints stoppen van de iconen en later
+// omzetten naar iconen zodat constant.dart niet veel moeite kost om in te laden
+List<IconData> iconList = [
+  Icons.alarm,
+  Icons.house,
+  Icons.palette_outlined,
+  Icons.airplanemode_active,
+  Icons.beach_access,
+  Icons.cake,
+  Icons.sports_esports,
+  Icons.all_inclusive,
+  Icons.bedtime,
+  Icons.star_outlined,
+  Icons.computer,
+  Icons.directions_bike,
+  Icons.directions_car,
+  Icons.directions_boat,
+  Icons.directions_train,
+  Icons.emoji_events
+];
