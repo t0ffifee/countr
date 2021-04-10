@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import '../constants/constants.dart';
 
@@ -9,7 +8,7 @@ part 'Event.g.dart';
 @HiveType(typeId: 1)
 class Event {
   @HiveField(0)
-  DateTime eventDate;
+  DateTime date;
 
   @HiveField(1)
   String title;
@@ -20,11 +19,14 @@ class Event {
   @HiveField(3)
   int iconCodePoint;
 
-  // @HiveField(4)
-  // Color eventColor;
+  @HiveField(4)
+  int color;
+
+  @HiveField(5)
+  bool notification;
 
   DateTime get eDate {
-    return eventDate;
+    return date;
   }
 
   String get eTitle {
@@ -39,11 +41,11 @@ class Event {
     return iconCodePoint;
   }
 
-  // Color get eColor {
-  //   return eventColor;
-  // }
+  int get eColor {
+    return color;
+  }
 
-  Event(this.eventDate, this.title, this.description, this.iconCodePoint); // this.eventColor);
+  Event(this.date, this.title, this.description, this.iconCodePoint, this.color, this.notification);
 
   void saveEvent() {
     var box = Hive.box<Event>(eventBox);
