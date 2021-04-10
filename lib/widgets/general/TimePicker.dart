@@ -1,3 +1,4 @@
+import 'package:countdown_app/widgets/buttons/SmallButton.dart';
 import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 
@@ -32,21 +33,7 @@ class _TimePickerState extends State<TimePicker> {
       children: <Widget>[
         Container(
           margin: EdgeInsets.only(left: 15, right: 20),
-          child: ElevatedButton(
-            onPressed: () => _selectTime(),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-              textStyle: MaterialStateProperty.all<TextStyle>(
-                TextStyle(
-                  color: onSurfaceWhite,
-                ),
-              ),
-            ),
-            child: Text(
-              'Select time',
-            ),
-            // color: Color.fromRGBO(50, 50, 50, 1),
-          ),
+          child: SmallButton(_selectTime, "Select Time"),
         ),
         Container(
           margin: EdgeInsets.only(left: 20),
