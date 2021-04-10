@@ -78,12 +78,12 @@ Widget mainBody2(BuildContext context, ScrollController controller) {
     child: ListView(
       controller: controller,
       children: [
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.blue),
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.purple),
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.red),
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.green),
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.yellow),
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.grey),
+        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.blue.shade300),
+        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.purple.shade300),
+        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.red.shade300),
+        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.green.shade300),
+        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.yellow.shade300),
+        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.grey.shade300),
       ],
     ),
   );
