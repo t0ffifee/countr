@@ -44,6 +44,22 @@ class _CreatePageState extends State<CreatePage> {
         home: Scaffold(
           backgroundColor: backgroundBlack,
           appBar: AppBar(
+            centerTitle: true,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                print("Return");
+                Navigator.pop(context);
+              },
+            ),
+            actions: [
+              IconButton(
+                icon: Icon(Icons.done),
+                onPressed: () {
+                  print("Done");
+                },
+              )
+            ],
             backgroundColor: lighterBlackOne,
             title: Text(
               'Create Event',
@@ -65,23 +81,80 @@ class _CreatePageState extends State<CreatePage> {
                     selectedTime = newTimeOfDay;
                   },
                 ),
-                SmallButton(iconFunc, "Choose Icon"),
-                SmallButton(colorFunc, "Choose Color"),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 15, right: 20),
+                      child: SmallButton(iconFunc, "Choose Icon"),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 20),
+                      child: Icon(Icons.phone_android), // TODO dit moet de gekozen icoon worden
+                    ),
+                  ],
+                ),
+                colorPicker(),
                 notificationSwitch(),
                 Container(
-                  padding: EdgeInsets.only(left: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      SmallButton(saveButtonFunction, "Save this"),
-                      SmallButton(cancelButtonFunction, "Cancel"),
-                    ],
-                  ),
-                ),
+                  margin: EdgeInsets.only(left: 15, right: 20),
+                  child: SmallButton(saveButtonFunction, "Save this"),
+                )
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget colorPicker() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Colors.red.shade200,
+            ),
+            height: 45,
+            width: 45,
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Colors.purple.shade200,
+            ),
+            height: 45,
+            width: 45,
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Colors.blue.shade200,
+            ),
+            height: 45,
+            width: 45,
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Colors.green.shade200,
+            ),
+            height: 45,
+            width: 45,
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Colors.orange.shade200,
+            ),
+            height: 45,
+            width: 45,
+          ),
+        ],
       ),
     );
   }
@@ -164,8 +237,10 @@ class _CreatePageState extends State<CreatePage> {
               child: Text('SUBMIT'),
               onPressed: () {
                 Navigator.of(context).pop();
-                setState(() => _mainColor = _tempMainColor); // TODO is dit wel nodig nu?
-                chosenColor = _mainColor.hashCode;
+                setState(() {
+                  _mainColor = _tempMainColor;
+                  chosenColor = _mainColor.hashCode;
+                });
               },
             ),
           ],
@@ -201,10 +276,6 @@ class _CreatePageState extends State<CreatePage> {
     } else {
       showErrorDialog();
     }
-  }
-
-  void cancelButtonFunction() {
-    Navigator.pop(context);
   }
 
   void showErrorDialog() {
