@@ -11,25 +11,41 @@ class SmallButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
-      minWidth: 170,
-      buttonColor: Color.fromRGBO(50, 50, 50, 1),
       child: Container(
-        margin: EdgeInsets.only(left: 10, right: 10),
-        child: ElevatedButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-            textStyle: MaterialStateProperty.all(
-              TextStyle(
-                color: onSurfaceWhite,
+        child: SizedBox(
+          width: 140,
+          child: ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              textStyle: MaterialStateProperty.all(
+                TextStyle(
+                  color: onSurfaceWhite,
+                ),
               ),
             ),
-          ),
-          onPressed: buttonFunction,
-          child: Text(
-            buttonText,
+            onPressed: buttonFunction,
+            child: Text(
+              buttonText,
+            ),
           ),
         ),
       ),
     );
   }
 }
+
+// OLD BUTTON HERE
+// ElevatedButton(
+//   onPressed: _selectDate,
+//   style: ButtonStyle(
+//     backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+//     textStyle: MaterialStateProperty.all<TextStyle>(
+//       TextStyle(
+//         color: onSurfaceWhite,
+//       ),
+//     ),
+//   ),
+//   child: Text(
+//     'Select date',
+//   ),
+// ),
