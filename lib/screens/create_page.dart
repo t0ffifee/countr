@@ -8,6 +8,7 @@ import 'package:flutter/rendering.dart';
 import '../widgets/Event.dart';
 import '../widgets/TextInput.dart';
 import '../widgets/buttons/SmallButton.dart';
+import '../widgets/color_picker/SquareColor.dart';
 
 class CreatePage extends StatefulWidget {
   @override
@@ -114,46 +115,44 @@ class _CreatePageState extends State<CreatePage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.red.shade200,
-            ),
-            height: 45,
-            width: 45,
-          ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.purple.shade200,
-            ),
-            height: 45,
-            width: 45,
-          ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.blue.shade200,
-            ),
-            height: 45,
-            width: 45,
-          ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.green.shade200,
-            ),
-            height: 45,
-            width: 45,
-          ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.orange.shade200,
-            ),
-            height: 45,
-            width: 45,
-          ),
+          // Container(
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(12),
+          //     color: Colors.red.shade200,
+          //   ),
+          //   height: 45,
+          //   width: 45,
+          // ),
+          // Container(
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(12),
+          //     color: Colors.purple.shade200,
+          //   ),
+          //   height: 45,
+          //   width: 45,
+          // ),
+          // Container(
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(12),
+          //     color: Colors.blue.shade200,
+          //   ),
+          //   height: 45,
+          //   width: 45,
+          // ),
+          // Container(
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(12),
+          //     color: Colors.green.shade200,
+          //   ),
+          //   height: 45,
+          //   width: 45,
+          // ),
+          // SquareColor(),
+          SquareColor(color: Colors.blue, elevation: 6, isSelected: false),
+          SquareColor(color: Colors.blue, elevation: 6, isSelected: false),
+          SquareColor(color: Colors.blue, elevation: 6, isSelected: false),
+          SquareColor(color: Colors.blue, elevation: 6, isSelected: false),
+          SquareColor(color: Colors.blue, elevation: 6, isSelected: false),
         ],
       ),
     );
