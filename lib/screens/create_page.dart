@@ -15,32 +15,17 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
-  DateTime selectedDate = DateTime.now();
-  TimeOfDay selectedTime = TimeOfDay(hour: 23, minute: 59); // dit is slecht maar voor nu kan ik geen oplossing vinden lol
+  DateTime selectedDate = DateTime.now().subtract(Duration(
+    hours: TimeOfDay.now().hour,
+    minutes: TimeOfDay.now().minute,
+  ));
+  TimeOfDay selectedTime = TimeOfDay(hour: 6, minute: 30);
   bool pushNotification = false;
+  int chosenIconPoint = 0;
+  int chosenColor = 0xff9c27b0;
 
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
-
-  // TODO breng dit naar constants
-  List<IconData> iconList = [
-    Icons.alarm,
-    Icons.house,
-    Icons.palette_outlined,
-    Icons.airplanemode_active,
-    Icons.beach_access,
-    Icons.cake,
-    Icons.sports_esports,
-    Icons.all_inclusive,
-    Icons.bedtime,
-    Icons.star_outlined,
-    Icons.computer,
-    Icons.directions_bike,
-    Icons.directions_car,
-    Icons.directions_boat,
-    Icons.directions_train,
-    Icons.emoji_events
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -55,15 +40,14 @@ class _CreatePageState extends State<CreatePage> {
       child: MaterialApp(
         theme: ThemeData(
           brightness: Brightness.dark,
-          primaryColor: Colors.yellow,
         ),
         home: Scaffold(
-          backgroundColor: Color.fromRGBO(18, 18, 18, 1),
+          backgroundColor: backgroundBlack,
           appBar: AppBar(
-            backgroundColor: Color.fromRGBO(31, 31, 31, 1),
+            backgroundColor: lighterBlackOne,
             title: Text(
               'Create Event',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: onSurfaceWhite),
             ),
           ),
           body: Center(
@@ -81,20 +65,9 @@ class _CreatePageState extends State<CreatePage> {
                     selectedTime = newTimeOfDay;
                   },
                 ),
-                ListTile(
-                  title: Text("Push notification"),
-                  leading: Switch(
-                    value: pushNotification,
-                    activeColor: lightPurple,
-                    onChanged: (value) {
-                      setState(() {
-                        pushNotification = value;
-                      });
-                    },
-                  ),
-                ),
                 SmallButton(iconFunc, "Choose Icon"),
                 SmallButton(colorFunc, "Choose Color"),
+                notificationSwitch(),
                 Container(
                   padding: EdgeInsets.only(left: 5),
                   child: Row(
@@ -109,6 +82,21 @@ class _CreatePageState extends State<CreatePage> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget notificationSwitch() {
+    return ListTile(
+      title: Text("Push notification"),
+      leading: Switch(
+        value: pushNotification,
+        activeColor: lightPurple,
+        onChanged: (value) {
+          setState(() {
+            pushNotification = value;
+          });
+        },
       ),
     );
   }
@@ -131,7 +119,7 @@ class _CreatePageState extends State<CreatePage> {
                   IconButton(
                     icon: Icon(iconList[i]),
                     onPressed: () {
-                      print(i);
+                      chosenIconPoint = iconList[i].codePoint;
                       Navigator.pop(context);
                     },
                   )
@@ -146,7 +134,7 @@ class _CreatePageState extends State<CreatePage> {
   void colorFunc() {
     // Deze variabelen horen hier niet en deze shit moet echt eens opgeschoond worden allemaal
     ColorSwatch _tempMainColor;
-    ColorSwatch _mainColor = Colors.blue;
+    ColorSwatch _mainColor = Colors.purple;
 
     MaterialColorPicker mcp = MaterialColorPicker(
       selectedColor: _mainColor,
@@ -176,7 +164,8 @@ class _CreatePageState extends State<CreatePage> {
               child: Text('SUBMIT'),
               onPressed: () {
                 Navigator.of(context).pop();
-                setState(() => _mainColor = _tempMainColor);
+                setState(() => _mainColor = _tempMainColor); // TODO is dit wel nodig nu?
+                chosenColor = _mainColor.hashCode;
               },
             ),
           ],
@@ -185,18 +174,8 @@ class _CreatePageState extends State<CreatePage> {
     );
   }
 
-  void createEvent(String title, String description, DateTime eventDate, TimeOfDay eventTime) {
-    int iconDataPoint = Icons.person.codePoint;
-    Event event = new Event(eventDate, title, description, iconDataPoint);
-    event.saveEvent();
-  }
-
   bool correctChosenTime(DateTime dt) {
     DateTime now = DateTime.now();
-
-    print("[DATETIME CHOSEN] ${dt.month} ${dt.day} ${dt.hour} ${dt.minute}");
-    print("[DATETIME NOW] ${now.month} ${now.day} ${now.hour} ${now.minute}");
-
     int minuteDif = dt.difference(now).inMinutes;
     print("minuteDif $minuteDif");
     if (minuteDif > 0) {
@@ -206,16 +185,21 @@ class _CreatePageState extends State<CreatePage> {
     }
   }
 
+  void createEvent(DateTime eventDate, String title, String description, int iconDataPoint, int colorCode, bool notification) {
+    Event event = new Event(eventDate, title, description, iconDataPoint, colorCode, notification);
+    event.saveEvent();
+  }
+
   void saveButtonFunction() {
     DateTime chosenDateAndTime = selectedDate.add(Duration(hours: selectedTime.hour, minutes: selectedTime.minute));
-
     if (correctChosenTime(chosenDateAndTime)) {
-      // createEvent(titleController.text, descriptionController.text, selectedDate, selectedTime);
+      String title = titleController.text;
+      String description = descriptionController.text;
 
-      // Scherm verlaten
+      createEvent(chosenDateAndTime, title, description, chosenIconPoint, chosenColor, pushNotification);
       Navigator.pop(context);
     } else {
-      showMyDialog();
+      showErrorDialog();
     }
   }
 
@@ -223,8 +207,8 @@ class _CreatePageState extends State<CreatePage> {
     Navigator.pop(context);
   }
 
-  Future<void> showMyDialog() async {
-    return showDialog<void>(
+  void showErrorDialog() {
+    showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
@@ -247,17 +231,6 @@ class _CreatePageState extends State<CreatePage> {
           ],
         );
       },
-    );
-  }
-}
-
-class IconChooser extends StatelessWidget {
-  const IconChooser({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: throw UnimplementedError,
     );
   }
 }
