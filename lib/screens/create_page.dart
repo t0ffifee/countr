@@ -1,6 +1,8 @@
 import 'package:countdown_app/constants/constants.dart';
+import 'package:countdown_app/widgets/color_picker/ColorPicker.dart';
 import 'package:countdown_app/widgets/general/DatePicker.dart';
 import 'package:countdown_app/widgets/general/TimePicker.dart';
+import 'package:countdown_app/widgets/general/IconPicker.dart';
 import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -8,7 +10,6 @@ import 'package:flutter/rendering.dart';
 import '../widgets/Event.dart';
 import '../widgets/TextInput.dart';
 import '../widgets/buttons/SmallButton.dart';
-import '../widgets/color_picker/SquareColor.dart';
 
 class CreatePage extends StatefulWidget {
   @override
@@ -43,6 +44,7 @@ class _CreatePageState extends State<CreatePage> {
           brightness: Brightness.dark,
         ),
         home: Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: backgroundBlack,
           appBar: AppBar(
             centerTitle: true,
@@ -68,35 +70,42 @@ class _CreatePageState extends State<CreatePage> {
             ),
           ),
           body: Center(
-            child: ListView(
+            child: Column(
               children: <Widget>[
                 TextInput(titleController, "Title"),
                 TextInput(descriptionController, "Description"),
-                DatePicker(
-                  onDateTimeChanged: (newDateTime) {
-                    selectedDate = newDateTime;
-                  },
+                Container(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: DatePicker(
+                    onDateTimeChanged: (newDateTime) {
+                      selectedDate = newDateTime;
+                    },
+                  ),
                 ),
-                TimePicker(
-                  onTimeChanged: (newTimeOfDay) {
-                    selectedTime = newTimeOfDay;
-                  },
+                Container(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: TimePicker(
+                    onTimeChanged: (newTimeOfDay) {
+                      selectedTime = newTimeOfDay;
+                    },
+                  ),
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 15, right: 20),
-                      child: SmallButton(iconFunc, "Choose Icon"),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 20),
-                      child: Icon(Icons.phone_android), // TODO dit moet de gekozen icoon worden
-                    ),
-                  ],
+                Container(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: IconPicker(
+                    onIconChanged: (newIcon) {
+                      chosenIconPoint = newIcon;
+                    },
+                  ),
                 ),
-                colorPicker(),
-                notificationSwitch(),
+                Container(
+                  alignment: AlignmentDirectional.topCenter,
+                  child: colorPicker(),
+                ),
+                Container(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: notificationSwitch(),
+                ),
                 Container(
                   margin: EdgeInsets.only(left: 15, right: 20),
                   child: SmallButton(saveButtonFunction, "Save this"),
@@ -112,47 +121,25 @@ class _CreatePageState extends State<CreatePage> {
   Widget colorPicker() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: Column(
         children: [
-          // Container(
-          //   decoration: BoxDecoration(
-          //     borderRadius: BorderRadius.circular(12),
-          //     color: Colors.red.shade200,
-          //   ),
-          //   height: 45,
-          //   width: 45,
-          // ),
-          // Container(
-          //   decoration: BoxDecoration(
-          //     borderRadius: BorderRadius.circular(12),
-          //     color: Colors.purple.shade200,
-          //   ),
-          //   height: 45,
-          //   width: 45,
-          // ),
-          // Container(
-          //   decoration: BoxDecoration(
-          //     borderRadius: BorderRadius.circular(12),
-          //     color: Colors.blue.shade200,
-          //   ),
-          //   height: 45,
-          //   width: 45,
-          // ),
-          // Container(
-          //   decoration: BoxDecoration(
-          //     borderRadius: BorderRadius.circular(12),
-          //     color: Colors.green.shade200,
-          //   ),
-          //   height: 45,
-          //   width: 45,
-          // ),
-          // SquareColor(),
-          SquareColor(color: Colors.blue, elevation: 6, isSelected: false),
-          SquareColor(color: Colors.blue, elevation: 6, isSelected: false),
-          SquareColor(color: Colors.blue, elevation: 6, isSelected: false),
-          SquareColor(color: Colors.blue, elevation: 6, isSelected: false),
-          SquareColor(color: Colors.blue, elevation: 6, isSelected: false),
+          Container(
+            // alignment: AlignmentDirectional,
+            width: double.infinity,
+            height: 55,
+            child: MyColorPicker(
+                onSelectColor: (value) {
+                  print(value);
+                },
+                availableColors: [
+                  Colors.blue.shade300,
+                  Colors.green.shade300,
+                  Colors.red.shade300,
+                  Colors.purple.shade300,
+                  Colors.teal.shade300,
+                ],
+                initialColor: Colors.blue.shade300),
+          )
         ],
       ),
     );
@@ -160,7 +147,7 @@ class _CreatePageState extends State<CreatePage> {
 
   Widget notificationSwitch() {
     return ListTile(
-      title: Text("Push notification"),
+      title: Text("Push Notification"),
       leading: Switch(
         value: pushNotification,
         activeColor: lightPurple,
@@ -170,36 +157,6 @@ class _CreatePageState extends State<CreatePage> {
           });
         },
       ),
-    );
-  }
-
-  void iconFunc() {
-    showDialog<void>(
-      context: context,
-      barrierDismissible: true, // user does not have to tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Choose Icon\n'),
-          contentPadding: EdgeInsets.zero,
-          content: Container(
-            width: 8,
-            height: 300,
-            child: GridView.count(
-              crossAxisCount: 4,
-              children: [
-                for (int i = 0; i < 16; i++)
-                  IconButton(
-                    icon: Icon(iconList[i]),
-                    onPressed: () {
-                      chosenIconPoint = iconList[i].codePoint;
-                      Navigator.pop(context);
-                    },
-                  )
-              ],
-            ),
-          ),
-        );
-      },
     );
   }
 

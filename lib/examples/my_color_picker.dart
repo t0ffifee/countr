@@ -27,14 +27,12 @@ class _MyColorPickerState extends State<MyColorPicker> {
       width: double.infinity,
       height: 200,
       child: GridView.builder(
-        physics: new NeverScrollableScrollPhysics(),
         gridDelegate:
-            SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 50, childAspectRatio: 1 / 1, crossAxisSpacing: 20, mainAxisSpacing: 20),
+            SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 50, childAspectRatio: 1 / 1, crossAxisSpacing: 10, mainAxisSpacing: 10),
         itemCount: widget.availableColors.length,
         itemBuilder: (context, index) {
           final itemColor = widget.availableColors[index];
           return InkWell(
-            borderRadius: BorderRadius.circular(12),
             onTap: () {
               widget.onSelectColor(itemColor);
               setState(() {
@@ -48,6 +46,7 @@ class _MyColorPickerState extends State<MyColorPicker> {
                 color: itemColor,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(12),
+                border: Border.all(width: 1, color: Colors.grey[300]),
               ),
               child: itemColor == _pickedColor
                   ? Center(

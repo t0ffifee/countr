@@ -17,6 +17,12 @@ class _TimePickerState extends State<TimePicker> {
     final TimeOfDay newTime = await showTimePicker(
       context: context,
       initialTime: time,
+      builder: (BuildContext context, Widget child) {
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+          child: child,
+        );
+      },
     );
     if (newTime != null) {
       setState(() {
@@ -38,7 +44,7 @@ class _TimePickerState extends State<TimePicker> {
         Container(
           margin: EdgeInsets.only(left: 20),
           child: Text(
-            "${time.hour}:${time.minute}",
+            "${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}",
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,

@@ -30,8 +30,8 @@ dependencies:
   hive: ^2.0.2
   hive_flutter: ^1.0.0
 
-  # Notification:
-  flutter_local_notifications: ^3.0.3
+  # # Notification:
+  # flutter_local_notifications: ^3.0.3
 
   # CountDown Timer:
   flutter_countdown_timer: ^3.0.0

@@ -34,7 +34,7 @@ class _DatePickerState extends State<DatePicker> {
       setState(() {
         selectedDate = picked;
         widget.onDateTimeChanged(selectedDate);
-        print('Date selected: ${selectedDate.day}-${selectedDate.month}-${selectedDate.year}');
+        print('Date selected: ${selectedDate.day.toString().padLeft(2, '0')}-${selectedDate.month.toString().padLeft(2, '0')}-${selectedDate.year}');
       });
   }
 
@@ -50,7 +50,7 @@ class _DatePickerState extends State<DatePicker> {
         Container(
           margin: EdgeInsets.only(left: 20),
           child: Text(
-            "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}",
+            "${selectedDate.day.toString().padLeft(2, '0')}-${selectedDate.month.toString().padLeft(2, '0')}-${selectedDate.year}",
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
