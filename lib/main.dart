@@ -36,6 +36,13 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
+  final List<Widget> myItems = [
+    Container(color: Colors.blue, height: 100, width: 50, key: UniqueKey()),
+    Container(color: Colors.red, height: 100, width: 50, key: UniqueKey()),
+    Container(color: Colors.orange, height: 100, width: 50, key: UniqueKey()),
+    Container(color: Colors.purple, height: 100, width: 50, key: UniqueKey())
+  ];
+
   var _controller = ScrollController();
   var _visible = true;
 
@@ -64,7 +71,29 @@ class MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         // body: mainBody(context),
-        body: mainBody2(context, _controller),
+        body: Center(
+          child: ReorderableListView(
+            scrollController: _controller,
+            onReorder: (oldIndex, newIndex) {
+              setState(() {
+                if (oldIndex < newIndex) {
+                  newIndex -= 1;
+                }
+                final item = myItems.removeAt(oldIndex);
+                myItems.insert(newIndex, item);
+              });
+            },
+            children: [
+              for (final item in myItems)
+                Container(
+                  key: UniqueKey(),
+                  height: 100,
+                  color: Colors.blue,
+                  child: item,
+                )
+            ],
+          ),
+        ),
         backgroundColor: backgroundBlack,
         floatingActionButton: Visibility(visible: _visible, child: FancyFab()),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -73,21 +102,40 @@ class MyAppState extends State<MyApp> {
   }
 }
 
-Widget mainBody2(BuildContext context, ScrollController controller) {
-  return Center(
-    child: ListView(
-      controller: controller,
-      children: [
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.blue.shade300),
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.purple.shade300),
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.red.shade300),
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.green.shade300),
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.yellow.shade300),
-        getCard(context, "Countr Release", "The release date of this app", Icons.phone_android, Colors.grey.shade300),
-      ],
-    ),
-  );
-}
+// Widget mainBody2(BuildContext context, ScrollController controller, List<Widget> myItems) {
+//   final List<Widget> myTroep = [
+//     getCard(context, "Countr Release1", "The release date of this app", Icons.car_rental, Colors.blue.shade300),
+//     getCard(context, "Countr Release2", "The release date of this app", Icons.phone_android, Colors.purple.shade300),
+//     getCard(context, "Countr Release3", "The release date of this app", Icons.phone_android, Colors.red.shade300),
+//     getCard(context, "Countr Release4", "The release date of this app", Icons.phone_android, Colors.green.shade300),
+//     getCard(context, "Countr Release5", "The release date of this app", Icons.phone_android, Colors.yellow.shade300),
+//     getCard(context, "Countr Release6", "The release date of this app", Icons.phone_android, Colors.grey.shade300),
+//   ];
+
+//   return Center(
+//     child: ReorderableListView(
+//       scrollController: controller,
+//       onReorder: (oldIndex, newIndex) {
+//         setState(() {
+//           if (oldIndex < newIndex) {
+//             newIndex -= 1;
+//           }
+//           final item = myItems.removeAt(oldIndex);
+//           myItems.insert(newIndex, item);
+//         });
+//       },
+//       children: [
+//         for (final item in myItems)
+//           Container(
+//             key: UniqueKey(),
+//             height: 100,
+//             color: Colors.blue,
+//             child: item,
+//           )
+//       ],
+//     ),
+//   );
+// }
 
 Widget mainBody(BuildContext context) {
   return ValueListenableBuilder(
