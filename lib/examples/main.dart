@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       // Remove the debug banner
       debugShowCheckedModeBanner: false,
-      title: 'Kindacode.com',
+      title: 'widget freestyle',
       home: HomePage(),
     );
   }
@@ -30,31 +30,67 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kindacode.com'),
+        title: Text('widget freestyle'),
         backgroundColor: Colors.black,
       ),
-      body: Column(
+      body: Center(
+        child: Container(
+            color: Colors.black,
+            child: ListView(
+              padding: EdgeInsets.all(10),
+              children: [
+                deWidget(context, Colors.blue.shade300),
+                Divider(),
+                deWidget(context, Colors.red.shade300),
+                Divider(),
+                deWidget(context, Colors.green.shade300),
+                Divider(),
+                deWidget(context, Colors.yellow.shade300),
+                Divider(),
+                deWidget(context, Colors.purple.shade300),
+              ],
+            )),
+      ),
+    );
+  }
+
+  Widget deWidget(BuildContext context, Color col) {
+    return Container(
+      height: 170,
+      child: Row(
         children: [
           Container(
-            width: double.infinity,
-            height: 300,
-            color: _color,
+            decoration: BoxDecoration(
+              color: col,
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(12), bottomLeft: Radius.circular(12)),
+            ),
+            width: 20,
           ),
-          SizedBox(height: 30),
-          MyColorPicker(
-              onSelectColor: (value) {
-                setState(() {
-                  _color = value;
-                });
-              },
-              availableColors: [
-                Colors.blue,
-                Colors.green,
-                Colors.red,
-                Colors.purple,
-                Colors.teal,
-              ],
-              initialColor: Colors.blue)
+          Expanded(
+            child: Container(
+              height: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(topRight: Radius.circular(12), bottomRight: Radius.circular(12)),
+              ),
+              child: Stack(
+                children: [
+                  Positioned(
+                    right: 15,
+                    child: ClipOval(
+                      child: Material(
+                        child: InkWell(
+                          splashColor: Colors.purple.shade300, // Splash color
+                          onTap: () {},
+                          child: SizedBox(width: 35, height: 35, child: Icon(Icons.more_vert)),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
