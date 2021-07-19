@@ -257,6 +257,7 @@ Widget topBarCard(String title, String description, IconData icon) {
     ),
     title: Text(
       title,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(
         color: onSurfaceWhite,
         fontSize: 20,
@@ -265,6 +266,7 @@ Widget topBarCard(String title, String description, IconData icon) {
     ),
     subtitle: Text(
       description,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(color: whiteTextColor),
     ),
   );

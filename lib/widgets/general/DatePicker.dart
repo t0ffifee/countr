@@ -4,7 +4,7 @@ import '../../constants/constants.dart';
 
 class DatePicker extends StatefulWidget {
   final ValueChanged<DateTime> onDateTimeChanged;
-  DatePicker({Key key, this.onDateTimeChanged}) : super(key: key);
+  DatePicker({Key? key, required this.onDateTimeChanged}) : super(key: key);
 
   @override
   _DatePickerState createState() => _DatePickerState();
@@ -22,7 +22,7 @@ class _DatePickerState extends State<DatePicker> {
   }
 
   void _selectDate() async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
       firstDate: DateTime(DateTime.now().year), // Dit jaar

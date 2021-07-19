@@ -13,9 +13,9 @@ class CountDown extends StatefulWidget {
 }
 
 class _CountDownState extends State<CountDown> {
-  CountdownTimerController controller;
+  late CountdownTimerController controller;
   // hier moeten we de DateTime doorgeven van het einde van de event
-  int endTime;
+  late int endTime;
 
   // TODO misschien is het beter om met initState() en onEnd() te werken voor als de event afgelopen is
   // @override
@@ -45,7 +45,7 @@ class _CountDownState extends State<CountDown> {
     return CountdownTimer(
       endTime: days, //+ hours + minutes,
       widgetBuilder: (controller, CurrentRemainingTime time) {
-        if (time == null) {
+        if (time.days == 0 && time.hours == 0 && time.min == 0 && time.sec == 0) {
           return Text('Game over');
         }
         return Text(

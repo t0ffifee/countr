@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                 topBarCard(tit, dec, icon),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
-                  child: dateShower(['3', '4', '4', '4']),
+                  child: dateShower(['10', '23', '59', '59']),
                 ),
                 cardButtonBar(context),
               ],

@@ -23,7 +23,7 @@ class SmallButton extends StatelessWidget {
                 ),
               ),
             ),
-            onPressed: buttonFunction,
+            onPressed: buttonFunction.call(),
             child: Text(
               buttonText,
             ),

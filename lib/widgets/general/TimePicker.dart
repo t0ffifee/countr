@@ -4,7 +4,7 @@ import '../../constants/constants.dart';
 
 class TimePicker extends StatefulWidget {
   final ValueChanged<TimeOfDay> onTimeChanged;
-  TimePicker({Key key, this.onTimeChanged}) : super(key: key);
+  TimePicker({Key? key, required this.onTimeChanged}) : super(key: key);
 
   @override
   _TimePickerState createState() => _TimePickerState();
@@ -14,13 +14,13 @@ class _TimePickerState extends State<TimePicker> {
   TimeOfDay time = TimeOfDay(hour: 6, minute: 15);
 
   void _selectTime() async {
-    final TimeOfDay newTime = await showTimePicker(
+    final TimeOfDay? newTime = await showTimePicker(
       context: context,
       initialTime: time,
-      builder: (BuildContext context, Widget child) {
+      builder: (BuildContext context, Widget? child) {
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-          child: child,
+          child: child!,
         );
       },
     );

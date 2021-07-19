@@ -5,7 +5,7 @@ class MyColorPicker extends StatefulWidget {
   final List<Color> availableColors; // List of pickable colors
   final Color initialColor; // The default picked color
 
-  MyColorPicker({@required this.onSelectColor, @required this.availableColors, @required this.initialColor});
+  MyColorPicker({required this.onSelectColor, required this.availableColors, required this.initialColor});
 
   @override
   _MyColorPickerState createState() => _MyColorPickerState();
@@ -13,7 +13,7 @@ class MyColorPicker extends StatefulWidget {
 
 class _MyColorPickerState extends State<MyColorPicker> {
   // This variable used to determine where the checkmark will be
-  Color _pickedColor;
+  late Color _pickedColor;
 
   @override
   void initState() {

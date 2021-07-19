@@ -160,51 +160,6 @@ class _CreatePageState extends State<CreatePage> {
     );
   }
 
-  void colorFunc() {
-    // Deze variabelen horen hier niet en deze shit moet echt eens opgeschoond worden allemaal
-    ColorSwatch _tempMainColor;
-    ColorSwatch _mainColor = Colors.purple;
-
-    MaterialColorPicker mcp = MaterialColorPicker(
-      selectedColor: _mainColor,
-      allowShades: false,
-      onMainColorChange: (color) => setState(() => _tempMainColor = color),
-    );
-
-    showDialog<void>(
-      context: context,
-      barrierDismissible: true, // user does not have to tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Choose Color\n'),
-          contentPadding: EdgeInsets.zero,
-          content: SizedBox(
-            height: 250,
-            child: mcp,
-          ),
-          actions: [
-            // ignore: deprecated_member_use
-            FlatButton(
-              child: Text('CANCEL'),
-              onPressed: Navigator.of(context).pop,
-            ),
-            // ignore: deprecated_member_use
-            FlatButton(
-              child: Text('SUBMIT'),
-              onPressed: () {
-                Navigator.of(context).pop();
-                setState(() {
-                  _mainColor = _tempMainColor;
-                  chosenColor = _mainColor.hashCode;
-                });
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   bool correctChosenTime(DateTime dt) {
     DateTime now = DateTime.now();
     int minuteDif = dt.difference(now).inMinutes;

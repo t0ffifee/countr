@@ -14,7 +14,7 @@ class CardCountDown extends StatefulWidget {
 }
 
 class _CardCountDownState extends State<CardCountDown> {
-  CountdownTimerController controller;
+  late CountdownTimerController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _CardCountDownState extends State<CardCountDown> {
     return CountdownTimer(
       endTime: days, // + hours + minutes,
       widgetBuilder: (controller, CurrentRemainingTime time) {
-        if (time == null) {
+        if (time.days == 0 && time.hours == 0 && time.min == 0 && time.sec == 0) {
           // TODO hier kunnen we allemaal functionaliteit toevoegen
           return Text('Game over');
         }

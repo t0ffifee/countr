@@ -5,11 +5,7 @@ import '../constants/constants.dart';
 // import '../screens/settings_page.dart';
 
 class FancyFab extends StatefulWidget {
-  final Function() onPressed;
-  final String tooltip;
-  final IconData icon;
-
-  FancyFab({this.onPressed, this.tooltip, this.icon});
+  FancyFab();
 
   @override
   _FancyFabState createState() => _FancyFabState();
@@ -17,10 +13,10 @@ class FancyFab extends StatefulWidget {
 
 class _FancyFabState extends State<FancyFab> with SingleTickerProviderStateMixin {
   bool isOpened = false;
-  AnimationController _animationController;
-  Animation<Color> _buttonColor;
-  Animation<double> _animateIcon;
-  Animation<double> _translateButton;
+  late AnimationController _animationController;
+  late Animation<Color?> _buttonColor;
+  late Animation<double> _animateIcon;
+  late Animation<double> _translateButton;
   Curve _curve = Curves.easeOut;
   double _fabHeight = 56.0;
 

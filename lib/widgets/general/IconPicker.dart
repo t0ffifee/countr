@@ -4,7 +4,7 @@ import '../../constants/constants.dart';
 
 class IconPicker extends StatefulWidget {
   final ValueChanged<int> onIconChanged;
-  IconPicker({Key key, this.onIconChanged}) : super(key: key);
+  IconPicker({Key? key, required this.onIconChanged}) : super(key: key);
 
   @override
   _IconPickerState createState() => _IconPickerState();
@@ -14,7 +14,7 @@ class _IconPickerState extends State<IconPicker> {
   int icon = Icons.all_inclusive_outlined.codePoint;
 
   void _selectIcon() async {
-    int newIcon;
+    int? newIcon;
     await showDialog<int>(
       context: context,
       barrierDismissible: true, // user does not have to tap button!
@@ -45,7 +45,7 @@ class _IconPickerState extends State<IconPicker> {
 
     if (newIcon != null && newIcon != icon) {
       setState(() {
-        icon = newIcon;
+        icon = newIcon!;
         widget.onIconChanged(icon);
       });
     }
