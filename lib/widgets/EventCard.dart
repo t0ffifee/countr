@@ -10,7 +10,7 @@ class EventCard {
 
   EventCard(this.onTap, this.event);
 
-  Widget getCard(BuildContext context) {
+  Card getCard(BuildContext context) {
     // TODO dit moet er natuurlijk anders uit gaan zien omdat je een CardCountDown gebruikt
     return Card(
       // elevation: 3.0,

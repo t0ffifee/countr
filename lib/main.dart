@@ -166,8 +166,8 @@ Widget lijst(BuildContext context) {
       itemCount: events.length,
       itemBuilder: (context, index) {
         EventCard eCard = EventCard(
-          () => cardFunction(context, events.getAt(index)),
-          events.getAt(index),
+          () => cardFunction(context, events.getAt(index)!),
+          events.getAt(index)!,
         );
         return eCard.getCard(context);
       },
