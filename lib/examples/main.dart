@@ -55,40 +55,51 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget deWidget(BuildContext context, Color col) {
-    return Container(
-      height: 170,
+    return Card(
+      clipBehavior: Clip.antiAlias,
       child: Row(
         children: [
           Container(
-            decoration: BoxDecoration(
-              color: col,
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(12), bottomLeft: Radius.circular(12)),
-            ),
-            width: 20,
+            width: 10,
+            height: 200,
+            color: col,
           ),
           Expanded(
-            child: Container(
-              height: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(topRight: Radius.circular(12), bottomRight: Radius.circular(12)),
-              ),
-              child: Stack(
-                children: [
-                  Positioned(
-                    right: 15,
-                    child: ClipOval(
-                      child: Material(
-                        child: InkWell(
-                          splashColor: Colors.purple.shade300, // Splash color
-                          onTap: () {},
-                          child: SizedBox(width: 35, height: 35, child: Icon(Icons.more_vert)),
-                        ),
-                      ),
-                    ),
+            child: Column(
+              children: [
+                ListTile(
+                  leading: Icon(Icons.arrow_drop_down_circle),
+                  title: const Text('Card title 1'),
+                  subtitle: Text(
+                    'Secondary Text',
+                    style: TextStyle(color: Colors.black.withOpacity(0.6)),
                   ),
-                ],
-              ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    'Greyhound divisively hello coldly wonderfully marginally far upon excluding.',
+                    style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                  ),
+                ),
+                ButtonBar(
+                  alignment: MainAxisAlignment.start,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        // Perform some action
+                      },
+                      child: const Text('ACTION 1'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        // Perform some action
+                      },
+                      child: const Text('ACTION 2'),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ],
