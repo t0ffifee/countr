@@ -4,14 +4,23 @@ import '../screens/countdown_page.dart';
 import 'CardCountDown.dart';
 import 'Event.dart';
 
-class EventCard {
-  final Function onTap;
+class EventCard extends StatelessWidget {
+  const EventCard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: null,
+    );
+  }
+}
+
+class EventCardd {
   final Event event;
 
-  EventCard(this.onTap, this.event);
+  EventCardd(this.event);
 
   Card getCard(BuildContext context) {
-    // TODO dit moet er natuurlijk anders uit gaan zien omdat je een CardCountDown gebruikt
     return Card(
       // elevation: 3.0,
       color: Color.fromRGBO(40, 40, 40, 1),
@@ -35,7 +44,6 @@ class EventCard {
     );
   }
 
-  // TODO deze dingen hieronder horen duidelijk een eigen class te zijn
   Widget topBarCard(String title, String description, IconData icon) => ListTile(
         leading: Icon(
           icon,
@@ -55,7 +63,6 @@ class EventCard {
         ),
       );
 
-  // TODO dit wordt uiteindelijk de CardCountDown widget
   Widget dateShower(List<String> times) {
     return Container(
       margin: EdgeInsets.only(left: 40, right: 40),

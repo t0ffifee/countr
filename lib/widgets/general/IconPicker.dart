@@ -3,21 +3,23 @@ import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 
 class IconPicker extends StatefulWidget {
-  final ValueChanged<int> onIconChanged;
-  IconPicker({Key? key, required this.onIconChanged}) : super(key: key);
+  final ValueChanged<int>? onIconChanged;
+  IconPicker({Key? key, this.onIconChanged}) : super(key: key);
 
   @override
   _IconPickerState createState() => _IconPickerState();
 }
 
 class _IconPickerState extends State<IconPicker> {
+  // The general icon for any event (infinity sign)
   int icon = Icons.all_inclusive_outlined.codePoint;
 
+  /// Makes a dialog of the 16 Icons so the user can choose one
   void _selectIcon() async {
     int? newIcon;
     await showDialog<int>(
       context: context,
-      barrierDismissible: true, // user does not have to tap button!
+      barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Choose Icon\n'),
@@ -46,7 +48,7 @@ class _IconPickerState extends State<IconPicker> {
     if (newIcon != null && newIcon != icon) {
       setState(() {
         icon = newIcon!;
-        widget.onIconChanged(icon);
+        widget.onIconChanged!(icon);
       });
     }
   }

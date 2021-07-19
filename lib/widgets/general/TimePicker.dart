@@ -1,18 +1,19 @@
 import 'package:countdown_app/widgets/buttons/SmallButton.dart';
 import 'package:flutter/material.dart';
-import '../../constants/constants.dart';
 
 class TimePicker extends StatefulWidget {
-  final ValueChanged<TimeOfDay> onTimeChanged;
-  TimePicker({Key? key, required this.onTimeChanged}) : super(key: key);
+  final ValueChanged<TimeOfDay>? onTimeChanged;
+  TimePicker({Key? key, this.onTimeChanged}) : super(key: key);
 
   @override
   _TimePickerState createState() => _TimePickerState();
 }
 
 class _TimePickerState extends State<TimePicker> {
+  // TODO check of dit mag gezien de standaard datum vandaag is dus dan zou het voor 6h15 moeten zijn
   TimeOfDay time = TimeOfDay(hour: 6, minute: 15);
 
+  /// Creating a 24 hour time dialog for the user to choose a time
   void _selectTime() async {
     final TimeOfDay? newTime = await showTimePicker(
       context: context,
@@ -27,7 +28,7 @@ class _TimePickerState extends State<TimePicker> {
     if (newTime != null) {
       setState(() {
         time = newTime;
-        widget.onTimeChanged(newTime);
+        widget.onTimeChanged!(newTime);
       });
     }
   }
