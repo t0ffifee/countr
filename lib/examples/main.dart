@@ -1,6 +1,6 @@
 // main.dart
 import 'package:flutter/material.dart';
-import './my_color_picker.dart';
+import '../constants/constants.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,79 +31,134 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('widget freestyle'),
-        backgroundColor: Colors.black,
+        backgroundColor: backgroundBlack,
       ),
       body: Center(
         child: Container(
-            color: Colors.black,
+            color: backgroundBlack,
             child: ListView(
               padding: EdgeInsets.all(10),
               children: [
-                deWidget(context, Colors.blue.shade300),
+                deWidget(context, Colors.purple, 'Italie reis', 'Naar italie gaan', Icons.airplanemode_active),
                 Divider(),
-                deWidget(context, Colors.red.shade300),
+                deWidget(context, Colors.blue, 'Italie reis', 'Naar italie gaan', Icons.airplanemode_active),
                 Divider(),
-                deWidget(context, Colors.green.shade300),
+                deWidget(context, Colors.green, 'Italie reis', 'Naar italie gaan', Icons.airplanemode_active),
                 Divider(),
-                deWidget(context, Colors.yellow.shade300),
+                deWidget(context, Colors.orange, 'Italie reis', 'Naar italie gaan', Icons.airplanemode_active),
                 Divider(),
-                deWidget(context, Colors.purple.shade300),
+                deWidget(context, Colors.red, 'Italie reis', 'Naar italie gaan', Icons.airplanemode_active),
+                Divider(),
               ],
             )),
       ),
     );
   }
 
-  Widget deWidget(BuildContext context, Color col) {
+  Widget deWidget(BuildContext context, Color col, String tit, String dec, IconData icon) {
     return Card(
+      elevation: 1,
+      color: Color.fromRGBO(29, 29, 29, 0.95),
+      // color: Colors.red,
       clipBehavior: Clip.antiAlias,
       child: Row(
         children: [
-          Container(
-            width: 10,
-            height: 200,
-            color: col,
-          ),
+          Container(width: 10, height: 200, color: col),
           Expanded(
             child: Column(
-              children: [
-                ListTile(
-                  leading: Icon(Icons.arrow_drop_down_circle),
-                  title: const Text('Card title 1'),
-                  subtitle: Text(
-                    'Secondary Text',
-                    style: TextStyle(color: Colors.black.withOpacity(0.6)),
-                  ),
-                ),
+              children: <Widget>[
+                topBarCard(tit, dec, icon),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    'Greyhound divisively hello coldly wonderfully marginally far upon excluding.',
-                    style: TextStyle(color: Colors.black.withOpacity(0.6)),
-                  ),
+                  padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
+                  child: dateShower(['3', '4', '4', '4']),
                 ),
-                ButtonBar(
-                  alignment: MainAxisAlignment.start,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        // Perform some action
-                      },
-                      child: const Text('ACTION 1'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        // Perform some action
-                      },
-                      child: const Text('ACTION 2'),
-                    ),
-                  ],
-                ),
+                cardButtonBar(context),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+
+// TODO deze dingen hieronder horen duidelijk een eigen class te zijn
+  Widget topBarCard(String title, String description, IconData icon) {
+    return ListTile(
+      leading: Icon(
+        icon,
+        color: onSurfaceWhite,
+      ),
+      title: Text(
+        title,
+        style: TextStyle(
+          color: onSurfaceWhite,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      subtitle: Text(
+        description,
+        style: TextStyle(color: whiteTextColor),
+      ),
+    );
+  }
+
+  // TODO dit wordt uiteindelijk de CardCountDown widget
+  Widget dateShower(List<String> times) {
+    return Container(
+      // margin: EdgeInsets.only(left: 40, right: 40),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          timePart(times, 0, "DAYS"),
+          Container(width: 10),
+          timePart(times, 1, "HOURS"),
+          Container(width: 10),
+          timePart(times, 2, "MINUTES"),
+          Container(width: 10),
+          timePart(times, 3, "SECONDS"),
+        ],
+      ),
+    );
+  }
+
+  Widget timePart(List<String> times, int index, String unit) {
+    return RichText(
+      text: TextSpan(
+        text: times[index],
+        style: TextStyle(
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
+          color: onSurfaceWhite,
+        ),
+        children: <TextSpan>[
+          TextSpan(
+              text: ('\n' + unit),
+              style: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 13,
+              )),
+        ],
+      ),
+      textAlign: TextAlign.center,
+    );
+  }
+
+  Widget cardButtonBar(BuildContext context) {
+    return ButtonBar(
+      children: <Widget>[
+        IconButton(
+          focusColor: lightPurple,
+          splashRadius: splashRadiusIconButtonCard,
+          icon: Icon(
+            Icons.edit,
+            color: onSurfaceWhite,
+          ),
+          onPressed: () {
+            print("Edit Button");
+          },
+        ),
+      ],
     );
   }
 }
