@@ -39,9 +39,10 @@ class _HomePageState extends State<HomePage> {
             child: ListView(
               padding: EdgeInsets.all(10),
               children: [
-                deWidget(context, Colors.purple, 'Italie reis', 'Naar italie gaan', Icons.airplanemode_active),
+                deWidget(
+                    context, Colors.deepPurple, 'Italie reis', 'Naar italie gaan want het is daar zo mooi en zo u know', Icons.airplanemode_active),
                 Divider(),
-                deWidget(context, Colors.blue, 'Italie reis', 'Naar italie gaan', Icons.airplanemode_active),
+                deWidget(context, Colors.cyan, 'Italie reis', 'Naar italie gaan', Icons.airplanemode_active),
                 Divider(),
                 deWidget(context, Colors.green, 'Italie reis', 'Naar italie gaan', Icons.airplanemode_active),
                 Divider(),
@@ -90,6 +91,7 @@ class _HomePageState extends State<HomePage> {
       ),
       title: Text(
         title,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
           color: onSurfaceWhite,
           fontSize: 20,
@@ -98,6 +100,7 @@ class _HomePageState extends State<HomePage> {
       ),
       subtitle: Text(
         description,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(color: whiteTextColor),
       ),
     );
