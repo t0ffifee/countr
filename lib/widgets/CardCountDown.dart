@@ -26,8 +26,8 @@ class _CardCountDownState extends State<CardCountDown> {
     // int minutes = MillisecondsInMinute * widget.event.eTime.hour;
     return CountdownTimer(
       endTime: days, // + hours + minutes,
-      widgetBuilder: (controller, CurrentRemainingTime time) {
-        if (time.days == 0 && time.hours == 0 && time.min == 0 && time.sec == 0) {
+      widgetBuilder: (controller, CurrentRemainingTime? time) {
+        if (time == null) {
           // TODO hier kunnen we allemaal functionaliteit toevoegen
           return Text('Game over');
         }
@@ -42,10 +42,10 @@ Widget fullCounter(CurrentRemainingTime time) => Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          counter(time.days, "DAYS"),
-          counter(time.hours, "HOURS"),
-          counter(time.min, "MINUTES"),
-          counter(time.sec, "SECONDS"),
+          counter(time.days!, "DAYS"),
+          counter(time.hours!, "HOURS"),
+          counter(time.min!, "MINUTES"),
+          counter(time.sec!, "SECONDS"),
         ],
       ),
     );

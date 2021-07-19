@@ -44,8 +44,8 @@ class _CountDownState extends State<CountDown> {
     // int minutes = MillisecondsInMinute * widget.event.eTime.hour;
     return CountdownTimer(
       endTime: days, //+ hours + minutes,
-      widgetBuilder: (controller, CurrentRemainingTime time) {
-        if (time.days == 0 && time.hours == 0 && time.min == 0 && time.sec == 0) {
+      widgetBuilder: (controller, CurrentRemainingTime? time) {
+        if (time == null) {
           return Text('Game over');
         }
         return Text(

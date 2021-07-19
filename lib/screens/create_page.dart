@@ -3,7 +3,6 @@ import 'package:countdown_app/widgets/color_picker/ColorPicker.dart';
 import 'package:countdown_app/widgets/general/DatePicker.dart';
 import 'package:countdown_app/widgets/general/TimePicker.dart';
 import 'package:countdown_app/widgets/general/IconPicker.dart';
-import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
