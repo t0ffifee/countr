@@ -32,6 +32,8 @@ class MyApp extends StatefulWidget {
   MyAppState createState() => MyAppState();
 }
 
+// EventCard(event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false))
+
 class MyAppState extends State<MyApp> {
   final List<Widget> myItems = [
     Container(color: Colors.blue, height: 100, width: 50, key: UniqueKey()),
@@ -67,7 +69,6 @@ class MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        // body: mainBody(context),
         body: Center(
           child: ReorderableListView(
             scrollController: _controller,
@@ -81,11 +82,13 @@ class MyAppState extends State<MyApp> {
               });
             },
             children: [
+              Container(
+                key: UniqueKey(),
+                height: 20,
+              ),
               for (final item in myItems)
                 Container(
                   key: UniqueKey(),
-                  height: 100,
-                  color: Colors.blue,
                   child: item,
                 )
             ],
