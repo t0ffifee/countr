@@ -1,4 +1,3 @@
-// Dit is volgens mij hoe je alleen staande widgets maakt iguess
 import 'package:flutter/material.dart';
 
 class TextInput extends StatelessWidget {
@@ -14,7 +13,9 @@ class TextInput extends StatelessWidget {
       padding: EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
       child: Theme(
         data: ThemeData(
-          primaryColor: Color.fromRGBO(190, 129, 248, 0.8),
+          // primaryColor: Color.fromRGBO(190, 129, 248, 0.8),
+          primaryColor: Colors.purple,
+          primaryColorDark: Colors.purple,
         ),
         child: TextField(
           controller: controller,

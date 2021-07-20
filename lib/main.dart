@@ -32,8 +32,6 @@ class MyApp extends StatefulWidget {
   MyAppState createState() => MyAppState();
 }
 
-// EventCard(event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false))
-
 class MyAppState extends State<MyApp> {
   @override
   Widget build(context) {
@@ -53,6 +51,14 @@ class MyAppState extends State<MyApp> {
             child: ListView(
               padding: EdgeInsets.all(10),
               children: [
+                Divider(),
+                EventCard(
+                  event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
+                ),
+                Divider(),
+                EventCard(
+                  event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
+                ),
                 Divider(),
                 EventCard(
                   event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
