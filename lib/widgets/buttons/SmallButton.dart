@@ -17,11 +17,7 @@ class SmallButton extends StatelessWidget {
           child: ElevatedButton(
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-              textStyle: MaterialStateProperty.all(
-                TextStyle(
-                  color: onSurfaceWhite,
-                ),
-              ),
+              textStyle: MaterialStateProperty.all(TextStyle(color: onSurfaceWhite)),
             ),
             onPressed: buttonFunction.call(),
             child: Text(
@@ -33,19 +29,3 @@ class SmallButton extends StatelessWidget {
     );
   }
 }
-
-// OLD BUTTON HERE
-// ElevatedButton(
-//   onPressed: _selectDate,
-//   style: ButtonStyle(
-//     backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-//     textStyle: MaterialStateProperty.all<TextStyle>(
-//       TextStyle(
-//         color: onSurfaceWhite,
-//       ),
-//     ),
-//   ),
-//   child: Text(
-//     'Select date',
-//   ),
-// ),

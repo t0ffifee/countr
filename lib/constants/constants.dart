@@ -36,3 +36,11 @@ List<IconData> iconList = [
   Icons.directions_train,
   Icons.emoji_events
 ];
+
+List<Color> colorList = [
+  Colors.blue.shade300,
+  Colors.green.shade300,
+  Colors.red.shade300,
+  Colors.purple.shade300,
+  Colors.teal.shade300,
+];

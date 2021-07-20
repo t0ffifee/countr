@@ -67,6 +67,8 @@ class _FancyFabState extends State<FancyFab> with SingleTickerProviderStateMixin
     isOpened = !isOpened;
   }
 
+  // TODO kijk naar de performance van dit ding en als de FAB sloom is zoek andere code
+  // of maak een class die deze drie dingen kan maken
   Widget add(BuildContext context) {
     return Container(
       child: FloatingActionButton(

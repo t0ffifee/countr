@@ -9,6 +9,14 @@ class EventCard extends StatelessWidget {
 
   EventCard({required this.event});
 
+// Functie voor het gaan naar de CountDownPage
+//   void cardFunction(BuildContext context, Event event) {
+//   Navigator.push(
+//     context,
+//     MaterialPageRoute(builder: (context) => CountDownPage(event)),
+//   );
+// }
+
   @override
   Widget build(BuildContext context) {
     return Card(
