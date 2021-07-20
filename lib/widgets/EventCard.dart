@@ -56,19 +56,19 @@ class TopBar extends StatelessWidget {
     return ListTile(
       leading: Icon(
         IconData(icon, fontFamily: 'MaterialIcons'),
-        color: Color.fromRGBO(143, 143, 143, 1),
+        color: onSurfaceWhite,
       ),
       title: Text(
         title,
         style: TextStyle(
-          color: Color.fromRGBO(143, 143, 143, 1),
+          color: onSurfaceWhite,
           fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
       ),
       subtitle: Text(
         description,
-        style: TextStyle(color: Color.fromRGBO(143, 143, 143, 1)),
+        style: TextStyle(color: onSurfaceWhite),
       ),
     );
   }
@@ -113,7 +113,7 @@ class ElementShower extends StatelessWidget {
         style: TextStyle(
           fontSize: 30,
           fontWeight: FontWeight.bold,
-          color: onSurfaceWhite,
+          color: whiteTextColor,
         ),
         children: <TextSpan>[
           TextSpan(
