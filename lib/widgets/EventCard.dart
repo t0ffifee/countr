@@ -34,7 +34,7 @@ class EventCard extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
                   child: DateShower(times: ['10', '23', '59', '59']),
                 ),
-                // cardButtonBar(context),
+                CardButtonBar(context: context),
               ],
             ),
           ),
@@ -130,7 +130,9 @@ class ElementShower extends StatelessWidget {
 }
 
 class CardButtonBar extends StatelessWidget {
-  const CardButtonBar({Key? key}) : super(key: key);
+  final BuildContext context;
+
+  CardButtonBar({required this.context});
 
   @override
   Widget build(BuildContext context) {
