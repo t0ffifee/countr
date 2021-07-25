@@ -16,10 +16,10 @@ class SmallButton extends StatelessWidget {
           width: 140,
           child: ElevatedButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              backgroundColor: MaterialStateProperty.all<Color>(lighterBlackOne),
               textStyle: MaterialStateProperty.all(TextStyle(color: onSurfaceWhite)),
             ),
-            onPressed: buttonFunction.call(),
+            onPressed: () => buttonFunction(),
             child: Text(
               buttonText,
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:countdown_app/constants/constants.dart';
 
 class TextInput extends StatelessWidget {
   final TextEditingController controller;
@@ -12,21 +13,19 @@ class TextInput extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
       child: Theme(
-        data: ThemeData(
-          // primaryColor: Color.fromRGBO(190, 129, 248, 0.8),
-          primaryColor: Colors.purple,
-          primaryColorDark: Colors.purple,
-        ),
+        data: ThemeData(),
         child: TextField(
           controller: controller,
           style: TextStyle(
-            color: Color.fromRGBO(227, 227, 227, 1),
+            color: whiteTextColor,
           ),
           decoration: InputDecoration(
+            filled: true,
+            fillColor: lighterBlackOne,
             border: OutlineInputBorder(),
             labelText: name,
             labelStyle: TextStyle(
-              color: Color.fromRGBO(143, 143, 143, 1),
+              color: whiteTextColor,
             ),
           ),
         ),
