@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 
 class MyColorPicker extends StatefulWidget {
   final Function onSelectColor; // This function sends the selected color to outside
-  final List<Color> availableColors; // List of pickable colors
+  // List of pickable colors
+  final List<Color> availableColors = [
+    Colors.blue.shade300,
+    Colors.green.shade300,
+    Colors.red.shade300,
+    Colors.purple.shade300,
+    Colors.teal.shade300,
+  ];
   final Color initialColor; // The default picked color
 
-  MyColorPicker({required this.onSelectColor, required this.availableColors, required this.initialColor});
+  MyColorPicker({required this.onSelectColor, required this.initialColor});
 
   @override
   _MyColorPickerState createState() => _MyColorPickerState();
