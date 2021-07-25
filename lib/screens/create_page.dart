@@ -1,8 +1,10 @@
 import 'package:countdown_app/constants/constants.dart';
+import 'package:countdown_app/widgets/FancyFab.dart';
 import 'package:countdown_app/widgets/color_picker/ColorPicker.dart';
 import 'package:countdown_app/widgets/general/DatePicker.dart';
 import 'package:countdown_app/widgets/general/TimePicker.dart';
 import 'package:countdown_app/widgets/general/IconPicker.dart';
+import 'package:countdown_app/widgets/simple_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -51,24 +53,24 @@ class _CreatePageState extends State<CreatePage> {
           brightness: Brightness.dark,
         ),
         home: Scaffold(
+          floatingActionButton: FloatingActionButton(
+            onPressed: () => save(),
+            child: Icon(Icons.check),
+            backgroundColor: lightPurple,
+          ),
           resizeToAvoidBottomInset: false,
           backgroundColor: backgroundBlack,
-          appBar: createPageAppBar(context),
+          appBar: buildPageAppBar(context),
           body: Center(
             child: Column(
               children: [
                 TextInput(titleController, 'Title'),
                 TextInput(descriptionController, 'Description'),
-                DatePicker(
-                  onDateTimeChanged: (newDateTime) {
-                    selectedDate = newDateTime;
-                  },
-                ),
-                SimpleNotificationSwitch(
-                  onSwitchChanged: (newSwitch) {
-                    print(newSwitch);
-                  },
-                )
+                buildDatePicker(selectedDate),
+                buildTimePicker(selectedTime),
+                buildIconPicker(chosenIconPoint),
+                buildColorPicker(),
+                buildSwitch(),
               ],
             ),
           ),
@@ -77,24 +79,16 @@ class _CreatePageState extends State<CreatePage> {
     );
   }
 
-  AppBar createPageAppBar(BuildContext context) {
+  AppBar buildPageAppBar(BuildContext context) {
     return AppBar(
       centerTitle: true,
       leading: IconButton(
         icon: Icon(Icons.arrow_back),
         onPressed: () {
-          print("Return");
+          print("Cancel");
           Navigator.pop(context);
         },
       ),
-      actions: [
-        IconButton(
-          icon: Icon(Icons.done),
-          onPressed: () {
-            print("Done");
-          },
-        )
-      ],
       backgroundColor: lighterBlackOne,
       title: Text(
         'Create Event',
@@ -104,31 +98,74 @@ class _CreatePageState extends State<CreatePage> {
   }
 }
 
-class SimpleNotificationSwitch extends StatefulWidget {
-  final ValueChanged<bool>? onSwitchChanged;
-  SimpleNotificationSwitch({Key? key, this.onSwitchChanged}) : super(key: key);
-
-  @override
-  SimpleNotificationSwitchState createState() => SimpleNotificationSwitchState();
+Widget buildDatePicker(DateTime selectedDate) {
+  return Container(
+    alignment: AlignmentDirectional.centerStart,
+    child: DatePicker(
+      onDateTimeChanged: (newDateTime) {
+        selectedDate = newDateTime;
+      },
+    ),
+  );
 }
 
-class SimpleNotificationSwitchState extends State<SimpleNotificationSwitch> {
-  bool v = false;
+Widget buildTimePicker(TimeOfDay selectedTime) {
+  return Container(
+    alignment: AlignmentDirectional.centerStart,
+    child: TimePicker(
+      onTimeChanged: (newTimeOfDay) {
+        selectedTime = newTimeOfDay;
+      },
+    ),
+  );
+}
 
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text("Push Notification"),
-      leading: Switch(
-        value: v,
-        activeColor: lightPurple,
-        onChanged: (value) {
-          setState(() {
-            v = value;
-            widget.onSwitchChanged!(v);
-          });
-        },
-      ),
-    );
-  }
+Widget buildIconPicker(int chosenIconPoint) {
+  return Container(
+    alignment: AlignmentDirectional.centerStart,
+    child: IconPicker(
+      onIconChanged: (newIcon) {
+        chosenIconPoint = newIcon;
+      },
+    ),
+  );
+}
+
+Widget buildColorPicker() {
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
+    child: Column(
+      children: [
+        Container(
+          // alignment: AlignmentDirectional,
+          width: double.infinity,
+          height: 55,
+          child: MyColorPicker(
+              onSelectColor: (value) {
+                print(value);
+              },
+              initialColor: Colors.blue.shade300),
+        )
+      ],
+    ),
+  );
+}
+
+Widget buildSwitch() {
+  return SimpleSwitch(
+    onSwitchChanged: (newChoice) {
+      print(newChoice);
+    },
+  );
+}
+
+Widget buildSaveButton() {
+  return Container(
+    margin: EdgeInsets.only(left: 15, right: 20),
+    child: SmallButton(save, "Save this"),
+  );
+}
+
+void save() {
+  print('Save');
 }
