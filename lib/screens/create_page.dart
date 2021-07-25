@@ -81,6 +81,7 @@ class _CreatePageState extends State<CreatePage> {
 
   AppBar buildPageAppBar(BuildContext context) {
     return AppBar(
+      elevation: 0,
       centerTitle: true,
       leading: IconButton(
         icon: Icon(Icons.arrow_back),
@@ -89,7 +90,7 @@ class _CreatePageState extends State<CreatePage> {
           Navigator.pop(context);
         },
       ),
-      backgroundColor: lighterBlackOne,
+      backgroundColor: backgroundBlack,
       title: Text(
         'Create Event',
         style: TextStyle(color: onSurfaceWhite),
