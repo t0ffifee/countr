@@ -76,6 +76,7 @@ class _FancyFabState extends State<FancyFab> with SingleTickerProviderStateMixin
         heroTag: 'add',
         backgroundColor: lightPurple.withAlpha(150),
         onPressed: () {
+          animate();
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => CreatePage()),
@@ -94,6 +95,7 @@ class _FancyFabState extends State<FancyFab> with SingleTickerProviderStateMixin
         heroTag: 'settings',
         backgroundColor: lightPurple.withAlpha(150),
         onPressed: () {
+          animate();
           Navigator.push(
             context,
             MaterialPageRoute(
