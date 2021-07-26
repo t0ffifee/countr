@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constants/constants.dart';
-// import '../../constants/constants.dart';
+import 'package:countdown_app/constants/constants.dart';
 
 class SmallButton extends StatelessWidget {
   final Function buttonFunction;

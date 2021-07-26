@@ -5,11 +5,8 @@ import 'package:countdown_app/widgets/pickers/time_picker.dart';
 import 'package:countdown_app/widgets/pickers/icon_picker.dart';
 import 'package:countdown_app/widgets/simple_switch.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
-import '../widgets/event/event.dart';
-import '../widgets/text_input.dart';
-import '../widgets/small_button.dart';
+import 'package:countdown_app/widgets/text_input.dart';
 
 class CreatePage extends StatefulWidget {
   const CreatePage({Key? key}) : super(key: key);

@@ -1,16 +1,12 @@
-import 'package:countdown_app/screens/create_page.dart';
-import 'package:countdown_app/screens/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:countdown_app/widgets/expandable_fab.dart';
-import 'package:countdown_app/screens/countdown_page.dart';
 
-import 'constants/constants.dart';
-import 'widgets/event/event_card.dart';
-import 'widgets/event/event.dart';
-import 'constants/globals.dart';
-import 'screens/countdown_page.dart';
+import 'package:countdown_app/constants/constants.dart';
+import 'package:countdown_app/constants/globals.dart';
+import 'package:countdown_app/widgets/event/event.dart';
+import 'package:countdown_app/widgets/event/event_card.dart';
 
 void main() async {
   await Hive.initFlutter();

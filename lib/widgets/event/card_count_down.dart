@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_countdown_timer/index.dart';
-import '../../constants/constants.dart';
+import 'package:countdown_app/constants/constants.dart';
 import 'event.dart';
 
 class CardCountDown extends StatefulWidget {
@@ -18,9 +18,8 @@ class _CardCountDownState extends State<CardCountDown> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO hier kunnen we een functie van maken
-    const int MillisecondsInMinute = 60 * 1000;
-    const int MillisecondsInHour = 60 * MillisecondsInMinute;
+    // const int MillisecondsInMinute = 60 * 1000;
+    // const int MillisecondsInHour = 60 * MillisecondsInMinute;
     int days = widget.event.eDate.millisecondsSinceEpoch;
     // int hours = MillisecondsInHour * widget.event.eTime.hour;
     // int minutes = MillisecondsInMinute * widget.event.eTime.hour;
@@ -28,7 +27,6 @@ class _CardCountDownState extends State<CardCountDown> {
       endTime: days, // + hours + minutes,
       widgetBuilder: (controller, CurrentRemainingTime? time) {
         if (time == null) {
-          // TODO hier kunnen we allemaal functionaliteit toevoegen
           return Text('Game over');
         }
         return fullCounter(time);

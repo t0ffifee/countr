@@ -10,7 +10,6 @@ class TimePicker extends StatefulWidget {
 }
 
 class _TimePickerState extends State<TimePicker> {
-  // TODO check of dit mag gezien de standaard datum vandaag is dus dan zou het voor 6h15 moeten zijn
   TimeOfDay time = TimeOfDay(hour: 6, minute: 15);
 
   /// Creating a 24 hour time dialog for the user to choose a time

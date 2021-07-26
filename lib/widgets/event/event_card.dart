@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../constants/constants.dart';
-import '../../screens/countdown_page.dart';
-import 'CardCountDown.dart';
+import 'package:countdown_app/constants/constants.dart';
 import 'event.dart';
 
 class EventCard extends StatelessWidget {

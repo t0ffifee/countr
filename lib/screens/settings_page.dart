@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -18,6 +17,7 @@ class _SettingsState extends State<SettingsPage> {
         }
       },
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           brightness: Brightness.dark,
           primaryColor: Colors.yellow,

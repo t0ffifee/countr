@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../widgets/event/CountDown.dart';
-import '../constants/constants.dart';
-import '../widgets/event/event.dart';
+import 'package:countdown_app/widgets/event/count_down.dart';
+import 'package:countdown_app/constants/constants.dart';
+import 'package:countdown_app/widgets/event/event.dart';
 
 class CountDownPage extends StatelessWidget {
   final Event event;
@@ -43,7 +43,6 @@ class CountDownPage extends StatelessWidget {
   }
 }
 
-// TODO dit moet allemaal weg omdat het gefixed zal worden door CountDown()
 RichText days = RichText(
   text: TextSpan(
     text: '3\t',

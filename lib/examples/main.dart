@@ -24,8 +24,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Color _color = Colors.blue;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +80,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-// TODO deze dingen hieronder horen duidelijk een eigen class te zijn
   Widget topBarCard(String title, String description, IconData icon) {
     return ListTile(
       leading: Icon(
@@ -106,7 +103,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // TODO dit wordt uiteindelijk de CardCountDown widget
   Widget dateShower(List<String> times) {
     return Container(
       // margin: EdgeInsets.only(left: 40, right: 40),

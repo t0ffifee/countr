@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import '../../constants/constants.dart';
+import 'package:countdown_app/constants/constants.dart';
 
 part 'event.g.dart';
 

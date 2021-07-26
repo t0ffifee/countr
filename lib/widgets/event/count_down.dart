@@ -17,7 +17,6 @@ class _CountDownState extends State<CountDown> {
   // hier moeten we de DateTime doorgeven van het einde van de event
   late int endTime;
 
-  // TODO misschien is het beter om met initState() en onEnd() te werken voor als de event afgelopen is
   // @override
   // void initState() {
   //   super.initState();
@@ -37,8 +36,8 @@ class _CountDownState extends State<CountDown> {
 
   @override
   Widget build(BuildContext context) {
-    const int MillisecondsInMinute = 60 * 1000;
-    const int MillisecondsInHour = 60 * MillisecondsInMinute;
+    // const int MillisecondsInMinute = 60 * 1000;
+    // const int MillisecondsInHour = 60 * MillisecondsInMinute;
     int days = widget.event.eDate.millisecondsSinceEpoch;
     // int hours = MillisecondsInHour * widget.event.eTime.hour;
     // int minutes = MillisecondsInMinute * widget.event.eTime.hour;

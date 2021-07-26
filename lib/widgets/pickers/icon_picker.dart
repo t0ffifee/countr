@@ -1,6 +1,6 @@
 import 'package:countdown_app/widgets/small_button.dart';
 import 'package:flutter/material.dart';
-import '../../constants/constants.dart';
+import 'package:countdown_app/constants/constants.dart';
 
 class IconPicker extends StatefulWidget {
   final ValueChanged<int>? onIconChanged;
