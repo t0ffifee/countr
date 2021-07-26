@@ -55,7 +55,10 @@ class _CreatePageState extends State<CreatePage> {
         home: Scaffold(
           floatingActionButton: FloatingActionButton(
             onPressed: () => save(),
-            child: Icon(Icons.check),
+            child: Icon(
+              Icons.check,
+              color: lighterBlackOne,
+            ),
             backgroundColor: lightPurple,
           ),
           resizeToAvoidBottomInset: false,
