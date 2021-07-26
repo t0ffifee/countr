@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../widgets/CountDown.dart';
+import '../widgets/event/CountDown.dart';
 import '../constants/constants.dart';
-import '../widgets/Event.dart';
+import '../widgets/event/event.dart';
 
 class CountDownPage extends StatelessWidget {
   final Event event;

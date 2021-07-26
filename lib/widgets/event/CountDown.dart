@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_countdown_timer/index.dart';
-import 'Event.dart';
+import 'event.dart';
 
 class CountDown extends StatefulWidget {
   final Event event;

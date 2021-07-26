@@ -7,9 +7,8 @@ import 'package:countdown_app/widgets/expandable_fab.dart';
 import 'package:countdown_app/screens/countdown_page.dart';
 
 import 'constants/constants.dart';
-import 'widgets/FancyFab.dart';
-import 'widgets/EventCard.dart';
-import 'widgets/Event.dart';
+import 'widgets/event/event_card.dart';
+import 'widgets/event/event.dart';
 import 'constants/globals.dart';
 import 'screens/countdown_page.dart';
 
@@ -49,7 +48,7 @@ class MyAppState extends State<MyApp> {
         backgroundColor: backgroundBlack,
         floatingActionButton: Visibility(
           visible: _visible,
-          child: buildFab2(),
+          child: ExpandableFab(),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: Center(
@@ -62,36 +61,6 @@ class MyAppState extends State<MyApp> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget buildFab1() {
-    return FancyFab();
-  }
-
-  Widget buildFab2() {
-    return ExpandableFab(
-      distance: 60.0,
-      children: [
-        ActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CreatePage()),
-            );
-          },
-          icon: const Icon(Icons.add),
-        ),
-        ActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SettingsPage()),
-            );
-          },
-          icon: const Icon(Icons.settings),
-        ),
-      ],
     );
   }
 

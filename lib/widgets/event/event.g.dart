@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'Event.dart';
+part of 'event.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
@@ -48,9 +48,5 @@ class EventAdapter extends TypeAdapter<Event> {
   int get hashCode => typeId.hashCode;
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is EventAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
+  bool operator ==(Object other) => identical(this, other) || other is EventAdapter && runtimeType == other.runtimeType && typeId == other.typeId;
 }

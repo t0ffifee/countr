@@ -1,4 +1,4 @@
-import 'package:countdown_app/widgets/buttons/SmallButton.dart';
+import 'package:countdown_app/widgets/small_button.dart';
 import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 

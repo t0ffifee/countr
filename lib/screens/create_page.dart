@@ -1,16 +1,15 @@
 import 'package:countdown_app/constants/constants.dart';
-import 'package:countdown_app/widgets/FancyFab.dart';
-import 'package:countdown_app/widgets/color_picker/ColorPicker.dart';
-import 'package:countdown_app/widgets/general/DatePicker.dart';
-import 'package:countdown_app/widgets/general/TimePicker.dart';
-import 'package:countdown_app/widgets/general/IconPicker.dart';
+import 'package:countdown_app/widgets/pickers/color_picker.dart';
+import 'package:countdown_app/widgets/pickers/date_picker.dart';
+import 'package:countdown_app/widgets/pickers/time_picker.dart';
+import 'package:countdown_app/widgets/pickers/icon_picker.dart';
 import 'package:countdown_app/widgets/simple_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import '../widgets/Event.dart';
-import '../widgets/TextInput.dart';
-import '../widgets/buttons/SmallButton.dart';
+import '../widgets/event/event.dart';
+import '../widgets/text_input.dart';
+import '../widgets/small_button.dart';
 
 class CreatePage extends StatefulWidget {
   const CreatePage({Key? key}) : super(key: key);

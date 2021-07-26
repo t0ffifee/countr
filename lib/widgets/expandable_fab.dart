@@ -97,6 +97,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
 
     final actionOne = ActionButton(
       onPressed: () {
+        _toggle();
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => CreatePage()),
@@ -107,12 +108,13 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
 
     final actionTwo = ActionButton(
       onPressed: () {
+        _toggle();
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => SettingsPage()),
         );
       },
-      icon: const Icon(Icons.add),
+      icon: const Icon(Icons.settings),
     );
 
     return <Widget>[
@@ -175,7 +177,6 @@ class _ExpandingActionButton extends StatelessWidget {
           directionInDegrees * (math.pi / 180.0),
           progress.value * maxDistance,
         );
-        print(offset);
         return Positioned(
           right: 4.0,
           bottom: 4.0 + offset.dy,

@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
-import '../constants/constants.dart';
+import '../../constants/constants.dart';
 
-part 'Event.g.dart';
+part 'event.g.dart';
 
 // Titel (String), Beschrijving (String), Datum/Tijd (DateTime), Icoon (int), Kleur (int), ShowNotification (bool)
 

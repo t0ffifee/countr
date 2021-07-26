@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_countdown_timer/index.dart';
-import '../constants/constants.dart';
-import 'Event.dart';
+import '../../constants/constants.dart';
+import 'event.dart';
 
 class CardCountDown extends StatefulWidget {
   final Event event;
