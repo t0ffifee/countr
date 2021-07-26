@@ -1,4 +1,5 @@
 import 'package:countdown_app/screens/create_page.dart';
+import 'package:countdown_app/screens/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -48,24 +49,7 @@ class MyAppState extends State<MyApp> {
         backgroundColor: backgroundBlack,
         floatingActionButton: Visibility(
           visible: _visible,
-          child: ExpandableFab(
-            distance: 70.0,
-            children: [
-              ActionButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => CreatePage()),
-                  );
-                },
-                icon: const Icon(Icons.format_size),
-              ),
-              ActionButton(
-                onPressed: () => print('2'),
-                icon: const Icon(Icons.insert_photo),
-              ),
-            ],
-          ),
+          child: buildFab2(),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: Center(
@@ -73,29 +57,63 @@ class MyAppState extends State<MyApp> {
             color: backgroundBlack,
             child: ListView(
               padding: EdgeInsets.all(10),
-              children: [
-                Divider(),
-                EventCard(
-                  event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
-                ),
-                Divider(),
-                EventCard(
-                  event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
-                ),
-                Divider(),
-                EventCard(
-                  event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
-                ),
-                Divider(),
-                EventCard(
-                  event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
-                ),
-                Divider(),
-              ],
+              children: getChildren(),
             ),
           ),
         ),
       ),
     );
+  }
+
+  Widget buildFab1() {
+    return FancyFab();
+  }
+
+  Widget buildFab2() {
+    return ExpandableFab(
+      distance: 60.0,
+      children: [
+        ActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CreatePage()),
+            );
+          },
+          icon: const Icon(Icons.add),
+        ),
+        ActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SettingsPage()),
+            );
+          },
+          icon: const Icon(Icons.settings),
+        ),
+      ],
+    );
+  }
+
+  List<Widget> getChildren() {
+    return [
+      Divider(),
+      EventCard(
+        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
+      ),
+      Divider(),
+      EventCard(
+        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
+      ),
+      Divider(),
+      EventCard(
+        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
+      ),
+      Divider(),
+      EventCard(
+        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
+      ),
+      Divider(),
+    ];
   }
 }
