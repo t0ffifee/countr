@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:countdown_app/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 @immutable
@@ -78,6 +79,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
       height: 56.0,
       child: Center(
         child: Material(
+          color: lighterBlackOne,
           shape: const CircleBorder(),
           clipBehavior: Clip.antiAlias,
           elevation: 4.0,
@@ -87,7 +89,8 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
               padding: const EdgeInsets.all(8.0),
               child: Icon(
                 Icons.close,
-                color: Theme.of(context).primaryColor,
+                color: lightPurple,
+                // color: Theme.of(context).primaryColor,
               ),
             ),
           ),
@@ -99,12 +102,13 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
   List<Widget> _buildExpandingActionButtons() {
     final children = <Widget>[];
     final count = widget.children.length;
-    final step = 90.0 / (count - 1);
-    for (var i = 0, angleInDegrees = 0.0; i < count; i++, angleInDegrees += step) {
+    double distance = widget.distance;
+    final step = distance;
+    for (var i = 0, angleInDegrees = 90.0; i < count; i++, distance += step) {
       children.add(
         _ExpandingActionButton(
           directionInDegrees: angleInDegrees,
-          maxDistance: widget.distance,
+          maxDistance: distance,
           progress: _expandAnimation,
           child: widget.children[i],
         ),
@@ -130,8 +134,12 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
           curve: const Interval(0.25, 1.0, curve: Curves.easeInOut),
           duration: const Duration(milliseconds: 250),
           child: FloatingActionButton(
+            backgroundColor: lightPurple,
             onPressed: _toggle,
-            child: const Icon(Icons.create),
+            child: const Icon(
+              Icons.menu,
+              color: lighterBlackOne,
+            ),
           ),
         ),
       ),
@@ -163,11 +171,12 @@ class _ExpandingActionButton extends StatelessWidget {
           directionInDegrees * (math.pi / 180.0),
           progress.value * maxDistance,
         );
+        print(offset);
         return Positioned(
-          right: 4.0 + offset.dx,
+          right: 4.0,
           bottom: 4.0 + offset.dy,
           child: Transform.rotate(
-            angle: (1.0 - progress.value) * math.pi / 2,
+            angle: 0,
             child: child!,
           ),
         );
@@ -197,36 +206,16 @@ class ActionButton extends StatelessWidget {
     return Material(
       shape: const CircleBorder(),
       clipBehavior: Clip.antiAlias,
-      color: theme.accentColor,
+      // color: theme.accentColor,
+      color: lightPurple,
       elevation: 4.0,
       child: IconTheme.merge(
         data: theme.accentIconTheme,
         child: IconButton(
           onPressed: onPressed,
+          color: lighterBlackOne,
           icon: icon,
         ),
-      ),
-    );
-  }
-}
-
-@immutable
-class FakeItem extends StatelessWidget {
-  const FakeItem({
-    Key? key,
-    required this.isBig,
-  }) : super(key: key);
-
-  final bool isBig;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
-      height: isBig ? 128.0 : 36.0,
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-        color: Colors.grey.shade300,
       ),
     );
   }
