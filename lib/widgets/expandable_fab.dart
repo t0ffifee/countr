@@ -1,20 +1,13 @@
 import 'dart:math' as math;
 
 import 'package:countdown_app/constants/constants.dart';
+import 'package:countdown_app/screens/create_page.dart';
+import 'package:countdown_app/screens/settings_page.dart';
 import 'package:flutter/material.dart';
 
 @immutable
 class ExpandableFab extends StatefulWidget {
-  const ExpandableFab({
-    Key? key,
-    this.initialOpen,
-    required this.distance,
-    required this.children,
-  }) : super(key: key);
-
-  final bool? initialOpen;
-  final double distance;
-  final List<Widget> children;
+  const ExpandableFab({Key? key}) : super(key: key);
 
   @override
   _ExpandableFabState createState() => _ExpandableFabState();
@@ -28,7 +21,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
   @override
   void initState() {
     super.initState();
-    _open = widget.initialOpen ?? false;
+    // _open = widget.initialOpen ?? false;
     _controller = AnimationController(
       value: _open ? 1.0 : 0.0,
       duration: const Duration(milliseconds: 250),
@@ -100,21 +93,32 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
   }
 
   List<Widget> _buildExpandingActionButtons() {
-    final children = <Widget>[];
-    final count = widget.children.length;
-    double distance = widget.distance;
-    final step = distance;
-    for (var i = 0, angleInDegrees = 90.0; i < count; i++, distance += step) {
-      children.add(
-        _ExpandingActionButton(
-          directionInDegrees: angleInDegrees,
-          maxDistance: distance,
-          progress: _expandAnimation,
-          child: widget.children[i],
-        ),
-      );
-    }
-    return children;
+    double distance = 60.0;
+
+    final actionOne = ActionButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CreatePage()),
+        );
+      },
+      icon: const Icon(Icons.add),
+    );
+
+    final actionTwo = ActionButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SettingsPage()),
+        );
+      },
+      icon: const Icon(Icons.add),
+    );
+
+    return <Widget>[
+      _ExpandingActionButton(directionInDegrees: 90, maxDistance: distance, progress: _expandAnimation, child: actionOne),
+      _ExpandingActionButton(directionInDegrees: 90, maxDistance: distance * 2, progress: _expandAnimation, child: actionTwo),
+    ];
   }
 
   Widget _buildTapToOpenFab() {
