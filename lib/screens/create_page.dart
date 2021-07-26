@@ -70,7 +70,7 @@ class _CreatePageState extends State<CreatePage> {
                 buildTimePicker(selectedTime),
                 buildIconPicker(chosenIconPoint),
                 buildColorPicker(),
-                buildSwitch(),
+                buildCheckBox()
               ],
             ),
           ),
@@ -152,18 +152,11 @@ Widget buildColorPicker() {
   );
 }
 
-Widget buildSwitch() {
-  return SimpleSwitch(
-    onSwitchChanged: (newChoice) {
+Widget buildCheckBox() {
+  return SimpleCheckBox(
+    onCheckChanged: (newChoice) {
       print(newChoice);
     },
-  );
-}
-
-Widget buildSaveButton() {
-  return Container(
-    margin: EdgeInsets.only(left: 15, right: 20),
-    child: SmallButton(save, "Save this"),
   );
 }
 
