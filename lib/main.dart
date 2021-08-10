@@ -32,6 +32,64 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
+  final List<Widget> children = [
+    EventCard(
+      key: Key('1'),
+      event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
+          Icons.alarm.codePoint, Colors.purple.shade300.value, false),
+    ),
+    EventCard(
+      key: Key('2'),
+      event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
+          Icons.alarm.codePoint, Colors.blue.shade300.value, false),
+    ),
+    EventCard(
+      key: Key('3'),
+      event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
+          Icons.alarm.codePoint, Colors.green.shade300.value, false),
+    ),
+    EventCard(
+      key: Key('4'),
+      event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
+          Icons.alarm.codePoint, Colors.red.shade300.value, false),
+    ),
+  ];
+
+  final List<Widget> children2 = [
+    Container(
+      key: Key('11'),
+      child: EventCard(
+        key: Key('1'),
+        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
+            Icons.alarm.codePoint, Colors.purple.shade300.value, false),
+      ),
+    ),
+    Container(
+      key: Key('22'),
+      child: EventCard(
+        key: Key('2'),
+        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
+            Icons.alarm.codePoint, Colors.blue.shade300.value, false),
+      ),
+    ),
+    Container(
+      key: Key('33'),
+      child: EventCard(
+        key: Key('3'),
+        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
+            Icons.alarm.codePoint, Colors.green.shade300.value, false),
+      ),
+    ),
+    Container(
+      key: Key('44'),
+      child: EventCard(
+        key: Key('4'),
+        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
+            Icons.alarm.codePoint, Colors.red.shade300.value, false),
+      ),
+    ),
+  ];
+
   @override
   Widget build(context) {
     print("[BUILD] MyAppState is gebouwd");
@@ -50,35 +108,66 @@ class MyAppState extends State<MyApp> {
         body: Center(
           child: Container(
             color: backgroundBlack,
-            child: ListView(
-              padding: EdgeInsets.all(10),
-              children: getChildren(),
-            ),
+            child: reorListView(),
           ),
         ),
       ),
     );
   }
 
+  Widget normalList() {
+    // List<Widget> cs = getChildren();
+    return ListView(
+      padding: EdgeInsets.all(10),
+      children: children,
+    );
+  }
+
+  Widget reorListView() {
+    // List<Widget> cs = getChildren();
+    return Theme(
+      data: ThemeData(
+        canvasColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+      ),
+      child: ReorderableListView(
+        padding: EdgeInsets.all(10),
+        children: children,
+        onReorder: (int oldIndex, int newIndex) {
+          setState(() {
+            if (oldIndex < newIndex) {
+              newIndex -= 1;
+            }
+            final Widget item = children.removeAt(oldIndex);
+            children.insert(newIndex, item);
+          });
+        },
+      ),
+    );
+  }
+
   List<Widget> getChildren() {
     return [
-      Divider(),
       EventCard(
-        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
+        key: Key('1'),
+        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
+            Icons.alarm.codePoint, Colors.purple.shade300.value, false),
       ),
-      Divider(),
       EventCard(
-        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
+        key: Key('2'),
+        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
+            Icons.alarm.codePoint, Colors.blue.shade300.value, false),
       ),
-      Divider(),
       EventCard(
-        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
+        key: Key('3'),
+        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
+            Icons.alarm.codePoint, Colors.green.shade300.value, false),
       ),
-      Divider(),
       EventCard(
-        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
+        key: Key('4'),
+        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
+            Icons.alarm.codePoint, Colors.red.shade300.value, false),
       ),
-      Divider(),
     ];
   }
 }
