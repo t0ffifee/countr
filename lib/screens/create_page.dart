@@ -3,7 +3,7 @@ import 'package:countdown_app/widgets/pickers/color_picker.dart';
 import 'package:countdown_app/widgets/pickers/date_picker.dart';
 import 'package:countdown_app/widgets/pickers/time_picker.dart';
 import 'package:countdown_app/widgets/pickers/icon_picker.dart';
-import 'package:countdown_app/widgets/simple_switch.dart';
+import 'package:countdown_app/widgets/simple_checkbox.dart';
 import 'package:flutter/material.dart';
 
 import 'package:countdown_app/widgets/text_input.dart';
