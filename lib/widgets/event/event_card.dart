@@ -3,9 +3,8 @@ import 'package:countdown_app/constants/constants.dart';
 import 'event.dart';
 
 class EventCard extends StatelessWidget {
+  const EventCard({required Key key, required this.event}) : super(key: key);
   final Event event;
-
-  EventCard({required this.event});
 
 // Functie voor het gaan naar de CountDownPage
 //   void cardFunction(BuildContext context, Event event) {
@@ -27,7 +26,10 @@ class EventCard extends StatelessWidget {
           Expanded(
             child: Column(
               children: <Widget>[
-                TopBar(title: event.eTitle, description: event.eDescription, icon: event.eIconCodePoint),
+                TopBar(
+                    title: event.eTitle,
+                    description: event.eDescription,
+                    icon: event.eIconCodePoint),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
                   child: DateShower(times: ['10', '23', '59', '59']),
