@@ -13,7 +13,8 @@ class ExpandableFab extends StatefulWidget {
   _ExpandableFabState createState() => _ExpandableFabState();
 }
 
-class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProviderStateMixin {
+class _ExpandableFabState extends State<ExpandableFab>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _expandAnimation;
   bool _open = false;
@@ -72,7 +73,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
       height: 56.0,
       child: Center(
         child: Material(
-          color: lighterBlackOne,
+          color: lightPurple,
           shape: const CircleBorder(),
           clipBehavior: Clip.antiAlias,
           elevation: 4.0,
@@ -82,7 +83,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
               padding: const EdgeInsets.all(8.0),
               child: Icon(
                 Icons.close,
-                color: lightPurple,
+                color: lighterBlackOne,
                 // color: Theme.of(context).primaryColor,
               ),
             ),
@@ -118,8 +119,16 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
     );
 
     return <Widget>[
-      _ExpandingActionButton(directionInDegrees: 90, maxDistance: distance, progress: _expandAnimation, child: actionOne),
-      _ExpandingActionButton(directionInDegrees: 90, maxDistance: distance * 2, progress: _expandAnimation, child: actionTwo),
+      _ExpandingActionButton(
+          directionInDegrees: 90,
+          maxDistance: distance,
+          progress: _expandAnimation,
+          child: actionOne),
+      _ExpandingActionButton(
+          directionInDegrees: 90,
+          maxDistance: distance * 2,
+          progress: _expandAnimation,
+          child: actionTwo),
     ];
   }
 
@@ -140,11 +149,11 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
           curve: const Interval(0.25, 1.0, curve: Curves.easeInOut),
           duration: const Duration(milliseconds: 250),
           child: FloatingActionButton(
-            backgroundColor: lightPurple,
+            backgroundColor: lighterBlackOne,
             onPressed: _toggle,
             child: const Icon(
               Icons.menu,
-              color: lighterBlackOne,
+              color: lightPurple,
             ),
           ),
         ),
@@ -212,13 +221,13 @@ class ActionButton extends StatelessWidget {
       shape: const CircleBorder(),
       clipBehavior: Clip.antiAlias,
       // color: theme.accentColor,
-      color: lightPurple,
+      color: lighterBlackOne,
       elevation: 4.0,
       child: IconTheme.merge(
         data: theme.accentIconTheme,
         child: IconButton(
           onPressed: onPressed,
-          color: lighterBlackOne,
+          color: lightPurple,
           icon: icon,
         ),
       ),
