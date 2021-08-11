@@ -52,42 +52,7 @@ class MyAppState extends State<MyApp> {
       key: Key('4'),
       event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
           Icons.alarm.codePoint, Colors.red.shade300.value, false),
-    ),
-  ];
-
-  final List<Widget> children2 = [
-    Container(
-      key: Key('11'),
-      child: EventCard(
-        key: Key('1'),
-        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
-            Icons.alarm.codePoint, Colors.purple.shade300.value, false),
-      ),
-    ),
-    Container(
-      key: Key('22'),
-      child: EventCard(
-        key: Key('2'),
-        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
-            Icons.alarm.codePoint, Colors.blue.shade300.value, false),
-      ),
-    ),
-    Container(
-      key: Key('33'),
-      child: EventCard(
-        key: Key('3'),
-        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
-            Icons.alarm.codePoint, Colors.green.shade300.value, false),
-      ),
-    ),
-    Container(
-      key: Key('44'),
-      child: EventCard(
-        key: Key('4'),
-        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
-            Icons.alarm.codePoint, Colors.red.shade300.value, false),
-      ),
-    ),
+    )
   ];
 
   @override
@@ -131,7 +96,7 @@ class MyAppState extends State<MyApp> {
         shadowColor: Colors.transparent,
       ),
       child: ReorderableListView(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
         children: children,
         onReorder: (int oldIndex, int newIndex) {
           setState(() {
