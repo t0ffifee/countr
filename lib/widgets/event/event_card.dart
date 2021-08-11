@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:countdown_app/constants/constants.dart';
+import 'package:flutter/rendering.dart';
 import 'event.dart';
 
 class EventCard extends StatelessWidget {
@@ -16,29 +17,34 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 1,
-      color: Color.fromRGBO(29, 29, 29, 0.95),
-      clipBehavior: Clip.antiAlias,
-      child: Row(
-        children: [
-          Container(width: 10, height: 200, color: Color(event.color)),
-          Expanded(
-            child: Column(
-              children: <Widget>[
-                TopBar(
-                    title: event.eTitle,
-                    description: event.eDescription,
-                    icon: event.eIconCodePoint),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
-                  child: DateShower(times: ['10', '23', '59', '59']),
-                ),
-                CardButtonBar(context: context),
-              ],
+    double height = 194;
+    return Container(
+      margin: EdgeInsets.fromLTRB(0, 2, 0, 2),
+      height: height,
+      child: Card(
+        elevation: 1,
+        color: Color.fromRGBO(29, 29, 29, 0.95),
+        // clipBehavior: Clip.antiAlias,
+        child: Row(
+          children: [
+            Container(width: 10, height: height, color: Color(event.color)),
+            Expanded(
+              child: Column(
+                children: <Widget>[
+                  TopBar(
+                      title: event.eTitle,
+                      description: event.eDescription,
+                      icon: event.eIconCodePoint),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
+                    child: DateShower(times: ['10', '23', '59', '59']),
+                  ),
+                  CardButtonBar(context: context),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
