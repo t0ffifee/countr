@@ -1,3 +1,4 @@
+import 'package:countdown_app/screens/countdown_page.dart';
 import 'package:flutter/material.dart';
 import 'package:countdown_app/constants/constants.dart';
 import 'package:flutter/rendering.dart';
@@ -8,12 +9,12 @@ class EventCard extends StatelessWidget {
   final Event event;
 
 // Functie voor het gaan naar de CountDownPage
-//   void cardFunction(BuildContext context, Event event) {
-//   Navigator.push(
-//     context,
-//     MaterialPageRoute(builder: (context) => CountDownPage(event)),
-//   );
-// }
+  void cardFunction(BuildContext context, Event event) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CountDownPage(event)),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,29 +22,32 @@ class EventCard extends StatelessWidget {
     return Container(
       margin: EdgeInsets.fromLTRB(0, 2, 0, 2),
       height: height,
-      child: Card(
-        elevation: 1,
-        color: Color.fromRGBO(29, 29, 29, 0.95),
-        // clipBehavior: Clip.antiAlias,
-        child: Row(
-          children: [
-            Container(width: 10, height: height, color: Color(event.color)),
-            Expanded(
-              child: Column(
-                children: <Widget>[
-                  TopBar(
-                      title: event.eTitle,
-                      description: event.eDescription,
-                      icon: event.eIconCodePoint),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
-                    child: DateShower(times: ['10', '23', '59', '59']),
-                  ),
-                  CardButtonBar(context: context),
-                ],
+      child: GestureDetector(
+        onTap: () => cardFunction(context, event),
+        child: Card(
+          elevation: 1,
+          color: Color.fromRGBO(29, 29, 29, 0.95),
+          // clipBehavior: Clip.antiAlias,
+          child: Row(
+            children: [
+              Container(width: 10, height: height, color: Color(event.color)),
+              Expanded(
+                child: Column(
+                  children: <Widget>[
+                    TopBar(
+                        title: event.eTitle,
+                        description: event.eDescription,
+                        icon: event.eIconCodePoint),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
+                      child: DateShower(times: ['10', '23', '59', '59']),
+                    ),
+                    CardButtonBar(context: context),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
