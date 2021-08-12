@@ -42,7 +42,7 @@ class SimpleCheckBoxState extends State<SimpleCheckBox> {
       ),
       trailing: Checkbox(
         activeColor: lighterBlackOne,
-        checkColor: lightPurple,
+        checkColor: onSurfaceWhite,
         value: v,
         onChanged: (value) {
           setState(() {

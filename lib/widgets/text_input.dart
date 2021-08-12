@@ -12,14 +12,16 @@ class TextInput extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
       child: TextField(
-        cursorColor: lightPurple,
+        cursorColor: onSurfaceWhite,
         controller: controller,
         style: TextStyle(
           color: whiteTextColor,
         ),
         decoration: InputDecoration(
-          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
-          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: lightPurple)),
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent)),
+          focusedBorder:
+              OutlineInputBorder(borderSide: BorderSide(color: onSurfaceWhite)),
           filled: true,
           fillColor: lighterBlackOne,
           border: OutlineInputBorder(),

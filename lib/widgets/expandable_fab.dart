@@ -73,7 +73,7 @@ class _ExpandableFabState extends State<ExpandableFab>
       height: 56.0,
       child: Center(
         child: Material(
-          color: lightPurple,
+          color: onSurfaceWhite,
           shape: const CircleBorder(),
           clipBehavior: Clip.antiAlias,
           elevation: 4.0,
@@ -153,7 +153,7 @@ class _ExpandableFabState extends State<ExpandableFab>
             onPressed: _toggle,
             child: const Icon(
               Icons.menu,
-              color: lightPurple,
+              color: onSurfaceWhite,
             ),
           ),
         ),
@@ -227,7 +227,7 @@ class ActionButton extends StatelessWidget {
         data: theme.accentIconTheme,
         child: IconButton(
           onPressed: onPressed,
-          color: lightPurple,
+          color: onSurfaceWhite,
           icon: icon,
         ),
       ),

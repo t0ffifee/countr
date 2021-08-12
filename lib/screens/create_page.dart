@@ -49,13 +49,17 @@ class _CreatePageState extends State<CreatePage> {
           brightness: Brightness.dark,
         ),
         home: Scaffold(
-          floatingActionButton: FloatingActionButton(
+          floatingActionButton: FloatingActionButton.extended(
             onPressed: () => save(),
-            child: Icon(
+            icon: Icon(
               Icons.check,
-              color: lighterBlackOne,
+              color: onSurfaceWhite,
             ),
-            backgroundColor: lightPurple,
+            label: Text(
+              "DONE",
+              style: TextStyle(color: onSurfaceWhite),
+            ),
+            backgroundColor: lighterBlackOne,
           ),
           resizeToAvoidBottomInset: false,
           backgroundColor: backgroundBlack,
