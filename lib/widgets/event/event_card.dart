@@ -18,7 +18,7 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = 194;
+    double height = 180;
     return Container(
       margin: EdgeInsets.fromLTRB(0, 2, 0, 2),
       height: height,
@@ -39,7 +39,7 @@ class EventCard extends StatelessWidget {
                         description: event.eDescription,
                         icon: event.eIconCodePoint),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(35, 0, 35, 0),
+                      padding: EdgeInsets.only(left: 35, top: 2, right: 35),
                       child: DateShower(times: ['10', '23', '59', '59']),
                     ),
                     CardButtonBar(context: context),
@@ -75,10 +75,6 @@ class TopBar extends StatelessWidget {
           fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
-      ),
-      subtitle: Text(
-        description,
-        style: TextStyle(color: onSurfaceWhite),
       ),
     );
   }
