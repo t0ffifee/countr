@@ -45,7 +45,8 @@ class Event {
     return color;
   }
 
-  Event(this.date, this.title, this.description, this.iconCodePoint, this.color, this.notification);
+  Event(this.date, this.title, this.description, this.iconCodePoint, this.color,
+      this.notification);
 
   void saveEvent() {
     var box = Hive.box<Event>(eventBox);
