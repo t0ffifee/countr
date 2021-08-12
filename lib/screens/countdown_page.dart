@@ -1,3 +1,4 @@
+import 'package:countdown_app/widgets/event/event_progress.dart';
 import 'package:flutter/material.dart';
 // import 'package:countdown_app/widgets/event/count_down.dart';
 import 'package:countdown_app/constants/constants.dart';
@@ -37,6 +38,19 @@ class CountDownPage extends StatelessWidget {
     );
   }
 
+  Widget textfill() {
+    return Container(
+      margin: EdgeInsets.only(top: 50, left: 30, right: 30),
+      child: Text(
+        "Time is the most valuable thing a man can spend. \nOnly 20 days left.",
+        style: TextStyle(
+          color: whiteTextColor,
+          fontSize: 30,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,20 +62,12 @@ class CountDownPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: <Widget>[
+            Container(height: 40),
             counterblock('20', 'D'),
             counterblock('04', 'H'),
             counterblock('08', 'M'),
             counterblock('05', 'S'),
-            Container(
-              margin: EdgeInsets.only(top: 50, left: 30, right: 30),
-              child: Text(
-                "Time is the most valuable thing a man can spend. \nOnly 20 days left.",
-                style: TextStyle(
-                  color: whiteTextColor,
-                  fontSize: 30,
-                ),
-              ),
-            )
+            EventProgress(event: event)
           ],
         ),
       ),
