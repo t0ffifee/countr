@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:countdown_app/widgets/event/count_down.dart';
+// import 'package:countdown_app/widgets/event/count_down.dart';
 import 'package:countdown_app/constants/constants.dart';
 import 'package:countdown_app/widgets/event/event.dart';
 
@@ -8,32 +8,59 @@ class CountDownPage extends StatelessWidget {
 
   CountDownPage(this.event);
 
+  Widget counter(String num, String unit) {
+    return RichText(
+      textAlign: TextAlign.left,
+      text: TextSpan(
+        text: '$num\t',
+        style: TextStyle(
+          fontSize: 80,
+          color: whiteTextColor,
+        ),
+        children: <TextSpan>[
+          TextSpan(
+              text: unit,
+              style: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 40,
+              )),
+        ],
+      ),
+    );
+  }
+
+  Widget counterblock(String num, String unit) {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.only(top: 40, left: 50),
+      child: counter(num, unit),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => Navigator.pop(context),
+        label: Text('RETURN', style: TextStyle(color: Color(event.color))),
+        backgroundColor: lighterBlackOne,
+      ),
       body: Center(
         child: Column(
           children: <Widget>[
-            Container(height: 40),
-            Text(
-              event.eTitle,
-              style: TextStyle(
-                fontSize: 25,
-                color: whiteTextColor,
-                fontStyle: FontStyle.italic,
+            counterblock('20', 'D'),
+            counterblock('04', 'H'),
+            counterblock('08', 'M'),
+            counterblock('05', 'S'),
+            Container(
+              margin: EdgeInsets.only(top: 50, left: 30, right: 30),
+              child: Text(
+                "Time is the most valuable thing a man can spend. \nOnly 20 days left.",
+                style: TextStyle(
+                  color: whiteTextColor,
+                  fontSize: 30,
+                ),
               ),
-            ),
-            CountDown(event),
-            IconButton(
-              splashColor: lightPurple,
-              tooltip: "Return",
-              icon: Icon(
-                Icons.arrow_back,
-                color: whiteTextColor,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
             )
           ],
         ),
@@ -42,86 +69,3 @@ class CountDownPage extends StatelessWidget {
     );
   }
 }
-
-RichText days = RichText(
-  text: TextSpan(
-    text: '3\t',
-    style: TextStyle(
-      fontSize: 80,
-      fontWeight: FontWeight.bold,
-      color: Color.fromRGBO(190, 129, 248, 0.7),
-    ),
-    children: <TextSpan>[
-      TextSpan(
-          text: 'D',
-          style: TextStyle(
-            fontWeight: FontWeight.normal,
-            fontSize: 40,
-          )),
-    ],
-  ),
-  textAlign: TextAlign.center,
-);
-
-RichText hours = RichText(
-  text: TextSpan(
-    text: '4\t',
-    style: TextStyle(
-      fontSize: 80,
-      fontWeight: FontWeight.bold,
-      color: Color.fromRGBO(190, 129, 248, 0.7),
-    ),
-    children: <TextSpan>[
-      TextSpan(
-          text: 'H',
-          style: TextStyle(
-            fontWeight: FontWeight.normal,
-            fontStyle: FontStyle.italic,
-            fontSize: 40,
-          )),
-    ],
-  ),
-  textAlign: TextAlign.center,
-);
-
-RichText minutes = RichText(
-  text: TextSpan(
-    text: '20\t',
-    style: TextStyle(
-      fontSize: 80,
-      fontWeight: FontWeight.bold,
-      color: Color.fromRGBO(190, 129, 248, 0.7),
-    ),
-    children: <TextSpan>[
-      TextSpan(
-          text: 'M',
-          style: TextStyle(
-            fontWeight: FontWeight.normal,
-            fontStyle: FontStyle.italic,
-            fontSize: 40,
-          )),
-    ],
-  ),
-  textAlign: TextAlign.center,
-);
-
-RichText seconds = RichText(
-  text: TextSpan(
-    text: '27\t',
-    style: TextStyle(
-      fontSize: 80,
-      fontWeight: FontWeight.bold,
-      color: Color.fromRGBO(190, 129, 248, 0.7),
-    ),
-    children: <TextSpan>[
-      TextSpan(
-          text: 'S',
-          style: TextStyle(
-            fontWeight: FontWeight.normal,
-            fontStyle: FontStyle.italic,
-            fontSize: 40,
-          )),
-    ],
-  ),
-  textAlign: TextAlign.center,
-);
