@@ -1,58 +1,53 @@
 import 'package:countdown_app/constants/constants.dart';
-import 'package:flutter/material.dart';
 import 'package:countdown_app/widgets/event/event.dart';
-import 'dart:async';
+import 'package:flutter/material.dart';
 
 class EventProgress extends StatefulWidget {
   const EventProgress({Key? key, required this.event}) : super(key: key);
   final Event event;
 
   @override
-  State<StatefulWidget> createState() {
-    return EventProgressState();
-  }
+  _EventProgressState createState() => _EventProgressState();
 }
 
-class EventProgressState extends State<EventProgress> {
-  double _progress = 0;
+class _EventProgressState extends State<EventProgress>
+    with TickerProviderStateMixin {
+  late AnimationController controller;
 
-  void startTimer() {
-    new Timer.periodic(
-      Duration(seconds: 1),
-      (Timer timer) => setState(
-        () {
-          if (_progress == 1) {
-            timer.cancel();
-          } else {
-            _progress += 0.2;
-          }
-        },
-      ),
-    );
+  @override
+  void initState() {
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 4324), // resterende seconden tot event
+    )..addListener(() {
+        setState(() {});
+      });
+    controller.value =
+        0; // ((now.epoch-creation.epoch)/(event.epoch-creation.epoch))
+    controller.animateTo(1);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        LinearProgressIndicator(
+    return RotatedBox(
+      quarterTurns: -1,
+      child: Container(
+        height: 10,
+        width: 100,
+        child: LinearProgressIndicator(
+          value: controller.value,
+          color: Color(widget.event.eColor),
           backgroundColor: lighterBlackOne,
-          valueColor:
-              new AlwaysStoppedAnimation<Color>(Color(widget.event.color)),
-          value: _progress,
+          semanticsLabel: 'Linear progress indicator',
         ),
-        ElevatedButton(
-          child: Text('Start timer'),
-          onPressed: () {
-            setState(() {
-              _progress = 0;
-            });
-
-            startTimer();
-          },
-        ),
-      ],
+      ),
     );
   }
 }
