@@ -18,7 +18,7 @@ class _EventProgressState extends State<EventProgress>
   void initState() {
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 4324), // resterende seconden tot event
+      duration: const Duration(seconds: 50), // resterende seconden tot event
     )..addListener(() {
         setState(() {});
       });
@@ -40,7 +40,7 @@ class _EventProgressState extends State<EventProgress>
       quarterTurns: -1,
       child: Container(
         height: 10,
-        width: 100,
+        width: 496,
         child: LinearProgressIndicator(
           value: controller.value,
           color: Color(widget.event.eColor),

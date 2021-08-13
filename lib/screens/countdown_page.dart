@@ -32,15 +32,15 @@ class CountDownPage extends StatelessWidget {
 
   Widget counterblock(String num, String unit) {
     return Container(
-      width: double.infinity,
-      margin: EdgeInsets.only(top: 40, left: 50),
+      // width: double.infinity,
+      margin: EdgeInsets.only(top: 40, left: 40),
       child: counter(num, unit),
     );
   }
 
   Widget textfill() {
     return Container(
-      margin: EdgeInsets.only(top: 50, left: 30, right: 30),
+      margin: EdgeInsets.only(top: 50, left: 20, right: 30),
       child: Text(
         "Time is the most valuable thing a man can spend. \nOnly 20 days left.",
         style: TextStyle(
@@ -60,14 +60,25 @@ class CountDownPage extends StatelessWidget {
         backgroundColor: lighterBlackOne,
       ),
       body: Center(
-        child: Column(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(height: 40),
-            counterblock('20', 'D'),
-            counterblock('04', 'H'),
-            counterblock('08', 'M'),
-            counterblock('05', 'S'),
-            EventProgress(event: event)
+            Container(
+              margin: EdgeInsets.only(left: 30, top: 60),
+              child: EventProgress(event: event),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(top: 20),
+                  child: counterblock('20', 'D'),
+                ),
+                counterblock('04', 'H'),
+                counterblock('08', 'M'),
+                counterblock('05', 'S'),
+              ],
+            ),
           ],
         ),
       ),
