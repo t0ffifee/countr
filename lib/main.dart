@@ -8,6 +8,8 @@ import 'package:countdown_app/constants/globals.dart';
 import 'package:countdown_app/widgets/event/event.dart';
 import 'package:countdown_app/widgets/event/event_card.dart';
 
+// github token test
+
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(EventAdapter());
