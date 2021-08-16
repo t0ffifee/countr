@@ -35,30 +35,24 @@ class MyAppState extends State<MyApp> {
   final List<Widget> children = [
     EventCard(
       key: Key('1'),
-      event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
-          Icons.alarm.codePoint, Colors.purple.shade300.value, false),
+      event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
     ),
     EventCard(
       key: Key('2'),
-      event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
-          Icons.alarm.codePoint, Colors.blue.shade300.value, false),
+      event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.blue.shade300.value, false),
     ),
     EventCard(
       key: Key('3'),
-      event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
-          Icons.alarm.codePoint, Colors.green.shade300.value, false),
+      event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.green.shade300.value, false),
     ),
     EventCard(
       key: Key('4'),
-      event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
-          Icons.alarm.codePoint, Colors.red.shade300.value, false),
+      event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.red.shade300.value, false),
     )
   ];
 
   @override
   Widget build(context) {
-    print("[BUILD] MyAppState is gebouwd");
-
     bool _visible = true;
 
     return MaterialApp(
@@ -115,23 +109,19 @@ class MyAppState extends State<MyApp> {
     return [
       EventCard(
         key: Key('1'),
-        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
-            Icons.alarm.codePoint, Colors.purple.shade300.value, false),
+        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.purple.shade300.value, false),
       ),
       EventCard(
         key: Key('2'),
-        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
-            Icons.alarm.codePoint, Colors.blue.shade300.value, false),
+        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.blue.shade300.value, false),
       ),
       EventCard(
         key: Key('3'),
-        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
-            Icons.alarm.codePoint, Colors.green.shade300.value, false),
+        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.green.shade300.value, false),
       ),
       EventCard(
         key: Key('4'),
-        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle',
-            Icons.alarm.codePoint, Colors.red.shade300.value, false),
+        event: Event(DateTime(2021, 10, 5), 'Tandarts', 'Gebits controle', Icons.alarm.codePoint, Colors.red.shade300.value, false),
       ),
     ];
   }
