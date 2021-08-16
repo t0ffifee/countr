@@ -59,24 +59,47 @@ class CountDownPage extends StatelessWidget {
         label: Text('RETURN', style: TextStyle(color: Color(event.color))),
         backgroundColor: lighterBlackOne,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Center(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(left: 30, top: 60),
-              child: EventProgress(event: event),
+              margin: EdgeInsets.only(top: 40, left: 10),
+              child: ListTile(
+                leading: Icon(
+                  IconData(event.eIconCodePoint, fontFamily: 'MaterialIcons'),
+                  color: whiteTextColor,
+                ),
+                title: Text(
+                  event.eTitle,
+                  style: TextStyle(color: whiteTextColor, fontSize: 24),
+                ),
+                trailing: Icon(
+                  Icons.fiber_manual_record_outlined,
+                  color: Color(event.eColor),
+                ),
+              ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(top: 20),
-                  child: counterblock('20', 'D'),
+                  margin: EdgeInsets.only(bottom: 20),
+                  child: EventProgress(event: event),
                 ),
-                counterblock('04', 'H'),
-                counterblock('08', 'M'),
-                counterblock('05', 'S'),
+                Container(
+                  height: 536,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      counterblock('20', 'D'),
+                      counterblock('04', 'H'),
+                      counterblock('08', 'M'),
+                      counterblock('05', 'S'),
+                    ],
+                  ),
+                ),
               ],
             ),
           ],
