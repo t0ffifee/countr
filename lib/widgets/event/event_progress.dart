@@ -10,8 +10,7 @@ class EventProgress extends StatefulWidget {
   _EventProgressState createState() => _EventProgressState();
 }
 
-class _EventProgressState extends State<EventProgress>
-    with TickerProviderStateMixin {
+class _EventProgressState extends State<EventProgress> with TickerProviderStateMixin {
   late AnimationController controller;
 
   @override
@@ -22,8 +21,7 @@ class _EventProgressState extends State<EventProgress>
     )..addListener(() {
         setState(() {});
       });
-    controller.value =
-        0; // ((now.epoch-creation.epoch)/(event.epoch-creation.epoch))
+    controller.value = 0; // ((now.epoch-creation.epoch)/(event.epoch-creation.epoch))
     controller.animateTo(1);
     super.initState();
   }
@@ -39,8 +37,8 @@ class _EventProgressState extends State<EventProgress>
     return RotatedBox(
       quarterTurns: -1,
       child: Container(
-        height: 10,
-        width: 496,
+        height: 20,
+        width: 462,
         child: LinearProgressIndicator(
           value: controller.value,
           color: Color(widget.event.eColor),
