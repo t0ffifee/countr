@@ -41,6 +41,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
 
     return ReorderableListView(
+      buildDefaultDragHandles: false,
       padding: const EdgeInsets.symmetric(horizontal: 40),
       children: <Widget>[
         for (int index = 0; index < _items.length; index++)
@@ -48,6 +49,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             key: Key('$index'),
             tileColor: _items[index].isOdd ? oddItemColor : evenItemColor,
             title: Text('Item ${_items[index]}'),
+            trailing: ReorderableDragStartListener(
+              index: index,
+              child: Icon(Icons.drag_handle),
+            ),
           ),
       ],
       onReorder: (int oldIndex, int newIndex) {
