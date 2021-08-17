@@ -34,10 +34,7 @@ class EventCard extends StatelessWidget {
               Expanded(
                 child: Column(
                   children: <Widget>[
-                    TopBar(
-                        title: event.eTitle,
-                        description: event.eDescription,
-                        icon: event.eIconCodePoint),
+                    TopBar(title: event.eTitle, description: event.eDescription, icon: event.eIconCodePoint),
                     Padding(
                       padding: EdgeInsets.only(left: 35, top: 2, right: 35),
                       child: DateShower(times: ['10', '23', '59', '59']),
@@ -74,6 +71,13 @@ class TopBar extends StatelessWidget {
           color: onSurfaceWhite,
           fontSize: 20,
           fontWeight: FontWeight.bold,
+        ),
+      ),
+      trailing: ReorderableDragStartListener(
+        index: 0,
+        child: Icon(
+          Icons.drag_handle,
+          color: onSurfaceWhite,
         ),
       ),
     );
