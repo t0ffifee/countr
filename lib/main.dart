@@ -70,17 +70,21 @@ class MyAppState extends State<MyApp> {
     )
   ];
 
+  // floatingActionButton: Visibility(
+  //         child: ExpandableFab(),
+  //         visible: fabIsVisible,
+  //       ),
+
   @override
   Widget build(context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: backgroundBlack,
-        floatingActionButton: Visibility(
-          child: ExpandableFab(),
-          visible: fabIsVisible,
-        ),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        // floatingActionButton: fabIsVisible ? FloatingActionButton(onPressed: () => {}) : null,
+        floatingActionButton: fabIsVisible ? ExpandableFab() : null,
         body: Center(
           child: Container(
             color: backgroundBlack,

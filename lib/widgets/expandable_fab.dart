@@ -13,8 +13,7 @@ class ExpandableFab extends StatefulWidget {
   _ExpandableFabState createState() => _ExpandableFabState();
 }
 
-class _ExpandableFabState extends State<ExpandableFab>
-    with SingleTickerProviderStateMixin {
+class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _expandAnimation;
   bool _open = false;
@@ -22,7 +21,6 @@ class _ExpandableFabState extends State<ExpandableFab>
   @override
   void initState() {
     super.initState();
-    // _open = widget.initialOpen ?? false;
     _controller = AnimationController(
       value: _open ? 1.0 : 0.0,
       duration: const Duration(milliseconds: 250),
@@ -119,16 +117,8 @@ class _ExpandableFabState extends State<ExpandableFab>
     );
 
     return <Widget>[
-      _ExpandingActionButton(
-          directionInDegrees: 90,
-          maxDistance: distance,
-          progress: _expandAnimation,
-          child: actionOne),
-      _ExpandingActionButton(
-          directionInDegrees: 90,
-          maxDistance: distance * 2,
-          progress: _expandAnimation,
-          child: actionTwo),
+      _ExpandingActionButton(directionInDegrees: 90, maxDistance: distance, progress: _expandAnimation, child: actionOne),
+      _ExpandingActionButton(directionInDegrees: 90, maxDistance: distance * 2, progress: _expandAnimation, child: actionTwo),
     ];
   }
 
