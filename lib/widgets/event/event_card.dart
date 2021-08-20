@@ -149,7 +149,6 @@ class CardButtonBar extends StatelessWidget {
     return ButtonBar(
       children: <Widget>[
         PopupMenuButton(
-          // color: Color.fromRGBO(25, 25, 25, 1),
           color: lighterBlackOne,
           icon: Icon(Icons.more_vert, color: onSurfaceWhite),
           itemBuilder: (BuildContext context) => <PopupMenuEntry>[
