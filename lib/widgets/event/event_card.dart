@@ -150,6 +150,13 @@ class CardButtonBar extends StatelessWidget {
       children: <Widget>[
         IconButton(
           splashRadius: splashRadiusIconButtonCard,
+          icon: Icon(Icons.delete, color: onSurfaceWhite),
+          onPressed: () {
+            print("Delete Button");
+          },
+        ),
+        IconButton(
+          splashRadius: splashRadiusIconButtonCard,
           icon: Icon(Icons.edit, color: onSurfaceWhite),
           onPressed: () {
             print("Edit Button");
