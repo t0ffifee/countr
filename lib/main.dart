@@ -33,20 +33,6 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  late ScrollController controller;
-  bool fabIsVisible = true;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = ScrollController();
-    controller.addListener(() {
-      setState(() {
-        fabIsVisible = controller.position.userScrollDirection == ScrollDirection.forward;
-      });
-    });
-  }
-
   final List<Widget> children = [
     EventCard(
       key: Key('1'),
@@ -70,20 +56,13 @@ class MyAppState extends State<MyApp> {
     )
   ];
 
-  // floatingActionButton: Visibility(
-  //         child: ExpandableFab(),
-  //         visible: fabIsVisible,
-  //       ),
-
   @override
   Widget build(context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: backgroundBlack,
-        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        // floatingActionButton: fabIsVisible ? FloatingActionButton(onPressed: () => {}) : null,
         floatingActionButton: ExpandableFab(),
         body: Center(
           child: Container(
@@ -111,7 +90,6 @@ class MyAppState extends State<MyApp> {
         shadowColor: Colors.transparent,
       ),
       child: ReorderableListView(
-        scrollController: controller,
         padding: EdgeInsets.fromLTRB(10, 30, 10, 80),
         children: children,
         onReorder: (int oldIndex, int newIndex) {
