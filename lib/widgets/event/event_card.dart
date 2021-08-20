@@ -148,23 +148,27 @@ class CardButtonBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return ButtonBar(
       children: <Widget>[
-        PopupMenuButton(
-          color: lighterBlackOne,
-          icon: Icon(Icons.more_vert, color: onSurfaceWhite),
-          itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-            const PopupMenuItem(
-              child: ListTile(
-                leading: Icon(Icons.edit, color: whiteTextColor),
-                title: Text('Edit', style: TextStyle(color: whiteTextColor)),
+        Theme(
+          data: ThemeData(
+            brightness: Brightness.dark,
+          ),
+          child: PopupMenuButton(
+            icon: Icon(Icons.more_vert),
+            itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+              const PopupMenuItem(
+                child: ListTile(
+                  leading: Icon(Icons.edit),
+                  title: Text('Edit'),
+                ),
               ),
-            ),
-            const PopupMenuItem(
-              child: ListTile(
-                leading: Icon(Icons.delete, color: whiteTextColor),
-                title: Text('Delete', style: TextStyle(color: whiteTextColor)),
+              const PopupMenuItem(
+                child: ListTile(
+                  leading: Icon(Icons.delete),
+                  title: Text('Delete'),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );
