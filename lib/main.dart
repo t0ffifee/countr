@@ -84,7 +84,7 @@ class MyAppState extends State<MyApp> {
         floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         // floatingActionButton: fabIsVisible ? FloatingActionButton(onPressed: () => {}) : null,
-        floatingActionButton: fabIsVisible ? ExpandableFab() : null,
+        floatingActionButton: ExpandableFab(),
         body: Center(
           child: Container(
             color: backgroundBlack,
@@ -112,7 +112,7 @@ class MyAppState extends State<MyApp> {
       ),
       child: ReorderableListView(
         scrollController: controller,
-        padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
+        padding: EdgeInsets.fromLTRB(10, 30, 10, 80),
         children: children,
         onReorder: (int oldIndex, int newIndex) {
           setState(() {
