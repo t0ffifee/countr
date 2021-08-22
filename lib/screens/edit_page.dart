@@ -89,7 +89,6 @@ class _EditPageState extends State<EditPage> {
       leading: IconButton(
         icon: Icon(Icons.arrow_back),
         onPressed: () {
-          print("Cancel");
           Navigator.pop(context);
         },
       ),

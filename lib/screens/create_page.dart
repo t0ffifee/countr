@@ -89,7 +89,6 @@ class _CreatePageState extends State<CreatePage> {
       leading: IconButton(
         icon: Icon(Icons.arrow_back),
         onPressed: () {
-          print("Cancel");
           Navigator.pop(context);
         },
       ),
