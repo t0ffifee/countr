@@ -18,10 +18,8 @@ class TextInput extends StatelessWidget {
           color: whiteTextColor,
         ),
         decoration: InputDecoration(
-          enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent)),
-          focusedBorder:
-              OutlineInputBorder(borderSide: BorderSide(color: onSurfaceWhite)),
+          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: onSurfaceWhite)),
           filled: true,
           fillColor: lighterBlackOne,
           border: OutlineInputBorder(),

@@ -1,4 +1,5 @@
 import 'package:countdown_app/screens/countdown_page.dart';
+import 'package:countdown_app/screens/edit_page.dart';
 import 'package:flutter/material.dart';
 import 'package:countdown_app/constants/constants.dart';
 import 'package:flutter/rendering.dart';
@@ -39,7 +40,7 @@ class EventCard extends StatelessWidget {
                       padding: EdgeInsets.only(left: 35, top: 2, right: 35),
                       child: DateShower(times: ['10', '23', '59', '59']),
                     ),
-                    CardButtonBar(),
+                    CardButtonBar(event: event),
                   ],
                 ),
               ),
@@ -140,7 +141,8 @@ class ElementShower extends StatelessWidget {
 }
 
 class CardButtonBar extends StatelessWidget {
-  const CardButtonBar({Key? key}) : super(key: key);
+  const CardButtonBar({Key? key, required this.event}) : super(key: key);
+  final Event event;
 
   @override
   Widget build(BuildContext context) {
@@ -172,7 +174,10 @@ class CardButtonBar extends StatelessWidget {
           child: PopupMenuButton(
             onSelected: (value) {
               if (value == 1) {
-                print('edit');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EditPage(event: event)),
+                );
               } else if (value == 2) {
                 showDialog<void>(context: context, builder: (context) => dialog);
               }
