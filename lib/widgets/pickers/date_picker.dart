@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 /// Provides a dialog where the user can choose a date
 class DatePicker extends StatefulWidget {
   final ValueChanged<DateTime>? onDateTimeChanged;
-  DatePicker({Key? key, this.onDateTimeChanged}) : super(key: key);
+  final DateTime? previousDate;
+  DatePicker({Key? key, this.onDateTimeChanged, this.previousDate}) : super(key: key);
 
   @override
   _DatePickerState createState() => _DatePickerState();
@@ -15,19 +16,25 @@ class _DatePickerState extends State<DatePicker> {
 
   /// Returns the DatePickerDialog in which the user can choose the date
   void _selectDate() async {
+    DateTime date;
+    if (widget.previousDate == null) {
+      date = selectedDate;
+    } else {
+      date = widget.previousDate!;
+    }
     const int FiveYears = 365 * 5;
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: selectedDate,
+      initialDate: date,
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(Duration(days: FiveYears)),
       helpText: "Choose the date of the event",
     );
-    if (picked != null && picked != selectedDate)
+    if (picked != null && picked != date)
       setState(() {
         selectedDate = picked;
-        widget.onDateTimeChanged!(selectedDate);
-        print('Date selected: ${selectedDate.day.toString().padLeft(2, '0')}-${selectedDate.month.toString().padLeft(2, '0')}-${selectedDate.year}');
+        widget.onDateTimeChanged!(date);
+        print('Date selected: ${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year}');
       });
   }
 
