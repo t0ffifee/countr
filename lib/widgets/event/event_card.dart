@@ -39,7 +39,7 @@ class EventCard extends StatelessWidget {
                       padding: EdgeInsets.only(left: 35, top: 2, right: 35),
                       child: DateShower(times: ['10', '23', '59', '59']),
                     ),
-                    CardButtonBar(context: context),
+                    CardButtonBar(),
                   ],
                 ),
               ),
@@ -140,12 +140,29 @@ class ElementShower extends StatelessWidget {
 }
 
 class CardButtonBar extends StatelessWidget {
-  final BuildContext context;
-
-  CardButtonBar({required this.context});
+  const CardButtonBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final Widget dialog = Theme(
+      data: ThemeData(
+        brightness: Brightness.dark,
+      ),
+      child: AlertDialog(
+        title: Text('Delete Event?'),
+        content: Text('This will remove this event from the list and stop notifying you.'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              print('confirm');
+              Navigator.of(context, rootNavigator: true).pop();
+            },
+            child: Text('CONFIRM'),
+          ),
+        ],
+      ),
+    );
+
     return ButtonBar(
       children: <Widget>[
         Theme(
@@ -153,15 +170,24 @@ class CardButtonBar extends StatelessWidget {
             brightness: Brightness.dark,
           ),
           child: PopupMenuButton(
+            onSelected: (value) {
+              if (value == 1) {
+                print('edit');
+              } else if (value == 2) {
+                showDialog<void>(context: context, builder: (context) => dialog);
+              }
+            },
             icon: Icon(Icons.more_vert),
             itemBuilder: (BuildContext context) => <PopupMenuEntry>[
               const PopupMenuItem(
+                value: 1,
                 child: ListTile(
                   leading: Icon(Icons.edit),
                   title: Text('Edit'),
                 ),
               ),
               const PopupMenuItem(
+                value: 2,
                 child: ListTile(
                   leading: Icon(Icons.delete),
                   title: Text('Delete'),
