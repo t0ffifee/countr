@@ -3,20 +3,24 @@ import 'package:flutter/material.dart';
 
 class TimePicker extends StatefulWidget {
   final ValueChanged<TimeOfDay>? onTimeChanged;
-  TimePicker({Key? key, this.onTimeChanged}) : super(key: key);
+  final TimeOfDay? previousTime;
+  TimePicker({Key? key, this.onTimeChanged, this.previousTime}) : super(key: key);
 
   @override
   _TimePickerState createState() => _TimePickerState();
 }
 
 class _TimePickerState extends State<TimePicker> {
-  TimeOfDay time = TimeOfDay(hour: 6, minute: 15);
+  TimeOfDay selectedTime = TimeOfDay.now();
 
   /// Creating a 24 hour time dialog for the user to choose a time
   void _selectTime() async {
+    if (widget.previousTime != null) {
+      selectedTime = widget.previousTime!;
+    }
     final TimeOfDay? newTime = await showTimePicker(
       context: context,
-      initialTime: time,
+      initialTime: selectedTime,
       builder: (BuildContext context, Widget? child) {
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
@@ -26,8 +30,8 @@ class _TimePickerState extends State<TimePicker> {
     );
     if (newTime != null) {
       setState(() {
-        time = newTime;
-        widget.onTimeChanged!(newTime);
+        selectedTime = newTime;
+        widget.onTimeChanged!(selectedTime);
       });
     }
   }
@@ -44,7 +48,7 @@ class _TimePickerState extends State<TimePicker> {
         Container(
           margin: EdgeInsets.only(left: 20),
           child: Text(
-            "${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}",
+            "${selectedTime.hour.toString().padLeft(2, '0')}:${selectedTime.minute.toString().padLeft(2, '0')}",
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,

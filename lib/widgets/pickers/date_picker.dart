@@ -16,25 +16,21 @@ class _DatePickerState extends State<DatePicker> {
 
   /// Returns the DatePickerDialog in which the user can choose the date
   void _selectDate() async {
-    DateTime date;
-    if (widget.previousDate == null) {
-      date = selectedDate;
-    } else {
-      date = widget.previousDate!;
+    if (widget.previousDate != null) {
+      selectedDate = widget.previousDate!;
     }
     const int FiveYears = 365 * 5;
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: date,
+      initialDate: selectedDate,
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(Duration(days: FiveYears)),
       helpText: "Choose the date of the event",
     );
-    if (picked != null && picked != date)
+    if (picked != null)
       setState(() {
         selectedDate = picked;
-        widget.onDateTimeChanged!(date);
-        print('Date selected: ${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year}');
+        widget.onDateTimeChanged!(selectedDate);
       });
   }
 

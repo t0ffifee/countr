@@ -156,7 +156,7 @@ class CardButtonBar extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () {
-              print('confirm');
+              print('delete event');
               Navigator.of(context, rootNavigator: true).pop();
             },
             child: Text('CONFIRM'),

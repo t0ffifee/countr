@@ -3,37 +3,21 @@ import 'package:countdown_app/constants/constants.dart';
 
 class SimpleCheckBox extends StatefulWidget {
   final ValueChanged<bool>? onCheckChanged;
-  SimpleCheckBox({Key? key, this.onCheckChanged}) : super(key: key);
+  final bool? previousChoice;
+  SimpleCheckBox({Key? key, this.onCheckChanged, this.previousChoice}) : super(key: key);
 
   @override
   SimpleCheckBoxState createState() => SimpleCheckBoxState();
 }
 
-class SimpleCheckBoxState2 extends State<SimpleCheckBox> {
-  bool v = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return CheckboxListTile(
-      title: Text('Receive notification'),
-      value: v,
-      onChanged: (value) {
-        setState(() {
-          v = value!;
-          widget.onCheckChanged!(v);
-        });
-      },
-      controlAffinity: ListTileControlAffinity.trailing,
-      secondary: Icon(Icons.notifications),
-    );
-  }
-}
-
 class SimpleCheckBoxState extends State<SimpleCheckBox> {
-  bool v = false;
+  bool selectedChoice = false;
 
   @override
   Widget build(BuildContext context) {
+    if (widget.previousChoice != null) {
+      selectedChoice = widget.previousChoice!;
+    }
     return ListTile(
       leading: Icon(Icons.notifications),
       title: Text(
@@ -43,11 +27,11 @@ class SimpleCheckBoxState extends State<SimpleCheckBox> {
       trailing: Checkbox(
         activeColor: lighterBlackOne,
         checkColor: onSurfaceWhite,
-        value: v,
+        value: selectedChoice,
         onChanged: (value) {
           setState(() {
-            v = value!;
-            widget.onCheckChanged!(v);
+            selectedChoice = value!;
+            widget.onCheckChanged!(selectedChoice);
           });
         },
       ),

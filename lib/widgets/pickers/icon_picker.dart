@@ -4,7 +4,8 @@ import 'package:countdown_app/constants/constants.dart';
 
 class IconPicker extends StatefulWidget {
   final ValueChanged<int>? onIconChanged;
-  IconPicker({Key? key, this.onIconChanged}) : super(key: key);
+  final int? previousIcon;
+  IconPicker({Key? key, this.onIconChanged, this.previousIcon}) : super(key: key);
 
   @override
   _IconPickerState createState() => _IconPickerState();
@@ -12,7 +13,7 @@ class IconPicker extends StatefulWidget {
 
 class _IconPickerState extends State<IconPicker> {
   // The general icon for any event (infinity sign)
-  int icon = Icons.all_inclusive_outlined.codePoint;
+  int selectedIcon = Icons.alarm.codePoint;
 
   /// Makes a dialog of the 16 Icons so the user can choose one
   void _selectIcon() async {
@@ -45,16 +46,19 @@ class _IconPickerState extends State<IconPicker> {
       },
     );
 
-    if (newIcon != null && newIcon != icon) {
+    if (newIcon != null && newIcon != selectedIcon) {
       setState(() {
-        icon = newIcon!;
-        widget.onIconChanged!(icon);
+        selectedIcon = newIcon!;
+        widget.onIconChanged!(selectedIcon);
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (widget.previousIcon != null) {
+      selectedIcon = widget.previousIcon!;
+    }
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -64,7 +68,7 @@ class _IconPickerState extends State<IconPicker> {
         ),
         Container(
           margin: EdgeInsets.only(left: 20),
-          child: Icon(IconData(icon, fontFamily: 'MaterialIcons')),
+          child: Icon(IconData(selectedIcon, fontFamily: 'MaterialIcons')),
         ),
       ],
     );
