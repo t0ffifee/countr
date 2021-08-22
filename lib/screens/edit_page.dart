@@ -27,13 +27,10 @@ class _EditPageState extends State<EditPage> {
   Widget build(BuildContext context) {
     TimeOfDay selectedTime = TimeOfDay.fromDateTime(widget.event.eDate);
     final titleController = TextEditingController(text: widget.event.eTitle);
-    final descriptionController = TextEditingController();
-
-    bool pushNotification = widget.event.notification;
-
     int chosenIconPoint = widget.event.eIconCodePoint;
 
-    int chosenColor = widget.event.eColor;
+    // bool pushNotification = widget.event.notification;
+    // int chosenColor = widget.event.eColor;
 
     return GestureDetector(
       onTap: () {
@@ -68,12 +65,12 @@ class _EditPageState extends State<EditPage> {
             child: Column(
               children: [
                 TextInput(titleController, 'Title'),
-                TextInput(descriptionController, 'Description'),
-                buildDatePicker(selectedDate),
-                buildTimePicker(selectedTime),
-                buildIconPicker(chosenIconPoint),
-                buildColorPicker(),
-                buildCheckBox()
+                // TextInput(descriptionController, 'Description'),
+                buildDatePicker(selectedDate, widget.event.eDate),
+                buildTimePicker(selectedTime, TimeOfDay.fromDateTime(widget.event.eDate)),
+                buildIconPicker(chosenIconPoint, widget.event.eIconCodePoint),
+                buildColorPicker(widget.event.color),
+                buildCheckBox(widget.event.notification)
               ],
             ),
           ),
@@ -101,40 +98,43 @@ class _EditPageState extends State<EditPage> {
   }
 }
 
-Widget buildDatePicker(DateTime selectedDate) {
+Widget buildDatePicker(DateTime selectedDate, DateTime previousDate) {
   return Container(
     alignment: AlignmentDirectional.centerStart,
     child: DatePicker(
       onDateTimeChanged: (newDateTime) {
         selectedDate = newDateTime;
       },
+      previousDate: previousDate,
     ),
   );
 }
 
-Widget buildTimePicker(TimeOfDay selectedTime) {
+Widget buildTimePicker(TimeOfDay selectedTime, TimeOfDay previousTime) {
   return Container(
     alignment: AlignmentDirectional.centerStart,
     child: TimePicker(
       onTimeChanged: (newTimeOfDay) {
         selectedTime = newTimeOfDay;
       },
+      previousTime: previousTime,
     ),
   );
 }
 
-Widget buildIconPicker(int chosenIconPoint) {
+Widget buildIconPicker(int chosenIconPoint, int previousIconPoint) {
   return Container(
     alignment: AlignmentDirectional.centerStart,
     child: IconPicker(
       onIconChanged: (newIcon) {
         chosenIconPoint = newIcon;
       },
+      previousIcon: previousIconPoint,
     ),
   );
 }
 
-Widget buildColorPicker() {
+Widget buildColorPicker(int prevColor) {
   return Padding(
     padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
     child: Column(
@@ -147,18 +147,19 @@ Widget buildColorPicker() {
               onSelectColor: (value) {
                 print(value);
               },
-              initialColor: Colors.blue.shade300),
+              initialColor: Color(prevColor)),
         )
       ],
     ),
   );
 }
 
-Widget buildCheckBox() {
+Widget buildCheckBox(bool previousChoice) {
   return SimpleCheckBox(
     onCheckChanged: (newChoice) {
       print(newChoice);
     },
+    previousChoice: previousChoice,
   );
 }
 
