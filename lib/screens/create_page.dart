@@ -68,7 +68,7 @@ class _CreatePageState extends State<CreatePage> {
             child: Column(
               children: [
                 TextInput(titleController, 'Title'),
-                TextInput(descriptionController, 'Description'),
+                // TextInput(descriptionController, 'Description'),
                 buildDatePicker(selectedDate),
                 buildTimePicker(selectedTime),
                 buildIconPicker(chosenIconPoint),
