@@ -11,13 +11,20 @@ class SimpleCheckBox extends StatefulWidget {
 }
 
 class SimpleCheckBoxState extends State<SimpleCheckBox> {
-  bool selectedChoice = false;
+  late bool selectedChoice;
+
+  @override
+  void initState() {
+    if (widget.previousChoice != null) {
+      selectedChoice = widget.previousChoice!;
+    } else {
+      selectedChoice = false;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.previousChoice != null) {
-      selectedChoice = widget.previousChoice!;
-    }
     return ListTile(
       leading: Icon(Icons.notifications),
       title: Text(

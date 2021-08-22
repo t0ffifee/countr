@@ -13,7 +13,17 @@ class IconPicker extends StatefulWidget {
 
 class _IconPickerState extends State<IconPicker> {
   // The general icon for any event (infinity sign)
-  int selectedIcon = Icons.alarm.codePoint;
+  late int selectedIcon;
+
+  @override
+  void initState() {
+    if (widget.previousIcon != null) {
+      selectedIcon = widget.previousIcon!;
+    } else {
+      selectedIcon = Icons.alarm.codePoint;
+    }
+    super.initState();
+  }
 
   /// Makes a dialog of the 16 Icons so the user can choose one
   void _selectIcon() async {
@@ -56,9 +66,6 @@ class _IconPickerState extends State<IconPicker> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.previousIcon != null) {
-      selectedIcon = widget.previousIcon!;
-    }
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[

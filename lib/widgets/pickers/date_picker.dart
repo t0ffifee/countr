@@ -12,13 +12,19 @@ class DatePicker extends StatefulWidget {
 }
 
 class _DatePickerState extends State<DatePicker> {
-  DateTime selectedDate = DateTime.now();
+  late DateTime selectedDate;
+  @override
+  void initState() {
+    if (widget.previousDate != null) {
+      selectedDate = widget.previousDate!;
+    } else {
+      selectedDate = DateTime.now();
+    }
+    super.initState();
+  }
 
   /// Returns the DatePickerDialog in which the user can choose the date
   void _selectDate() async {
-    if (widget.previousDate != null) {
-      selectedDate = widget.previousDate!;
-    }
     const int FiveYears = 365 * 5;
     final DateTime? picked = await showDatePicker(
       context: context,

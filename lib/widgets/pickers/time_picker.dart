@@ -11,13 +11,19 @@ class TimePicker extends StatefulWidget {
 }
 
 class _TimePickerState extends State<TimePicker> {
-  TimeOfDay selectedTime = TimeOfDay.now();
+  late TimeOfDay selectedTime;
+  @override
+  void initState() {
+    if (widget.previousTime != null) {
+      selectedTime = widget.previousTime!;
+    } else {
+      selectedTime = TimeOfDay.now();
+    }
+    super.initState();
+  }
 
   /// Creating a 24 hour time dialog for the user to choose a time
   void _selectTime() async {
-    if (widget.previousTime != null) {
-      selectedTime = widget.previousTime!;
-    }
     final TimeOfDay? newTime = await showTimePicker(
       context: context,
       initialTime: selectedTime,
