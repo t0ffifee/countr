@@ -20,35 +20,40 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = 180;
-    return Container(
-      margin: EdgeInsets.fromLTRB(0, 2, 0, 2),
-      height: height,
-      child: GestureDetector(
-        onTap: () => cardFunction(context, event),
-        child: Card(
-          elevation: 1,
-          color: Color.fromRGBO(29, 29, 29, 0.95),
-          // clipBehavior: Clip.antiAlias,
-          child: Row(
-            children: [
-              Container(width: 10, height: height, color: Color(event.color)),
-              Expanded(
-                child: Column(
-                  children: <Widget>[
-                    TopBar(title: event.eTitle, description: event.eDescription, icon: event.eIconCodePoint),
-                    Padding(
-                      padding: EdgeInsets.only(left: 35, top: 2, right: 35),
-                      child: DateShower(times: ['10', '23', '59', '59']),
-                    ),
-                    CardButtonBar(event: event),
-                  ],
+    return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+      print(constraints.maxHeight);
+      print(constraints.maxWidth);
+
+      return Container(
+        margin: EdgeInsets.fromLTRB(0, 2, 0, 2),
+        height: height,
+        width: constraints.maxWidth,
+        child: GestureDetector(
+          onTap: () => cardFunction(context, event),
+          child: Card(
+            elevation: 1,
+            color: Color.fromRGBO(29, 29, 29, 0.95),
+            child: Row(
+              children: [
+                Container(width: 10, height: height, color: Color(event.color)),
+                Expanded(
+                  child: Column(
+                    children: <Widget>[
+                      TopBar(title: event.eTitle, description: event.eDescription, icon: event.eIconCodePoint),
+                      Padding(
+                        padding: EdgeInsets.only(left: 24, top: 2, right: 24),
+                        child: DateShower(times: ['566', '23', '59', '59']),
+                      ),
+                      CardButtonBar(event: event),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
 

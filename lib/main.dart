@@ -85,7 +85,6 @@ class MyAppState extends State<MyApp> {
     MediaQueryData queryData = MediaQuery.of(context);
     print(queryData.size.width);
     print(queryData.size.height);
-    // List<Widget> cs = getChildren();
     return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
       print(constraints.maxHeight);
       print(constraints.maxWidth);
