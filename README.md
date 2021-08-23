@@ -1,4 +1,4 @@
-# Countdown App
+# Countr
 
 ## Tools Used
 - Codebase: Flutter

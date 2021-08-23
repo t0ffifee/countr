@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:countdown_app/widgets/expandable_fab.dart';
+import 'package:device_preview/device_preview.dart';
 
 import 'package:countdown_app/constants/constants.dart';
 import 'package:countdown_app/constants/globals.dart';
@@ -16,14 +18,17 @@ void main() async {
   Globals.events = await Hive.openBox<Event>(eventBox);
   Globals.events.clear();
 
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    theme: ThemeData(
-      brightness: Brightness.dark,
-      primaryColor: Colors.green,
+  runApp(DevicePreview(
+    enabled: !kReleaseMode,
+    builder: (context) => MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: Colors.green,
+      ),
+      title: 'CountDown',
+      home: MyApp(),
     ),
-    title: 'CountDown',
-    home: MyApp(),
   ));
 }
 
@@ -59,6 +64,8 @@ class MyAppState extends State<MyApp> {
   @override
   Widget build(context) {
     return MaterialApp(
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: backgroundBlack,
@@ -74,34 +81,33 @@ class MyAppState extends State<MyApp> {
     );
   }
 
-  Widget normalList() {
-    // List<Widget> cs = getChildren();
-    return ListView(
-      padding: EdgeInsets.all(10),
-      children: children,
-    );
-  }
-
   Widget reorListView() {
+    MediaQueryData queryData = MediaQuery.of(context);
+    print(queryData.size.width);
+    print(queryData.size.height);
     // List<Widget> cs = getChildren();
-    return Theme(
-      data: ThemeData(
-        canvasColor: Colors.transparent,
-        shadowColor: Colors.transparent,
-      ),
-      child: ReorderableListView(
-        padding: EdgeInsets.fromLTRB(10, 30, 10, 80),
-        children: children,
-        onReorder: (int oldIndex, int newIndex) {
-          setState(() {
-            if (oldIndex < newIndex) {
-              newIndex -= 1;
-            }
-            final Widget item = children.removeAt(oldIndex);
-            children.insert(newIndex, item);
-          });
-        },
-      ),
-    );
+    return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+      print(constraints.maxHeight);
+      print(constraints.maxWidth);
+      return Theme(
+        data: ThemeData(
+          canvasColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+        ),
+        child: ReorderableListView(
+          padding: EdgeInsets.fromLTRB(10, 30, 10, 80),
+          children: children,
+          onReorder: (int oldIndex, int newIndex) {
+            setState(() {
+              if (oldIndex < newIndex) {
+                newIndex -= 1;
+              }
+              final Widget item = children.removeAt(oldIndex);
+              children.insert(newIndex, item);
+            });
+          },
+        ),
+      );
+    });
   }
 }

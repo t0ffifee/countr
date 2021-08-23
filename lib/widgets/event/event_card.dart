@@ -79,6 +79,7 @@ class TopBar extends StatelessWidget {
         child: Icon(
           Icons.drag_handle,
           color: onSurfaceWhite,
+          size: 30,
         ),
       ),
     );
