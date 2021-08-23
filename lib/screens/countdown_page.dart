@@ -9,99 +9,126 @@ class CountDownPage extends StatelessWidget {
 
   CountDownPage(this.event);
 
-  Widget counter(String num, String unit) {
-    return RichText(
-      textAlign: TextAlign.left,
-      text: TextSpan(
-        text: '$num\t',
-        style: TextStyle(
-          fontSize: 80,
-          color: whiteTextColor,
-        ),
-        children: <TextSpan>[
-          TextSpan(
+  Widget counter(String num, String unit, BuildContext context) {
+    MediaQueryData queryData = MediaQuery.of(context);
+
+    print('MediaQuery:');
+    double height = queryData.size.height;
+    double width = queryData.size.width;
+
+    return FittedBox(
+      fit: BoxFit.fill,
+      child: RichText(
+        textAlign: TextAlign.left,
+        text: TextSpan(
+          text: '$num\t',
+          style: TextStyle(
+            // fontSize: 80,
+            color: whiteTextColor,
+          ),
+          children: <TextSpan>[
+            TextSpan(
               text: unit,
               style: TextStyle(
                 fontWeight: FontWeight.normal,
-                fontSize: 40,
-              )),
-        ],
+                fontSize: 6,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  Widget counterblock(String num, String unit) {
-    return Container(
+  Widget counterblock(String num, String unit, BuildContext context) {
+    return Expanded(
       // width: double.infinity,
-      margin: EdgeInsets.only(top: 40, left: 40),
-      child: counter(num, unit),
+      // margin: EdgeInsets.only(top: 40, left: 40),
+      child: counter(num, unit, context),
     );
   }
 
-  Widget textfill() {
+  Widget topBar(MediaQueryData mqd) {
+    double height = mqd.size.height;
+    double mar = height / 40;
+
     return Container(
-      margin: EdgeInsets.only(top: 50, left: 20, right: 30),
-      child: Text(
-        "Time is the most valuable thing a man can spend. \nOnly 20 days left.",
-        style: TextStyle(
-          color: whiteTextColor,
-          fontSize: 30,
-        ),
+      height: 50,
+      margin: EdgeInsets.only(top: mar, left: 10, right: 10, bottom: mar),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            width: 100,
+            child: Row(
+              children: [
+                Icon(
+                  IconData(event.eIconCodePoint, fontFamily: 'MaterialIcons'),
+                  color: whiteTextColor,
+                  size: 35,
+                ),
+                Expanded(
+                  child: FittedBox(
+                    fit: BoxFit.contain,
+                    child: Text(
+                      event.eTitle,
+                      style: TextStyle(color: whiteTextColor),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Icon(Icons.fiber_manual_record_outlined, color: Color(event.eColor)),
+        ],
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData = MediaQuery.of(context);
+
+    print('MediaQuery:');
+    double height = queryData.size.height;
+    double width = queryData.size.width;
+    double mar = height / 40;
+
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => Navigator.pop(context),
-        label: Text('RETURN', style: TextStyle(color: Color(event.color))),
-        backgroundColor: lighterBlackOne,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Center(
         child: Column(
           children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(top: 40, left: 10),
-              child: ListTile(
-                leading: Icon(
-                  IconData(event.eIconCodePoint, fontFamily: 'MaterialIcons'),
-                  color: whiteTextColor,
-                ),
-                title: Text(
-                  event.eTitle,
-                  style: TextStyle(color: whiteTextColor, fontSize: 24),
-                ),
-                trailing: Icon(
-                  Icons.fiber_manual_record_outlined,
-                  color: Color(event.eColor),
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(bottom: 20),
-                  child: EventProgress(event: event),
-                ),
-                Container(
-                  height: 536,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      counterblock('20', 'D'),
-                      counterblock('04', 'H'),
-                      counterblock('08', 'M'),
-                      counterblock('05', 'S'),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            topBar(queryData),
+            // Expanded(
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     crossAxisAlignment: CrossAxisAlignment.center,
+            //     children: <Widget>[
+            //       // Container(
+            //       //   margin: EdgeInsets.only(bottom: 20),
+            //       //   child: EventProgress(event: event),
+            //       // ),
+            //       LayoutBuilder(
+            //         builder: (BuildContext context, BoxConstraints constraints) {
+            //           print(constraints.maxHeight);
+            //           return Container(
+            //             height: constraints.maxHeight * 0.85,
+            //             child: Column(
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: <Widget>[
+            //                 counterblock('20', 'D', context),
+            //                 counterblock('04', 'H', context),
+            //                 counterblock('08', 'M', context),
+            //                 counterblock('05', 'S', context),
+            //               ],
+            //             ),
+            //           );
+            //         },
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),

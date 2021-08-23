@@ -82,12 +82,7 @@ class MyAppState extends State<MyApp> {
   }
 
   Widget reorListView() {
-    MediaQueryData queryData = MediaQuery.of(context);
-    print(queryData.size.width);
-    print(queryData.size.height);
     return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
-      print(constraints.maxHeight);
-      print(constraints.maxWidth);
       return Theme(
         data: ThemeData(
           canvasColor: Colors.transparent,

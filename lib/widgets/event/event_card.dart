@@ -21,9 +21,6 @@ class EventCard extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = 180;
     return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
-      print(constraints.maxHeight);
-      print(constraints.maxWidth);
-
       return Container(
         margin: EdgeInsets.fromLTRB(0, 2, 0, 2),
         height: height,
