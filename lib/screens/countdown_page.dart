@@ -103,9 +103,14 @@ class CountDownPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          // Container(
-          //   margin: EdgeInsets.only(bottom: 20),
-          //   child: EventProgress(event: event),
+          Container(
+            margin: EdgeInsets.only(bottom: 20),
+            child: EventProgress(event: event),
+          ),
+          Container(width: mqd.size.width * 0.1),
+          // FractionallySizedBox(
+          //   widthFactor: 0.0001,
+          //   heightFactor: 0.0001,
           // ),
           LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
@@ -146,7 +151,7 @@ class CountDownPage extends StatelessWidget {
             fullCounter(queryData),
             Container(
               padding: EdgeInsets.only(bottom: height * 0.02),
-              width: width * 0.9,
+              width: width * 0.8,
               height: height * 0.11,
               child: Text(
                 'Time is the most valuable thing a man can spend. Because it is so valuable.',

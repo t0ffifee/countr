@@ -105,3 +105,97 @@ class MyAppState extends State<MyApp> {
     });
   }
 }
+
+// -------------------- APP ONLY --------------------
+
+// void main() async {
+//   await Hive.initFlutter();
+//   Hive.registerAdapter(EventAdapter());
+
+//   Globals.events = await Hive.openBox<Event>(eventBox);
+//   Globals.events.clear();
+
+//   runApp(
+//     MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       theme: ThemeData(
+//         brightness: Brightness.dark,
+//         primaryColor: Colors.green,
+//       ),
+//       title: 'CountDown',
+//       home: MyApp(),
+//     ),
+//   );
+// }
+
+// class MyApp extends StatefulWidget {
+//   @override
+//   MyAppState createState() => MyAppState();
+// }
+
+// class MyAppState extends State<MyApp> {
+//   final List<Widget> children = [
+//     EventCard(
+//       key: Key('1'),
+//       event: Event(DateTime(2021, 10, 5), 'Vakantie Spanje', '', Icons.airplanemode_active.codePoint, Colors.purple.shade300.value, false),
+//     ),
+//     EventCard(
+//       key: Key('2'),
+//       event: Event(DateTime(2021, 10, 5), 'Tandarts', '', Icons.alarm.codePoint, Colors.blue.shade300.value, false),
+//     ),
+//     EventCard(
+//       key: Key('3'),
+//       event: Event(DateTime(2021, 10, 5), 'Dagje Strand', '', Icons.beach_access.codePoint, Colors.green.shade300.value, false),
+//     ),
+//     EventCard(
+//       key: Key('4'),
+//       event: Event(DateTime(2021, 10, 5), 'Wintervakantie', '', Icons.snowmobile.codePoint, Colors.red.shade300.value, false),
+//     ),
+//     EventCard(
+//       key: Key('5'),
+//       event: Event(DateTime(2021, 10, 5), 'Wintervakantie', '', Icons.snowmobile.codePoint, Colors.red.shade300.value, false),
+//     )
+//   ];
+
+//   @override
+//   Widget build(context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: Scaffold(
+//         backgroundColor: backgroundBlack,
+//         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+//         floatingActionButton: ExpandableFab(),
+//         body: Center(
+//           child: Container(
+//             color: backgroundBlack,
+//             child: reorListView(),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+
+//   Widget reorListView() {
+//     return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+//       return Theme(
+//         data: ThemeData(
+//           canvasColor: Colors.transparent,
+//           shadowColor: Colors.transparent,
+//         ),
+//         child: ReorderableListView(
+//           padding: EdgeInsets.fromLTRB(10, 30, 10, 80),
+//           children: children,
+//           onReorder: (int oldIndex, int newIndex) {
+//             setState(() {
+//               if (oldIndex < newIndex) {
+//                 newIndex -= 1;
+//               }
+//               final Widget item = children.removeAt(oldIndex);
+//               children.insert(newIndex, item);
+//             });
+//           },
+//         ),
+//       );
+//     });
+//   }
+// }
