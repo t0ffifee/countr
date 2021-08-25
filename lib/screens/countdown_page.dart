@@ -50,37 +50,44 @@ class CountDownPage extends StatelessWidget {
 
   Widget topBar(MediaQueryData mqd) {
     double height = mqd.size.height;
-    double mar = height / 40;
+    double width = mqd.size.width;
 
     return Container(
-      height: 50,
-      margin: EdgeInsets.only(top: mar, left: 10, right: 10, bottom: mar),
+      height: height * 0.1,
+      margin: EdgeInsets.only(top: height * 0.02, left: 10, right: 10, bottom: height * 0.02),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            width: 100,
-            child: Row(
-              children: [
-                Icon(
-                  IconData(event.eIconCodePoint, fontFamily: 'MaterialIcons'),
-                  color: whiteTextColor,
-                  size: 35,
-                ),
-                Expanded(
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Text(
-                      event.eTitle,
-                      style: TextStyle(color: whiteTextColor),
+          Flexible(
+            child: FractionallySizedBox(
+              widthFactor: 0.8,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 10, right: 14),
+                    child: Icon(
+                      IconData(event.eIconCodePoint, fontFamily: 'MaterialIcons'),
+                      color: whiteTextColor,
+                      size: width * 0.08,
                     ),
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Text(
+                        event.eTitle,
+                        style: TextStyle(color: whiteTextColor, fontSize: width * 0.06),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-          Icon(Icons.fiber_manual_record_outlined, color: Color(event.eColor)),
+          Padding(
+            padding: EdgeInsets.only(right: width * 0.05),
+            child: Icon(Icons.fiber_manual_record_outlined, color: Color(event.eColor), size: width * 0.06),
+          ),
         ],
       ),
     );
