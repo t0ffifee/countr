@@ -152,10 +152,13 @@ class CountDownPage extends StatelessWidget {
             Container(
               padding: EdgeInsets.only(bottom: height * 0.02),
               width: width * 0.8,
-              height: height * 0.11,
-              child: Text(
-                'Time is the most valuable thing a man can spend. Because it is so valuable.',
-                style: TextStyle(color: whiteTextColor, fontWeight: FontWeight.w300, fontSize: width * 0.05),
+              height: height * 0.14,
+              child: FittedBox(
+                fit: BoxFit.fill,
+                child: Text(
+                  'Time is the most valuable thing a man can spend. Because it is so valuable.',
+                  style: TextStyle(color: whiteTextColor, fontWeight: FontWeight.w300, fontSize: width * 0.05),
+                ),
               ),
             )
             // Expanded(
