@@ -3,8 +3,10 @@ import 'package:countdown_app/widgets/event/event.dart';
 import 'package:flutter/material.dart';
 
 class EventProgress extends StatefulWidget {
-  const EventProgress({Key? key, required this.event}) : super(key: key);
+  const EventProgress({Key? key, required this.event, required this.height, required this.width}) : super(key: key);
   final Event event;
+  final double height;
+  final double width;
 
   @override
   _EventProgressState createState() => _EventProgressState();
@@ -37,8 +39,8 @@ class _EventProgressState extends State<EventProgress> with TickerProviderStateM
     return RotatedBox(
       quarterTurns: -1,
       child: Container(
-        height: 20,
-        width: 462,
+        height: widget.height,
+        width: widget.width,
         child: LinearProgressIndicator(
           value: controller.value,
           color: Color(widget.event.eColor),
