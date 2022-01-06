@@ -1,13 +1,15 @@
 # Countr
+minimalisticly designed app to set timers for upcoming events and important days
+
+# NOTE
+I stopped developing this because working on the front-end was not that amusing, I'm still letting it stay here for if anyone wants to use the code   
 
 ## Tools Used
-- Codebase: Flutter
+- Codebase: Dart/Flutter
 - Local storage: Hive
 - Environment: Android (Future may include IOS)
 
-## Genereren van een Hive file
- - Kijk hier of je de dependecies goed hebt: https://docs.hivedb.dev/#/
- - Kijk hier hoe je de class voorbereid: https://docs.hivedb.dev/#/custom-objects/generate_adapter
+## Generate a Hive file
+ - see here the dependencies: https://docs.hivedb.dev/#/
+ - see here how to prepare the class: https://docs.hivedb.dev/#/custom-objects/generate_adapter
  - run `flutter packages pub run build_runner build`
-
-### Acknowledgements
