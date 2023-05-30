@@ -1,9 +1,6 @@
 # Countr
 minimalisticly designed app to set timers for upcoming events and important days
 
-# NOTE
-I stopped developing this because working on the front-end was not that amusing, I'm still letting it stay here for if anyone wants to use the code   
-
 ## Tools Used
 - Codebase: Dart/Flutter
 - Local storage: Hive
